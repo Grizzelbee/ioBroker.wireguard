@@ -1,0 +1,156 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- Materialze style -->
+    <link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
+    <link type="text/css" rel="stylesheet" href="../../lib/css/themes/jquery-ui/default/jquery-ui.min.css">
+    <link type="text/css" rel="stylesheet" href="../../lib/css/fancytree/ui.fancytree.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/css/iob/selectID.css"/>
+
+    <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../../lib/js/jquery-ui-1.10.3.full.min.js"></script>
+    <script type="text/javascript" src="../../lib/js/jquery.fancytree-all.min.js"></script>
+    <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+
+    <script type="text/javascript" src="../../js/translate.js"></script>
+    <script type="text/javascript" src="../../lib/js/selectID.js"></script>
+    <script type="text/javascript" src="../../lib/js/materialize.js"></script>
+    <script type="text/javascript" src="../../js/adapter-settings.js"></script>
+    <script type="text/javascript" src="words.js"></script>
+
+    <script type="text/javascript">
+
+        let hosts = [];
+        let names = [];
+
+        // the function loadSettings has to exist ...
+        function load(settings, onChange) {
+            if (!settings) return;
+            for (var key in settings) {
+                if (!settings.hasOwnProperty(key)) continue;
+                var $value = $('#' + key + '.value');
+                if ($value.attr('type') === 'checkbox') {
+                    $value.prop('checked', settings[key]).on('change', function () {
+                        if ($('#auth').prop('checked')) {
+                            $('#secure').prop('checked', true);
+                        }
+                        onChange();
+                        showHideSettings();
+                    });
+                } else {
+                    $value.val(settings[key]).on('change', function () {
+                        onChange();
+                    }).keyup(function () {
+                        onChange();
+                    });
+                }
+            }
+            // Set default language
+            hosts = settings.hosts || [];
+            names = settings.names || [];
+            onChange(false);
+            values2table('hosts', hosts, onChange);
+            values2table('names', names, onChange);
+        }
+
+        function save(callback) {
+            var obj = {};
+            $('.value').each(function () {
+                var $this = $(this);
+                if ($this.attr('type') === 'checkbox') {
+                    obj[$this.attr('id')] = $this.prop('checked');
+                } else {
+                    obj[$this.attr('id')] = $this.val();
+                }
+            });
+            // Get edited table
+            obj.hosts = table2values('hosts');
+            obj.names = table2values('names');
+            callback(obj);
+        }
+    </script>
+    <style>
+        .m .select-wrapper + label {
+            top: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="m adapter-container">
+
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s2"><a href="#tab-main" class="translate active">Main settings</a></li>
+                <li class="tab col s2"><a href="#tab-names" class="translate">Public-Key translations</a></li>
+            </ul>
+        </div>
+        <div id="tab-main" class="col s12 page">
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <img src="wireguard.svg" class="logo">
+                    <img src="Logo_of_WireGuard.svg" width="500" float="right">
+                </div>
+            </div><!-- End of row -->
+            <div class="row">
+                <div class="col s12" id="hosts">
+                    <p class="translate">Please add all your hosts running a WireGuard server instance which should be
+                        monitored.</p>
+                    <a class="btn-floating waves-effect waves-light blue table-button-add"><i class="material-icons">add</i></a>
+                    <span class="translate">Click here to add a new host</span>
+                    <div class="table-values-div">
+                        <table class="table-values">
+                            <thead>
+                            <tr>
+                                <th data-name="_index" style="width: 5%" class="translate"></th>
+                                <th data-name="name" style="width: 20%" class="translate" for="name">Name</th>
+                                <th data-name="hostaddress" style="width: 20%" class="translate" for="hostaddress">Host
+                                    address
+                                </th>
+                                <th data-name="user" style="width: 20%" class="translate" for="user">User</th>
+                                <th data-name="password" style="width: 20%" class="translate" for="password"
+                                    data-type="password">Password
+                                </th>
+                                <th data-name="pollInterval" style="width: 20%" class="translate" for="pollInterval">
+                                    Poll interval
+                                </th>
+                                <th data-buttons="delete up down" style="width: 5%"></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="tab-names" class="col s12 page">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <img src="wireguard.svg" class="logo">
+                <img src="Logo_of_WireGuard.svg" width="500" float="right">
+            </div>
+        </div><!-- End of row -->
+        <div class="row">
+            <div class="col s12" id="names">
+                <p class="translate">Please add all public key to name translations here. This will make it more convenient for you to identify the peers in the object tree.</p>
+                <a class="btn-floating waves-effect waves-light blue table-button-add"><i class="material-icons">add</i></a>
+                <span class="translate">Click here to add a new translation</span>
+                <div class="table-values-div">
+                    <table class="table-values">
+                        <thead>
+                        <tr>
+                            <th data-name="_index" style="width: 5%" class="translate"></th>
+                            <th data-name="pubKey" style="width: 45%" class="translate" for="pubKey">Public key</th>
+                            <th data-name="groupname" style="width: 45%" class="translate" for="groupname">Name</th>
+                            <th data-buttons="delete up down" style="width: 5%"></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

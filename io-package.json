@@ -1,0 +1,123 @@
+{
+    "common": {
+        "name": "wireguard",
+        "version": "0.8.0",
+        "news": {
+            "0.8.0": {
+                "en": "Basic functionality"
+            },
+            "0.2.0": {
+                "en": "working admin"
+            },
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "WireGuard",
+        "titleLang": {
+            "en": "WireGuard",
+            "de": "WireGuard",
+            "ru": "WireGuard",
+            "pt": "WireGuard",
+            "nl": "WireGuard",
+            "fr": "WireGuard",
+            "it": "WireGuard",
+            "es": "Guardia de alambre",
+            "pl": "WireGuard",
+            "zh-cn": "线卫"
+        },
+        "desc": {
+            "en": "Connect to WireGuard hosts and grab connection information on peers",
+            "de": "Stellen Sie eine Verbindung zu WireGuard-Hosts her und holen Sie sich Verbindungsinformationen zu Peers",
+            "ru": "Подключайтесь к узлам WireGuard и собирайте информацию о соединениях с одноранговыми узлами.",
+            "pt": "Conecte-se a hosts WireGuard e obtenha informações de conexão em pares",
+            "nl": "Maak verbinding met WireGuard-hosts en verzamel verbindingsinformatie over peers",
+            "fr": "Connectez-vous aux hôtes WireGuard et récupérez les informations de connexion sur les pairs",
+            "it": "Connettiti agli host WireGuard e prendi le informazioni di connessione sui peer",
+            "es": "Conéctese a los hosts de WireGuard y obtenga información de conexión de sus pares",
+            "pl": "Połącz się z hostami WireGuard i zdobądź informacje o połączeniach na komputerach równorzędnych",
+            "zh-cn": "连接到 WireGuard 主机并获取对等方的连接信息"
+        },
+        "authors": [
+            "grizzelbee <open.source@hingsen.de>"
+        ],
+        "keywords": [
+            "ioBroker",
+            "wireguard",
+            "Smart Home",
+            "home automation"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "wireguard.svg",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/grizzelbee/ioBroker.wireguard/main/admin/wireguard.svg",
+        "readme": "https://github.com/grizzelbee/ioBroker.wireguard/blob/main/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "tier": 2,
+        "type": "infrastructure",
+        "compact": true,
+        "connectionType": "local",
+        "dataSource": "poll",
+        "materialize": true,
+        "plugins": {
+            "sentry": {
+                "dsn": "https://42007d6f59b74b5db06d6bfaf23d4d98@o505019.ingest.sentry.io/6215712"
+            }
+        },
+        "dependencies": [
+            {
+                "js-controller": ">=3.0.0",
+                "admin": ">=4.0.9"
+            }
+        ]
+    },
+    "native": {
+        "hosts": [
+            {
+                "name": "",
+                "hostaddress": "",
+                "user": "",
+                "password": "",
+                "pollInterval": 120
+            }
+        ]
+    },
+    "encryptedNative": [],
+    "protectedNative": [],
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Device or service connected",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
+    ]
+}
