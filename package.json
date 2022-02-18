@@ -6,7 +6,7 @@
     "name": "grizzelbee",
     "email": "open.source@hingsen.de"
   },
-  "homepage": "https://github.com/grizzelbee/ioBroker.wireguard",
+  "homepage": "https://github.com/Grizzelbee/ioBroker.wireguard",
   "license": "MIT",
   "keywords": [
     "ioBroker",
@@ -67,7 +67,7 @@
     "lint": "eslint --ext .js,.jsx"
   },
   "bugs": {
-    "url": "https://github.com/grizzelbee/ioBroker.wireguard/issues"
+    "url": "https://github.com/Grizzelbee/ioBroker.wireguard/issues"
   },
   "readmeFilename": "README.md"
 }
