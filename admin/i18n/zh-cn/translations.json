@@ -1,0 +1,14 @@
+{
+    "Click here to add a new host": "单击此处添加新主机",
+    "Click here to add a new translation": "单击此处添加新翻译",
+    "Host address": "主机地址 (IP)",
+    "Main settings": "主要设置",
+    "Name": "姓名",
+    "Password": "密码",
+    "Please add all public key to name translations here. This will make it more convenient for you to identify the peers in the object tree.": "请在此处添加所有公钥以命名翻译。",
+    "Please add all your hosts running a WireGuard server instance which should be monitored.": "请添加所有运行 WireGuard 服务器实例的主机，该实例应该是",
+    "Poll interval": "轮询间隔",
+    "Public key": "公钥",
+    "Public-Key translations": "公钥翻译",
+    "User": "用户"
+}
