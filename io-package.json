@@ -1,13 +1,43 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "0.8.0",
+        "version": "0.9.0",
         "news": {
+            "0.9.0": {
+                "en": "Added translations and encryption of host credentials",
+                "de": "Übersetzungen und Verschlüsselung von Host-Anmeldeinformationen hinzugefügt",
+                "ru": "Добавлены переводы и шифрование учетных данных хоста.",
+                "pt": "Adicionadas traduções e criptografia de credenciais de host",
+                "nl": "Vertalingen en versleuteling van hostreferenties toegevoegd",
+                "fr": "Ajout de traductions et de cryptage des informations d'identification de l'hôte",
+                "it": "Aggiunte traduzioni e crittografia delle credenziali host",
+                "es": "Se agregaron traducciones y encriptación de credenciales de host.",
+                "pl": "Dodano tłumaczenia i szyfrowanie danych uwierzytelniających hosta",
+                "zh-cn": "添加了主机凭据的翻译和加密"
+            },
             "0.8.0": {
-                "en": "Basic functionality"
+                "en": "Basic functionality",
+                "de": "Grundlegende Funktionalität",
+                "ru": "Базовая функциональность",
+                "pt": "Funcionalidade básica",
+                "nl": "Basisfunctionaliteit",
+                "fr": "Fonctionnalité de base",
+                "it": "Funzionalità di base",
+                "es": "Funcionalidad básica",
+                "pl": "Podstawowa funkcjonalność",
+                "zh-cn": "基本功能"
             },
             "0.2.0": {
-                "en": "working admin"
+                "en": "working admin",
+                "de": "arbeitender Administrator",
+                "ru": "работающий администратор",
+                "pt": "administrador de trabalho",
+                "nl": "werkende beheerder",
+                "fr": "administrateur de travail",
+                "it": "amministratore di lavoro",
+                "es": "administrador de trabajo",
+                "pl": "pracujący administrator",
+                "zh-cn": "工作管理员"
             },
             "0.0.1": {
                 "en": "initial release",
@@ -70,7 +100,9 @@
         "compact": true,
         "connectionType": "local",
         "dataSource": "poll",
-        "adminUI":{"config":"materialize"},
+        "adminUI": {
+            "config": "materialize"
+        },
         "materialize": true,
         "plugins": {
             "sentry": {

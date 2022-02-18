@@ -43,7 +43,7 @@ Since WireGuard internally only uses the public keys to identify peers, but this
 * This adapter opens an ssh shell on every configured host, executes the wg-json script, drops the shell and parses the result.
 * Since every public key is unique, the adapter uses them to translate the public key into user-friendly readable and recognisable names.
 * WireGuard unfortunately doesn't provide the "connected" state by itself. It only provides the last handshake information.
-This adapter calculated the connected state that way, that it assumes a peer is connected when the last handshake is received
+This adapter calculates the connected state that way, that it assumes a peer is connected when the last handshake is received
 less than 130 seconds before. This is because handshakes usually occur every 120 seconds.
 
 ## DANGER!
