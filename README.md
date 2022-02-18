@@ -17,12 +17,12 @@ Connect to WireGuard hosts and grab connection information on peers. This adapte
 ## Prerequisites
 * running ssh server on every host to monitor
 * username and password of a user with the permission to execute the wg command 
-* wg-json script is installed and executable
+* `wg-json` script is installed and executable; Every version of this script should work - in doubt use the one provided with this project
 
 ## Installation steps
 * Check whether your WireGuard host is running an ssh server. If not - install one.
-* Install the wg-json script provided by this project in the folder `wg-tools/linux` and get it running. Usually it should be sufficient to copy it to `/usr/bin/wg-json` (yes - remove the .sh) and give it 755 permissions by executing `chown 755 wg-json`. You can test it by calling `wg-json` from your home directory. If you get a json structure printed to stdout, it works.
-* Since `wg-json` calls `wg show all all dump` internally the user executing it needs the same permissions as `wg` itself. `sudo` is not supported, since it needs a second password entering. 
+* Install the `wg-json` script provided by this project in the folder `wg-tools/linux` and get it running. Usually it should be sufficient to copy it to `/usr/bin/wg-json` (yes - remove the .sh) and give it 755 permissions by executing `chown 755 wg-json`. You can test it by calling `wg-json` from your home directory. If you get a json structure printed to stdout, it works.
+* Since `wg-json` calls `wg show all dump` internally the user executing it needs the same permissions as `wg` itself. `sudo` is not supported, since it needs a second password entering. 
 * make sure the user you like to use for this is able to execute `wg-json`
 * Do this for every host you like to monitor
 * Install the adapter and configure it
@@ -47,7 +47,7 @@ Since WireGuard internally only uses the public keys to identify peers, but this
 This adapter calculates the connected state that way, that it assumes a peer is connected when the last handshake is received
 less than 130 seconds before. This is because handshakes usually occur every 120 seconds.
 
-## DANGER! Keep your eyes and you mind open! 
+## DANGER! Keep your eyes and your mind open! 
 Since the `wg` command (which is executed to grab the state of WireGuard) requires permissions near to `root`, think well of what you are doing here and how you configure the user you place in config.
 To protect these credentials as well as possible both - username and password - are encrypted. 
 
