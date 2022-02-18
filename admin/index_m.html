@@ -25,7 +25,7 @@
         let names = [];
 
         // the function loadSettings has to exist ...
-        function load(settings, onChange) {
+        async function load(settings, onChange) {
             if (!settings) return;
             for (var key in settings) {
                 if (!settings.hasOwnProperty(key)) continue;
@@ -50,24 +50,62 @@
             hosts = settings.hosts || [];
             names = settings.names || [];
             onChange(false);
-            values2table('hosts', hosts, onChange);
+            await decryptTableFields('tableHosts', hosts, (data)=> {
+                values2table('hosts', data, onChange);
+            });
             values2table('names', names, onChange);
         }
 
         function save(callback) {
-            var obj = {};
+            let obj = {};
             $('.value').each(function () {
                 var $this = $(this);
                 if ($this.attr('type') === 'checkbox') {
                     obj[$this.attr('id')] = $this.prop('checked');
                 } else {
-                    obj[$this.attr('id')] = $this.val();
+                    if ($this.attr('id')===''){
+
+                    } else {
+                        obj[$this.attr('id')] = $this.val();
+                    }
                 }
             });
             // Get edited table
             obj.hosts = table2values('hosts');
             obj.names = table2values('names');
+            encryptTableFields('tableHosts', obj.hosts);
             callback(obj);
+        }
+
+        function encryptTableFields(table, data){
+            // get the system secret for pwd de-/encryption
+            socket.emit('getObject', 'system.config', function (err, obj) {
+                let secret = (obj.native ? obj.native.secret : 'sa56kjd$fhl2j_saHR4WSAVgec5ri4');
+                let encFields = $(".encrypt").map(function() {
+                    return $(this).attr('data-name');
+                }).get();
+                for (let n=0; n < encFields.length; n++) {
+                    for (let i=0; i < data.length; i++) {
+                        data[i][encFields[n]]= encrypt(secret, data[i][encFields[n]]);
+                    }
+                }
+            });
+        }
+
+        function decryptTableFields(table, data, callback) {
+            // get the system secret for pwd de-/encryption
+            socket.emit('getObject', 'system.config', function (err, obj) {
+                let secret = (obj.native ? obj.native.secret : 'sa56kjd$fhl2j_saHR4WSAVgec5ri4');
+                let encFields = $(".encrypt").map(function () {
+                    return $(this).attr('data-name');
+                }).get();
+                for (let n = 0; n < encFields.length; n++) {
+                    for (let i = 0; i < data.length; i++) {
+                        data[i][encFields[n]] = decrypt(secret, data[i][encFields[n]]);
+                    }
+                }
+                callback(data);
+            });
         }
     </script>
     <style>
@@ -95,26 +133,19 @@
             </div><!-- End of row -->
             <div class="row">
                 <div class="col s12" id="hosts">
-                    <p class="translate">Please add all your hosts running a WireGuard server instance which should be
-                        monitored.</p>
+                    <p class="translate">Please add all your hosts running a WireGuard server instance which should be monitored.</p>
                     <a class="btn-floating waves-effect waves-light blue table-button-add"><i class="material-icons">add</i></a>
                     <span class="translate">Click here to add a new host</span>
                     <div class="table-values-div">
-                        <table class="table-values">
+                        <table id="tableHosts" class="table-values">
                             <thead>
                             <tr>
                                 <th data-name="_index" style="width: 5%" class="translate"></th>
                                 <th data-name="name" style="width: 20%" class="translate" for="name">Name</th>
-                                <th data-name="hostaddress" style="width: 20%" class="translate" for="hostaddress">Host
-                                    address
-                                </th>
-                                <th data-name="user" style="width: 20%" class="translate" for="user">User</th>
-                                <th data-name="password" style="width: 20%" class="translate" for="password"
-                                    data-type="password">Password
-                                </th>
-                                <th data-name="pollInterval" style="width: 20%" class="translate" for="pollInterval">
-                                    Poll interval
-                                </th>
+                                <th data-name="hostaddress" style="width: 20%" class="translate" for="hostaddress">Host address</th>
+                                <th data-name="user" style="width: 20%" class="translate encrypt" for="user">User</th>
+                                <th data-name="password" style="width: 20%" class="translate encrypt" for="password" data-type="password">Password</th>
+                                <th data-name="pollInterval" style="width: 20%" class="translate" for="pollInterval">Poll interval</th>
                                 <th data-buttons="delete up down" style="width: 5%"></th>
                             </tr>
                             </thead>

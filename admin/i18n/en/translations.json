@@ -1,0 +1,14 @@
+{
+    "Click here to add a new host": "Click here to add a new host",
+    "Click here to add a new translation": "Click here to add a new translation",
+    "Host address": "Host address (IP)",
+    "Main settings": "Main settings",
+    "Name": "Name",
+    "Password": "Password",
+    "Please add all public key to name translations here. This will make it more convenient for you to identify the peers in the object tree.": "Please add all public key to name translations here. This will make it more convenient for you to identify the peers in the object tree.",
+    "Please add all your hosts running a WireGuard server instance which should be monitored.": "Please add all your hosts running a WireGuard server instance which should be",
+    "Poll interval": "Poll interval",
+    "Public key": "Public key",
+    "Public-Key translations": "Public-Key translations",
+    "User": "User"
+}

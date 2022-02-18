@@ -11,8 +11,7 @@
 [![NPM](https://nodei.co/npm/iobroker.wireguard.png?downloads=true)](https://nodei.co/npm/iobroker.wireguard/)
 
 ## wireguard adapter for ioBroker
-
-Connect to WireGuard hosts and grab connection information on peers
+Connect to WireGuard hosts and grab connection information on peers. This adapter is intended to be a monitoring instance for your WireGuard hosts. 
 
 ## Prerequisites
 * running ssh server on every host to monitor
@@ -22,13 +21,13 @@ Connect to WireGuard hosts and grab connection information on peers
 ## Installation steps
 * Check whether your WireGuard host is running an ssh server. If not - install one.
 * Install the wg-json script provided by this project in the folder `wg-tools/linux` and get it running. Usually it should be sufficient to copy it to `/usr/bin/wg-json` (yes - remove the .sh) and give it 755 permissions by executing `chown 755 wg-json`. You can test it by calling `wg-json` from your home directory. If you get a json structure printed to stdout, it works.
-* Since `wg-json` calls `wg show all all dump` internally the user executing it needs the same permissions as `wg` itself.
+* Since `wg-json` calls `wg show all all dump` internally the user executing it needs the same permissions as `wg` itself. `sudo` is not supported, since it needs a second password entering. 
 * make sure the user you like to use for this is able to execute `wg-json`
 * Do this for every host you like to monitor
 * Install the adapter and configure it
 
 ## Config options
-Since WireGuard internally only uses the public keys to identify peers, but this is pretty inconvenient for humans the translation page was added. Feel free to add public keys and Names to it to get the names integrates in the object tree.
+Since WireGuard internally only uses the public keys to identify peers, but this is pretty inconvenient to read and recognize for humans the translation page was added. Feel free to add public keys and Names to it to get the names integrates in the object tree.
 
 * Main page
   - Name: Just a symbolic name for the host, since it's more convenient than it's IP address
@@ -40,11 +39,16 @@ Since WireGuard internally only uses the public keys to identify peers, but this
     - group name: A symbolic name for this peer
  
 
-## Good to know
+## How it works
+* This adapter opens an ssh shell on every configured host, executes the wg-json script, drops the shell and parses the result.
+* Since every public key is unique, the adapter uses them to translate the public key into user-friendly readable and recognisable names.
 * WireGuard unfortunately doesn't provide the "connected" state by itself. It only provides the last handshake information.
-This adapter calculated the connected state that way, that it assumes a peer is connected when the last handshake is received
+This adapter calculates the connected state that way, that it assumes a peer is connected when the last handshake is received
 less than 130 seconds before. This is because handshakes usually occur every 120 seconds.
 
+## DANGER!
+Since the `wg` command (which is executed to grab the state of WireGuard) requires permissions near to `root`, think well of what you are doing here and how you configure the user you place in config.
+To protect these credentials as well as possible both - username and password - are encrypted. 
 
 ## sentry.io
 This adapter uses sentry.io to collect details on crashes and report it automated to the author. The ioBroker.sentry plugin is used for it. Please refer to the plugin homepage for detailed information on what the plugin does, which information is collected and how to disable it, if you don't like to support the author with your information on crashes.
@@ -56,8 +60,13 @@ This adapter uses sentry.io to collect details on crashes and report it automate
 ## Changelog
 
 ### todo
-* encrypt usernames and passwords in config
 * Do translation
+* activate git-Actions
+* activate git-code quality test
+
+### 0.9.0 (2022-02-18)
+* (grizzelbee) New: Improved documentation
+* (grizzelbee) New: Username and password for WireGuard hosts are getting encrypted now
 
 ### 0.8.0 (2022-02-17)
 * (grizzelbee) New: admin extended with second page
@@ -65,7 +74,6 @@ This adapter uses sentry.io to collect details on crashes and report it automate
 * (grizzelbee) New: data tree is getting populated
 * (grizzelbee) New: entire basic functionality is implemented
 * (grizzelbee) New: added plugin sentry
-
 
 ### 0.2.0 (2022-02-16)
 * (grizzelbee) New: admin is working as expected

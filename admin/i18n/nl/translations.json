@@ -1,0 +1,14 @@
+{
+    "Click here to add a new host": "Klik hier om een ​​nieuwe host toe te voegen",
+    "Click here to add a new translation": "Klik hier om een ​​nieuwe vertaling toe te voegen",
+    "Host address": "Host adres (IP)",
+    "Main settings": "Belangrijkste instellingen",
+    "Name": "Naam",
+    "Password": "Wachtwoord",
+    "Please add all public key to name translations here. This will make it more convenient for you to identify the peers in the object tree.": "Voeg hier alle openbare sleutels toe aan naamvertalingen. ",
+    "Please add all your hosts running a WireGuard server instance which should be monitored.": "Voeg a.u.b. al uw hosts toe die een WireGuard-serverexemplaar uitvoeren, wat zou moeten zijn:",
+    "Poll interval": "Poll-interval",
+    "Public key": "Publieke sleutel",
+    "Public-Key translations": "Public-Key vertalingen",
+    "User": "Gebruiker"
+}
