@@ -8,7 +8,8 @@
 ![Number of Installations](https://iobroker.live/badges/wireguard-installed.svg)
 ![Current version in stable repository](https://iobroker.live/badges/wireguard-stable.svg)
 ![Test and Release](https://github.com/grizzelbee/ioBroker.wireguard/workflows/Test%20and%20Release/badge.svg)
-[![CodeQL](https://github.com/Grizzelbee/ioBroker.wireguard/actions/workflows/codeQL.yml/badge.svg)](https://github.com/Grizzelbee/ioBroker.wireguard/actions/workflows/codeQL.yml)[![NPM](https://nodei.co/npm/iobroker.wireguard.png?downloads=true)](https://nodei.co/npm/iobroker.wireguard/)
+![CodeQL](https://github.com/Grizzelbee/ioBroker.wireguard/actions/workflows/codeQL.yml/badge.svg)
+[![NPM](https://nodei.co/npm/iobroker.wireguard.png?downloads=true)](https://nodei.co/npm/iobroker.wireguard/)
 
 ## wireguard adapter for ioBroker
 Connect to WireGuard hosts and grab connection information on peers. This adapter is intended to be a monitoring instance for your WireGuard hosts. 
@@ -46,19 +47,14 @@ Since WireGuard internally only uses the public keys to identify peers, but this
 This adapter calculates the connected state that way, that it assumes a peer is connected when the last handshake is received
 less than 130 seconds before. This is because handshakes usually occur every 120 seconds.
 
-## DANGER!
+## DANGER! Keep your eyes and you mind open! 
 Since the `wg` command (which is executed to grab the state of WireGuard) requires permissions near to `root`, think well of what you are doing here and how you configure the user you place in config.
 To protect these credentials as well as possible both - username and password - are encrypted. 
 
-## sentry.io
-This adapter uses sentry.io to collect details on crashes and report it automated to the author. The ioBroker.sentry plugin is used for it. Please refer to the plugin homepage for detailed information on what the plugin does, which information is collected and how to disable it, if you don't like to support the author with your information on crashes.
-
 ## known issues
 * This project currently only supports WireGuard on Linux. Windows support is planned for the future. Volunteers for this feature are welcome.
-* Username and Passwords of hosts are currently not encrypted
 
 ## Changelog
-
 ### 0.9.0 (2022-02-18)
 * (grizzelbee) New: Improved documentation
 * (grizzelbee) New: Username and password for WireGuard hosts are getting encrypted now
@@ -80,6 +76,11 @@ This adapter uses sentry.io to collect details on crashes and report it automate
 ### 0.0.1
 * (grizzelbee) initial release
 
+
+## sentry.io
+This adapter uses sentry.io to collect details on crashes and report it automated to the author.
+The [ioBroker.sentry plugin](https://github.com/ioBroker/plugin-sentry) is used for it. Please refer to
+the [plugin homepage](https://github.com/ioBroker/plugin-sentry) for detailed information on what the plugin does, which information is collected and how to disable it, if you don't like to support the author with you're information on crashes.
 
 ### Disclaimer
 This project is not related to WireGuard in any way. The name WireGuard and the WireGuard logo are only used to refer to this project and are the property of their owners. They are not part of this project.
