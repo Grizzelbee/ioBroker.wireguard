@@ -8,7 +8,7 @@
 ![Number of Installations](https://iobroker.live/badges/wireguard-installed.svg)
 ![Current version in stable repository](https://iobroker.live/badges/wireguard-stable.svg)
 ![Test and Release](https://github.com/grizzelbee/ioBroker.wireguard/workflows/Test%20and%20Release/badge.svg)
-[![NPM](https://nodei.co/npm/iobroker.wireguard.png?downloads=true)](https://nodei.co/npm/iobroker.wireguard/)
+[![CodeQL](https://github.com/Grizzelbee/ioBroker.wireguard/actions/workflows/codeQL.yml/badge.svg)](https://github.com/Grizzelbee/ioBroker.wireguard/actions/workflows/codeQL.yml)[![NPM](https://nodei.co/npm/iobroker.wireguard.png?downloads=true)](https://nodei.co/npm/iobroker.wireguard/)
 
 ## wireguard adapter for ioBroker
 Connect to WireGuard hosts and grab connection information on peers. This adapter is intended to be a monitoring instance for your WireGuard hosts. 
@@ -58,11 +58,6 @@ This adapter uses sentry.io to collect details on crashes and report it automate
 * Username and Passwords of hosts are currently not encrypted
 
 ## Changelog
-
-### todo
-* Do translation
-* activate git-Actions
-* activate git-code quality test
 
 ### 0.9.0 (2022-02-18)
 * (grizzelbee) New: Improved documentation
