@@ -1,0 +1,16 @@
+gulpfile.js
+admin/i18n
+admin/Sicherungs*
+tasks
+node_modules
+.idea
+.git
+.github
+/node_modules
+test
+.travis.yml
+appveyor.yml
+
+# CorelDraw files
+*.cdr
+*.bak
