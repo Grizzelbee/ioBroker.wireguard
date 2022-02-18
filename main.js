@@ -215,6 +215,18 @@ async function updateDevicetree(host, wgData) {
         }
     });
 }
+function decryptConfigField(data) {
+    // get the system secret for pwd de-/encryption
+    socket.emit('getObject', 'system.config', function (err, obj) {
+        let secret = (obj.native ? obj.native.secret : 'sa56kjd$fhl2j_saHR4WSAVgec5ri4');
+        for (let i = 0; i < data.length; i++) {
+            data[i][fields[n]] = adapter.decrypt(secret, data[i][fields[n]]);
+        }
+        return data;
+    });
+}
+
+
 
 class Wireguard extends utils.Adapter {
 
@@ -242,6 +254,14 @@ class Wireguard extends utils.Adapter {
         // Initialize your adapter here
         adapter = this; // preserve adapter reference to address functions etc. correctly later
         const settings = this.config;
+        let secret;
+        adapter.getForeignObject('system.config', (err, obj) => {
+            if (obj && obj.native && obj.native.secret) {
+                secret = obj.native.secret;
+            } else {
+                throw new Error('Unable to decrypt config data.');
+            }
+        });
         if (settings.hosts.length === 1){
             this.log.info(`There is ${settings.hosts.length} wireguard host to monitor.`);
         } else {
@@ -251,7 +271,8 @@ class Wireguard extends utils.Adapter {
             for (let host=0; host < settings.hosts.length; host++) {
                 this.log.debug(JSON.stringify(settings.hosts[host]));
                 timeOuts.push(setInterval(async function pollHost() {
-                    const wgInfos = await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, settings.hosts[host].user, settings.hosts[host].password);
+                    const wgInfos = await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, adapter.decrypt(secret, settings.hosts[host].user), adapter.decrypt(secret, settings.hosts[host].password));
+                    //const wgInfos = await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, settings.hosts[host].user, settings.hosts[host].password);
                     const wgData = await parseWireguardInfos(wgInfos);
                     await updateDevicetree(settings.hosts[host].name, wgData);
                 }, 1000 * settings.hosts[host].pollInterval));

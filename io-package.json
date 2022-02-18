@@ -70,6 +70,7 @@
         "compact": true,
         "connectionType": "local",
         "dataSource": "poll",
+        "adminUI":{"config":"materialize"},
         "materialize": true,
         "plugins": {
             "sentry": {
