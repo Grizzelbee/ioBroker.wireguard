@@ -55,25 +55,29 @@ To protect these credentials as well as possible both - username and password - 
 * This project currently only supports WireGuard on Linux. Windows support is planned for the future. Volunteers for this feature are welcome.
 
 ## Changelog
-### 0.9.0 (2022-02-18)
+
+### v0.9.1 (2022-02-19)
+* (grizzelbee) New: Improved optical quality of admin page - no technical improvements
+
+### v0.9.0 (2022-02-18)
 * (grizzelbee) New: Improved documentation
 * (grizzelbee) New: Username and password for WireGuard hosts are getting encrypted now
 
-### 0.8.0 (2022-02-17)
+### v0.8.0 (2022-02-17)
 * (grizzelbee) New: admin extended with second page
 * (grizzelbee) New: data file is getting parsed
 * (grizzelbee) New: data tree is getting populated
 * (grizzelbee) New: entire basic functionality is implemented
 * (grizzelbee) New: added plugin sentry
 
-### 0.2.0 (2022-02-16)
+### v0.2.0 (2022-02-16)
 * (grizzelbee) New: admin is working as expected
 * (grizzelbee) New: first steps in backend
 
-### 0.1.0 (2022-02-14)
+### v0.1.0 (2022-02-14)
 * (grizzelbee) working on admin
 
-### 0.0.1
+### v0.0.1
 * (grizzelbee) initial release
 
 

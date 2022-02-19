@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "0.9.0",
+        "version": "0.9.1",
         "news": {
+            "0.9.1": {
+                "en": "Improved optical quality of admin page - no technical improvements",
+                "de": "Verbesserte optische Qualität der Admin-Seite - keine technischen Verbesserungen",
+                "ru": "Улучшено оптическое качество страницы администратора - без технических улучшений",
+                "pt": "Melhor qualidade óptica da página de administração - sem melhorias técnicas",
+                "nl": "Verbeterde optische kwaliteit van beheerderspagina - geen technische verbeteringen",
+                "fr": "Amélioration de la qualité optique de la page d'administration - aucune amélioration technique",
+                "it": "Qualità ottica migliorata della pagina di amministrazione - nessun miglioramento tecnico",
+                "es": "Calidad óptica mejorada de la página de administración: sin mejoras técnicas",
+                "pl": "Poprawiona jakość optyczna strony administratora - brak ulepszeń technicznych",
+                "zh-cn": "改进了管理页面的光学质量 - 没有技术改进"
+            },
             "0.9.0": {
                 "en": "Added translations and encryption of host credentials",
                 "de": "Übersetzungen und Verschlüsselung von Host-Anmeldeinformationen hinzugefügt",
