@@ -114,25 +114,37 @@
 </head>
 <body>
 <div class="m adapter-container">
-
     <div class="row">
-        <div class="col s12">
-            <ul class="tabs">
-                <li class="tab col s2"><a href="#tab-main" class="translate active">Main settings</a></li>
-                <li class="tab col s2"><a href="#tab-names" class="translate">Public-Key translations</a></li>
-            </ul>
+        <div class="col s12 m12 l12">
+            <img src="wireguard.svg" class="logo">
+            <span align="right"><img src="Logo_of_WireGuard.svg" width="500" align="right"></span>
         </div>
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s2"><a href="#tab-main" class="translate active">Main settings</a></li>
+                    <li class="tab col s2"><a href="#tab-names" class="translate">Public-Key translations</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div id="tab-main" class="col s12 page">
             <div class="row">
-                <div class="col s12 m12 l12">
-                    <img src="wireguard.svg" class="logo">
-                    <img src="Logo_of_WireGuard.svg" width="500" float="right">
+                <div class="col s6">
+                    <p class="translate">Please add all your hosts running a WireGuard server instance which should be monitored.</p>
                 </div>
-            </div><!-- End of row -->
+                <div class="col s6">
+                    <b><span class="translate">Important</span>!&nbsp;</b>
+                    <span class="translate">Installation_hint_1</span>
+                    <span class="translate">Installation_hint_2</span>
+                    <span class="translate">Installation_hint_3</span>
+                    <span class="translate">Installation_hint_4</span>
+                </div>
+            </div>
             <div class="row">
                 <div class="col s12" id="hosts">
-                    <p class="translate">Please add all your hosts running a WireGuard server instance which should be monitored.</p>
-                    <a class="btn-floating waves-effect waves-light blue table-button-add"><i class="material-icons">add</i></a>
+                    <span><a class="btn-floating waves-effect waves-light blue table-button-add"><i class="material-icons">add</i></a></span>
                     <span class="translate">Click here to add a new host</span>
                     <div class="table-values-div">
                         <table id="tableHosts" class="table-values">
@@ -152,14 +164,37 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div id="tab-names" class="col s12 page">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <img src="wireguard.svg" class="logo">
-                <img src="Logo_of_WireGuard.svg" width="500" float="right">
+        <div id="tab-names" class="col s12 page">
+            <div class="row">
+                <div class="col s12">
+                    <p class="translate">Please add all public key to name translations here. This will make it more convenient for you to identify the peers in the object tree.</p>
+                </div>
             </div>
-        </div><!-- End of row -->
+            <div class="row">
+                <div class="col s12" id="names">
+                    <span><a class="btn-floating waves-effect waves-light blue table-button-add"><i class="material-icons">add</i></a></span>
+                    <span class="translate">Click here to add a new translation</span>
+                    <div class="table-values-div">
+                        <table id="tableHosts" class="table-values">
+                            <thead>
+                            <tr>
+                                <th data-name="_index" style="width: 5%" class="translate"></th>
+                                <th data-name="pubKey" style="width: 45%" class="translate" for="pubKey">Public key</th>
+                                <th data-name="groupname" style="width: 45%" class="translate" for="groupname">Name</th>
+                                <th data-buttons="delete up down" style="width: 5%"></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<!--
         <div class="row">
             <div class="col s12" id="names">
                 <p class="translate">Please add all public key to name translations here. This will make it more convenient for you to identify the peers in the object tree.</p>
@@ -179,7 +214,4 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</body>
-</html>
+-->

@@ -1,6 +1,6 @@
 {
   "name": "iobroker.wireguard",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Connect to WireGuard hosts and grab connection information on peers",
   "author": {
     "name": "grizzelbee",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.5.1",
-    "@iobroker/plugin-sentry": "^1.1.10",
+    "@iobroker/plugin-sentry": "^1.2.0",
     "ssh2": "^1.6.0"
   },
   "devDependencies": {
@@ -36,7 +36,7 @@
     "eslint": "^8.9.0",
     "eslint-plugin-react": "^7.28.0",
     "gulp": "^4.0.2",
-    "mocha": "^9.2.0",
+    "mocha": "^9.2.1",
     "parcel-bundler": "^1.12.5",
     "proxyquire": "^2.1.3",
     "react": "^17.0.2",
