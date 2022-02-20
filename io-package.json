@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "0.9.1",
+        "version": "0.9.2",
         "news": {
+            "0.9.2": {
+                "en": "Improved handling in case that the WireGuard server down.",
+                "de": "Verbesserte Handhabung für den Fall, dass der WireGuard-Server ausfällt.",
+                "ru": "Улучшена обработка в случае, если сервер WireGuard не работает.",
+                "pt": "Manuseio aprimorado no caso de o servidor WireGuard cair.",
+                "nl": "Verbeterde afhandeling in het geval dat de WireGuard-server uitvalt.",
+                "fr": "Amélioration de la gestion en cas de panne du serveur WireGuard.",
+                "it": "Gestione migliorata nel caso in cui il server WireGuard sia inattivo.",
+                "es": "Manejo mejorado en caso de que el servidor WireGuard se caiga.",
+                "pl": "Ulepszona obsługa w przypadku awarii serwera WireGuard.",
+                "zh-cn": "改进了 WireGuard 服务器关闭时的处理。"
+            },
             "0.9.1": {
                 "en": "Improved optical quality of admin page - no technical improvements",
                 "de": "Verbesserte optische Qualität der Admin-Seite - keine technischen Verbesserungen",

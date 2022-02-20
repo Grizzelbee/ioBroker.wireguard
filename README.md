@@ -41,6 +41,7 @@ Since WireGuard internally only uses the public keys to identify peers, but this
  
 
 ## How it works
+* info.connection of the adapter is used to indicate that at least one WireGuard interface is online and reported by `wg show all`. If no Wireguard interface is online - nothing is reported. In that case an error gets logged and the adapters traffic light turns yellow. 
 * This adapter opens an ssh shell on every configured host, executes the wg-json script, drops the shell and parses the result.
 * Since every public key is unique, the adapter uses them to translate the public key into user-friendly readable and recognisable names.
 * WireGuard unfortunately doesn't provide the "connected" state by itself. It only provides the last handshake information.
@@ -55,6 +56,11 @@ To protect these credentials as well as possible both - username and password - 
 * This project currently only supports WireGuard on Linux. Windows support is planned for the future. Volunteers for this feature are welcome.
 
 ## Changelog
+
+### v0.9.2 (2022-02-20)
+* (grizzelbee) Fix: removed unnecessary secret from index_m.html file
+* (grizzelbee) Fix: Using info.connection of adapter to indicate that at least one interface is online.
+* (grizzelbee) Fix: Updated adapter icon
 
 ### v0.9.1 (2022-02-19)
 * (grizzelbee) New: Improved optical quality of admin page - no technical improvements

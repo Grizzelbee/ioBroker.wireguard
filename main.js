@@ -15,11 +15,12 @@ let adapter=null;
 
 
 /**
+ * Opens an ssh connection to the given host, executes the wg-json command and returns the output data of that command.
  *
- * @param hostname symbolic name of the host
- * @param hostaddress IP address of the host
- * @param user username which is used to connect to the host
- * @param pass password for the user
+ * @param {string} hostname symbolic name of the host
+ * @param {string} hostaddress IP address of the host
+ * @param {string} user username which is used to connect to the host
+ * @param {string} pass password for the user
  * @returns {Promise<JSON|string>} returns a json structure when successful or an error message
  */
 async function getWireguardInfos(hostname, hostaddress, user, pass) {
@@ -51,6 +52,13 @@ async function getWireguardInfos(hostname, hostaddress, user, pass) {
     });
 }
 
+
+/**
+ *  Takes the result of wg-json and tries to parse it into a JSON object
+ *
+ * @param {string} wgInfos The unparsed data from the command line
+ * @returns {Promise<unknown>} Returns a JSON object on success, or an error message in case of a failure
+ */
 async function parseWireguardInfos(wgInfos) {
     return new Promise(function(resolve, reject) {
         try{
@@ -86,8 +94,15 @@ function createOrExtendObject(id, objData, value) {
     });
 }
 
+/**
+ * Navigates through the given object and build the device tree out of it.
+ *
+ * @param {string} path path inside the ioBroker object tree
+ * @param {object} obj the object to handle
+ */
 function extractTreeItems(path, obj ){
     let finalValue;
+    // build key-value pairs from object structure
     for (const [key, value] of Object.entries(obj) ) {
         adapter.log.debug(`Key ${key}: Value ${value} | typeof value ${ typeof value}`);
         finalValue = value;
@@ -102,6 +117,7 @@ function extractTreeItems(path, obj ){
                 'type': typeof value
             }
         };
+        // handle some special fields to add units or roles
         switch (key){
             case 'transferRx' :
             case 'transferTx' : {
@@ -149,10 +165,12 @@ function extractTreeItems(path, obj ){
                 }
             }
         }
+        // If there is an object inside the given structure, dive one level deeper
         if (typeof value === 'object'){
             // It's an object - so iterate deeper
             adapter.log.debug(`Deeper Object: name ${key} | value ${JSON.stringify(value)}`);
             let groupname = key;
+            // assign group name translation if given on config page
             for (let n=0; n < adapter.config.names.length; n++){
                 if ( key === adapter.config.names[n].pubKey ){
                     groupname = adapter.config.names[n].groupname;
@@ -171,6 +189,13 @@ function extractTreeItems(path, obj ){
 }
 
 
+/**
+ * Assign the data to the right host inside the device tree
+ *
+ * @param {string} host Name of the current host
+ * @param {object} wgData the given and already parsed WireGuard JSON data
+ * @returns {Promise<unknown>}
+ */
 async function updateDevicetree(host, wgData) {
     return new Promise(function(resolve, reject) {
         try{
@@ -193,39 +218,34 @@ async function updateDevicetree(host, wgData) {
             // |            +-- 0..n      (state)
             // +--------- repeat per peer
             adapter.log.debug(`Host: ${host} has ${ Object.keys(wgData).length } wireguard interface(s).`);
-            // loop through wg interfaces of current host
-            for (let n=0; n < Object.keys(wgData).length; n++){
-                const obj = {
-                    type: 'device',
-                    common: {
-                        name: `Interface ${Object.keys(wgData)[n]} on host ${host}`,
-                        // 'icon':''
-                        'read': true,
-                        'write': false,
-                        'type': 'string'
-                    }
-                };
-                const baseId = `${host}-${ Object.keys(wgData)[n]}`;
-                createOrExtendObject( baseId, obj, '' );
-                // loop through children of interface
-                extractTreeItems(baseId, wgData[Object.keys(wgData)[n]]);
+            if (Object.keys(wgData).length === 0){
+                adapter.log.error(`No info returned from wg-json script. Maybe your WireGuard server is down!`);
+                adapter.setState('info.connection', false, true);
+            } else {
+                adapter.setState('info.connection', true, true);
+                // loop through wg interfaces of current host
+                for (let n=0; n < Object.keys(wgData).length; n++){
+                    const obj = {
+                        type: 'device',
+                        common: {
+                            name: `Interface ${Object.keys(wgData)[n]} on host ${host}`,
+                            // 'icon':''
+                            'read': true,
+                            'write': false,
+                            'type': 'string'
+                        }
+                    };
+                    const baseId = `${host}-${ Object.keys(wgData)[n]}`;
+                    createOrExtendObject( baseId, obj, '' );
+                    // loop through children of interface
+                    extractTreeItems(baseId, wgData[Object.keys(wgData)[n]]);
+                }
             }
         } catch(error){
             reject(error);
         }
     });
 }
-function decryptConfigField(data) {
-    // get the system secret for pwd de-/encryption
-    socket.emit('getObject', 'system.config', function (err, obj) {
-        let secret = (obj.native ? obj.native.secret : 'sa56kjd$fhl2j_saHR4WSAVgec5ri4');
-        for (let i = 0; i < data.length; i++) {
-            data[i][fields[n]] = adapter.decrypt(secret, data[i][fields[n]]);
-        }
-        return data;
-    });
-}
-
 
 
 class Wireguard extends utils.Adapter {
@@ -272,7 +292,6 @@ class Wireguard extends utils.Adapter {
                 this.log.debug(JSON.stringify(settings.hosts[host]));
                 timeOuts.push(setInterval(async function pollHost() {
                     const wgInfos = await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, adapter.decrypt(secret, settings.hosts[host].user), adapter.decrypt(secret, settings.hosts[host].password));
-                    //const wgInfos = await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, settings.hosts[host].user, settings.hosts[host].password);
                     const wgData = await parseWireguardInfos(wgInfos);
                     await updateDevicetree(settings.hosts[host].name, wgData);
                 }, 1000 * settings.hosts[host].pollInterval));
@@ -280,7 +299,6 @@ class Wireguard extends utils.Adapter {
             for (let n=0; n < timeOuts.length; n++){
                 this.log.info(`Started ${settings.hosts[n].pollInterval} seconds monitoring interval for host [${settings.hosts[n].name}]`);
             }
-            this.setState('info.connection', true, true);
         } catch(error)  {
             this.log.error(error);
             this.setState('info.connection', false, true);
