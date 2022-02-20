@@ -93,7 +93,7 @@
         function decryptTableFields(table, data, callback) {
             // get the system secret for pwd de-/encryption
             socket.emit('getObject', 'system.config', function (err, obj) {
-                let secret = (obj.native ? obj.native.secret : 'sa56kjd$fhl2j_saHR4WSAVgec5ri4');
+                let secret = (obj.native ? obj.native.secret : '');
                 let encFields = $(".encrypt").map(function () {
                     return $(this).attr('data-name');
                 }).get();
