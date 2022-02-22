@@ -93,25 +93,6 @@ async function parseWireguardInfosToJson(wgRawData){
     return(wg);
 }
 
-
-
-/**
- *  Takes the result of wg-json and tries to parse it into a JSON object
- *
- * @param {string} wgInfos The unparsed data from the command line
- * @returns {Promise<unknown>} Returns a JSON object on success, or an error message in case of a failure
- */
-async function parseWireguardInfos(wgInfos) {
-    return new Promise(function(resolve, reject) {
-        try{
-            const payload = JSON.parse(wgInfos);
-            resolve(payload);
-        } catch(error){
-            reject(error);
-        }
-    });
-}
-
 /**
  * Function Create or extend object
  *
