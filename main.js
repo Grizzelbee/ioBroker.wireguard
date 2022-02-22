@@ -117,6 +117,27 @@ function createOrExtendObject(id, objData, value) {
     });
 }
 
+
+/**
+ * sets the connected state of a peer
+ *
+ * @param {string} path path to the peer in object tree
+ * @param {boolean} value value to set
+ */
+function setConnectedState(path, value) {
+    createOrExtendObject(`${path}.connected`, {
+        type: 'state',
+        common: {
+            name: 'Peer is connected',
+            // 'icon':''
+            'read': true,
+            'write': false,
+            'role': 'indicator.reachable',
+            'type': 'boolean'
+        }
+    }, value);
+}
+
 /**
  * Navigates through the given object and build the device tree out of it.
  *
@@ -154,30 +175,10 @@ function extractTreeItems(path, obj ){
                 obj.common.type='number';
                 finalValue = Number(value*1000); // convert unix time to utc
                 if ( (new Date()-new Date(value*1000)) > 130000){
-                    createOrExtendObject(`${path}.connected`, {
-                        type: 'state',
-                        common: {
-                            name: 'Peer is connected',
-                            // 'icon':''
-                            'read': true,
-                            'write': false,
-                            'role':'indicator.reachable',
-                            'type': 'boolean'
-                        }
-                    }, false);
+                    setConnectedState(path, false);
                 } else {
                     obj.common.role='date.end';
-                    createOrExtendObject(`${path}.connected`, {
-                        type: 'state',
-                        common: {
-                            name: 'Peer is connected',
-                            // 'icon':''
-                            'read': true,
-                            'write': false,
-                            'role':'indicator.reachable',
-                            'type': 'boolean'
-                        }
-                    }, true);
+                    setConnectedState(path, true);
                 }
             }
         }
