@@ -29,18 +29,18 @@ async function getWireguardInfos(hostname, hostaddress, user, pass) {
         const conn = new Client();
         conn.on('ready', () => {
             adapter.log.debug('ssh client :: ready');
-            conn.exec('wg-json\n', {},(error, responseStream) => {
+            conn.exec('wg show all dump', {},(error, responseStream) => {
                 if (error) reject( error );
-                let jsonData = '';
+                let rawdata = '';
                 responseStream.on('close', () => {
                     adapter.log.debug('Stream :: close');
                     conn.end();
-                    adapter.log.debug(`jsonData (unparsed): ${jsonData}`);
-                    resolve(jsonData);
+                    adapter.log.debug(`received rawdata: ${rawdata}`);
+                    resolve(rawdata);
                 })
                     .on('data', (data) => {
                         // collect and assemble all data from stream
-                        jsonData += data;
+                        rawdata += data;
                     });
             });
         }).connect({
@@ -52,22 +52,45 @@ async function getWireguardInfos(hostname, hostaddress, user, pass) {
     });
 }
 
-
 /**
- *  Takes the result of wg-json and tries to parse it into a JSON object
+ * parses the commandline output of the wg show all dump command and parses it into a json structure
  *
- * @param {string} wgInfos The unparsed data from the command line
- * @returns {Promise<unknown>} Returns a JSON object on success, or an error message in case of a failure
+ * @param wgRawData commandline output of wg show all dump command
+ * @returns {Promise<{JSON}>} returns the parsed json object
  */
-async function parseWireguardInfos(wgInfos) {
-    return new Promise(function(resolve, reject) {
-        try{
-            const payload = JSON.parse(wgInfos);
-            resolve(payload);
-        } catch(error){
-            reject(error);
+async function parseWireguardInfosToJson(wgRawData){
+    const data = wgRawData.split('\n');
+    adapter.log.debug(`RawData has ${data.length} lines`);
+    for (let n = 0; n < data.length; n++) {
+        data[n] = data[n].split('\t');
+    }
+    adapter.log.debug(`Workdata: ${JSON.stringify(data)}`);
+    // first row holds server data; rest are peers; last one is empty
+    const wg = {};
+    for ( let i=0; i<data.length; i++ ) {
+        if ( i===0 || (data[i][0] !== data[i-1][0]) ){
+            if (data[i][0] === '') break;
+            adapter.log.debug(`New Interface: ${data[i][0]}. Initialize object.`);
+            wg[data[i][0]]= {};
+            // wg[data[i][0]].privateKey = data[i][1]; // don#t show the private key in ioBroker
+            wg[data[i][0]].publicKey= data[i][2];
+            wg[data[i][0]].listenPort = data[i][3];
+            wg[data[i][0]].fwmark = data[i][4];
+            wg[data[i][0]].peers = {};
+        }else{
+            // interface public_key preshared_key endpoint allowed_ips latest_handshake transfer_rx transfer_tx persistent_keepalive
+            adapter.log.debug(`New Peer ${data[i][1]} for interface ${ data[i][0] }`);
+            wg[data[i][0]].peers[data[i][1]] = {};
+            wg[data[i][0]].peers[data[i][1]].presharedKey = data[i][2];
+            wg[data[i][0]].peers[data[i][1]].endpoint = data[i][3];
+            wg[data[i][0]].peers[data[i][1]].allowedIps = data[i][4].split(',');
+            wg[data[i][0]].peers[data[i][1]].latestHandshake = data[i][5];
+            wg[data[i][0]].peers[data[i][1]].transferRx = data[i][6];
+            wg[data[i][0]].peers[data[i][1]].transferTx = data[i][7];
+            wg[data[i][0]].peers[data[i][1]].persistentKeepalive = data[i][8];
         }
-    });
+    }
+    return(wg);
 }
 
 /**
@@ -92,6 +115,27 @@ function createOrExtendObject(id, objData, value) {
             adapter.setObjectNotExists(id, objData, () => {adapter.setState(id, value, true);});
         }
     });
+}
+
+
+/**
+ * sets the connected state of a peer
+ *
+ * @param {string} path path to the peer in object tree
+ * @param {boolean} value value to set
+ */
+function setConnectedState(path, value) {
+    createOrExtendObject(`${path}.connected`, {
+        type: 'state',
+        common: {
+            name: 'Peer is connected',
+            // 'icon':''
+            'read': true,
+            'write': false,
+            'role': 'indicator.reachable',
+            'type': 'boolean'
+        }
+    }, value);
 }
 
 /**
@@ -122,46 +166,19 @@ function extractTreeItems(path, obj ){
             case 'transferRx' :
             case 'transferTx' : {
                 obj.common.unit='bytes';
-                obj.common.role='value';
                 break;
             }
             case 'endpoint': obj.common.role='info.ip';
                 break;
-            case 'listenPort': obj.common.role='info.port';
-                break;
-            case 'connected': {
-                obj.common.role='indicator.reachable';
-                obj.common.name='Peer is connected';
-            }
-                break;
             case 'latestHandshake':{
-                obj.common.role='date.end';
-                finalValue = value*1000; // convert unix time to utc
-                if ( (new Date()-finalValue) > 130000){
-                    createOrExtendObject(`${path}.connected`, {
-                        type: 'state',
-                        common: {
-                            name: 'Peer is connected',
-                            // 'icon':''
-                            'read': true,
-                            'write': false,
-                            'role':'indicator.reachable',
-                            'type': 'boolean'
-                        }
-                    }, false);
+                obj.common.role='date';
+                obj.common.type='number';
+                finalValue = Number(value*1000); // convert unix time to utc
+                if ( (new Date()-new Date(value*1000)) > 130000){
+                    setConnectedState(path, false);
                 } else {
-                    obj.common.role='indicator.reachable';
-                    createOrExtendObject(`${path}.connected`, {
-                        type: 'state',
-                        common: {
-                            name: 'Peer is connected',
-                            // 'icon':''
-                            'read': true,
-                            'write': false,
-                            'role':'indicator.reachable',
-                            'type': 'boolean'
-                        }
-                    }, true);
+                    obj.common.role='date.end';
+                    setConnectedState(path, true);
                 }
             }
         }
@@ -292,8 +309,9 @@ class Wireguard extends utils.Adapter {
                 this.log.debug(JSON.stringify(settings.hosts[host]));
                 timeOuts.push(setInterval(async function pollHost() {
                     const wgInfos = await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, adapter.decrypt(secret, settings.hosts[host].user), adapter.decrypt(secret, settings.hosts[host].password));
-                    const wgData = await parseWireguardInfos(wgInfos);
-                    await updateDevicetree(settings.hosts[host].name, wgData);
+                    const wgJson = await parseWireguardInfosToJson(wgInfos);
+                    //const wgData = await parseWireguardInfos(wgJson);
+                    await updateDevicetree(settings.hosts[host].name, wgJson);
                 }, 1000 * settings.hosts[host].pollInterval));
             }
             for (let n=0; n < timeOuts.length; n++){

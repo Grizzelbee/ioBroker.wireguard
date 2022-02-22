@@ -1,6 +1,6 @@
 {
   "name": "iobroker.wireguard",
-  "version": "0.9.2",
+  "version": "0.9.5",
   "description": "Connect to WireGuard hosts and grab connection information on peers",
   "author": {
     "name": "grizzelbee",
@@ -19,12 +19,12 @@
     "url": "https://github.com/Grizzelbee/ioBroker.wireguard.git"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^2.5.1",
+    "@iobroker/adapter-core": "^2.6.0",
     "@iobroker/plugin-sentry": "^1.2.0",
     "ssh2": "^1.6.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.17.3",
+    "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.5",
     "@iobroker/adapter-react": "2.0.21",
     "@iobroker/testing": "^2.5.4",

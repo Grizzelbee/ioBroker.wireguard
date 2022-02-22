@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "0.9.2",
+        "version": "0.9.5",
         "news": {
+            "0.9.5": {
+                "en": "Added Windows support\nremoved usage of wg-json script.",
+                "de": "Windows-Unterstützung hinzugefügt\n Verwendung des wg-json-Skripts entfernt.",
+                "ru": "Добавлена ​​поддержка Windows \n удалено использование скрипта wg-json.",
+                "pt": "Adicionado suporte ao Windows \n uso removido do script wg-json.",
+                "nl": "Windows-ondersteuning toegevoegd \n gebruik van wg-json-script verwijderd.",
+                "fr": "Ajout de la prise en charge de Windows \n suppression de l'utilisation du script wg-json.",
+                "it": "Aggiunto il supporto di Windows\nrimosso l'utilizzo dello script wg-json.",
+                "es": "Se agregó compatibilidad con Windows \n se eliminó el uso del script wg-json.",
+                "pl": "Dodano obsługę Windows \n usunięto użycie skryptu wg-json.",
+                "zh-cn": "添加了 Windows 支持\n删除了 wg-json 脚本的使用。"
+            },
             "0.9.2": {
                 "en": "Improved handling in case that the WireGuard server down.",
                 "de": "Verbesserte Handhabung für den Fall, dass der WireGuard-Server ausfällt.",
@@ -133,10 +145,14 @@
                 "dsn": "https://42007d6f59b74b5db06d6bfaf23d4d98@o505019.ingest.sentry.io/6215712"
             }
         },
+        "globalDependencies": [
+            {
+                "admin": ">=4.0.9"
+            }
+        ],
         "dependencies": [
             {
-                "js-controller": ">=3.0.0",
-                "admin": ">=4.0.9"
+                "js-controller": ">=3.0.0"
             }
         ]
     },
