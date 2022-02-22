@@ -19,8 +19,9 @@ Connect to WireGuard hosts and grab connection information on peers. This adapte
 * username and password of a user with the permission to execute the wg command 
 
 ## Installation steps
-* Check whether your WireGuard host is running an ssh server. If not - install one.
+* Check whether your WireGuard host is running an ssh server. If not - install one. If you can open a commandline using putty (or similar) you're running an ssh server.
 * make sure the user you like to use for this is able to execute `wg` (same for Windows and Linux). **This user needs admin privileges!**
+* To sum up the test: open a remote command line, log in and execute the `wg show` command. If you receive a proper result you're done and can use these data to run the adapter.  
 * Do this for every host you like to monitor
 * Install the adapter and configure it
 
@@ -29,9 +30,9 @@ Since WireGuard internally only uses the public keys to identify peers, but this
 
 * Main page
   - Name: Just a symbolic name for the host, since it's more convenient than it's IP address
-  - Host address: IP address of the host. A fqdn may work also but is not tested
+  - Host address: IP address of the host. A fqdn or dns name works also. If you're running WireGuard and ioBroker on the same host you can just use `localhost` as IP.
   - User: The user which executes the script on the host
-  - Password: Password for this
+  - Password: Password for this user
 * Translation page
     - Public Key: The public key of one of your peers
     - group name: A symbolic name for this peer
