@@ -58,6 +58,7 @@ To protect these credentials as well as possible both - username and password - 
 * (grizzelbee) New: dropped use of wg-json script - not needed anymore
 * (grizzelbee) New: making internal use of wg show all dump command and self parsing the result
 * (grizzelbee) New: Added windows support by using the wg show all command
+* (grizzelbee) Upd: moved dependency **admin** to globalDependency as requested during adapter review
 
 ### v0.9.2 (2022-02-20)
 * (grizzelbee) Fix: removed unnecessary secret from index_m.html file
