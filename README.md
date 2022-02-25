@@ -56,6 +56,11 @@ To protect these credentials as well as possible both - username and password - 
 
 ## Changelog
 
+### v1.0.0 (2022-02-25)
+* (grizzelbee) New: Added individual online state indicator for each interface
+* (grizzelbee) fix: Improved some data roles
+* (grizzelbee) fix: Improved documentation
+
 ### v0.9.5 (2022-02-22)
 * (grizzelbee) New: dropped use of wg-json script - not needed anymore
 * (grizzelbee) New: making internal use of wg show all dump command and self parsing the result
