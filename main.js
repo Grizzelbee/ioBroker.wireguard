@@ -236,7 +236,7 @@ async function updateDevicetree(host, wgData) {
             // +--------- repeat per peer
             adapter.log.debug(`Host: ${host} has ${ Object.keys(wgData).length } wireguard interface(s).`);
             if (Object.keys(wgData).length === 0){
-                adapter.log.error(`No info returned from wg-json script. Maybe your WireGuard server is down!`);
+                adapter.log.error(`No info returned from wg executable. Maybe your WireGuard server is down!`);
                 adapter.setState('info.connection', false, true);
             } else {
                 adapter.setState('info.connection', true, true);
@@ -310,7 +310,6 @@ class Wireguard extends utils.Adapter {
                 timeOuts.push(setInterval(async function pollHost() {
                     const wgInfos = await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, adapter.decrypt(secret, settings.hosts[host].user), adapter.decrypt(secret, settings.hosts[host].password));
                     const wgJson = await parseWireguardInfosToJson(wgInfos);
-                    //const wgData = await parseWireguardInfos(wgJson);
                     await updateDevicetree(settings.hosts[host].name, wgJson);
                 }, 1000 * settings.hosts[host].pollInterval));
             }
