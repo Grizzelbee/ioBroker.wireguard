@@ -170,6 +170,8 @@ function extractTreeItems(path, obj ){
             }
             case 'endpoint': obj.common.role='info.ip';
                 break;
+            case 'listenPort': obj.common.role='info.port';
+                break;
             case 'latestHandshake':{
                 obj.common.role='date';
                 obj.common.type='number';
@@ -235,11 +237,13 @@ async function updateDevicetree(host, wgData) {
             // |            +-- 0..n      (state)
             // +--------- repeat per peer
             adapter.log.debug(`Host: ${host} has ${ Object.keys(wgData).length } wireguard interface(s).`);
+            const knownInterfaces = [];
             if (Object.keys(wgData).length === 0){
                 adapter.log.error(`No info returned from wg executable. Maybe your WireGuard server is down!`);
                 adapter.setState('info.connection', false, true);
             } else {
                 adapter.setState('info.connection', true, true);
+
                 // loop through wg interfaces of current host
                 for (let n=0; n < Object.keys(wgData).length; n++){
                     const obj = {
@@ -252,10 +256,35 @@ async function updateDevicetree(host, wgData) {
                             'type': 'string'
                         }
                     };
+                    const onlineState = {
+                        type: 'state',
+                        common: {
+                            name: `Interface is online`,
+                            // 'icon':''
+                            'read': true,
+                            'write': false,
+                            'type': 'boolean',
+                            'role':'indicator.reachable'
+                        }
+                    };
                     const baseId = `${host}-${ Object.keys(wgData)[n]}`;
+                    knownInterfaces.push(baseId);
                     createOrExtendObject( baseId, obj, '' );
                     // loop through children of interface
                     extractTreeItems(baseId, wgData[Object.keys(wgData)[n]]);
+                    if (n === Object.keys(wgData).length-1){
+                        adapter.log.debug(`Going to set online states of interfaces.`);
+                        // set online state of every interface
+                        adapter.getDevices((err, devices)=>{
+                            for (let i=0; i < devices.length; i++) {
+                                if (knownInterfaces.includes(devices[i]._id.split('.').pop())) {
+                                    createOrExtendObject(`${devices[i]._id}.online`, onlineState, true);
+                                } else {
+                                    createOrExtendObject(`${devices[i]._id}.online`, onlineState, false);
+                                }
+                            }
+                        });
+                    }
                 }
             }
         } catch(error){
