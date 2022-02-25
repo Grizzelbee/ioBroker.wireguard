@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "0.9.5",
+        "version": "1.0.0",
         "news": {
+            "1.0.0": {
+                "en": "Added online state for each interface",
+                "de": "Online-Status für jede Schnittstelle hinzugefügt",
+                "ru": "Добавлен онлайн-статус для каждого интерфейса",
+                "pt": "Adicionado estado online para cada interface",
+                "nl": "Online status toegevoegd voor elke interface",
+                "fr": "Ajout de l'état en ligne pour chaque interface",
+                "it": "Aggiunto stato online per ogni interfaccia",
+                "es": "Estado en línea agregado para cada interfaz",
+                "pl": "Dodano stan online dla każdego interfejsu",
+                "zh-cn": "为每个接口添加在线状态"
+            },
             "0.9.5": {
                 "en": "Added Windows support\nremoved usage of wg-json script.",
                 "de": "Windows-Unterstützung hinzugefügt\n Verwendung des wg-json-Skripts entfernt.",
