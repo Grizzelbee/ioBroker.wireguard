@@ -16,6 +16,7 @@ Connect to WireGuard hosts and grab connection information on peers. This adapte
 
 ## Prerequisites
 * running ssh server on every host to monitor
+* The wg executable (wg.exe on Windows) needs to be in the search path
 * username and password of a user with the permission to execute the wg command 
 
 ## Installation steps
@@ -26,13 +27,13 @@ Connect to WireGuard hosts and grab connection information on peers. This adapte
 * Install the adapter and configure it
 
 ## Config options
-Since WireGuard internally only uses the public keys to identify peers, but this is pretty inconvenient to read and recognize for humans the translation page was added. Feel free to add public keys and Names to it to get the names integrates in the object tree.
+Since WireGuard internally only uses the public keys to identify peers, but they are pretty inconvenient to read and recognize for humans the translation page was added. Feel free to add public keys and Names to it to get the names integrated into the object tree.
 
 * Main page
   - Name: Just a symbolic name for the host, since it's more convenient than it's IP address
   - Host address: IP address of the host. A fqdn or dns name works also. If you're running WireGuard and ioBroker on the same host you can just use `localhost` as IP.
-  - User: The user which executes the script on the host
-  - Password: Password for this user
+  - User: The user which executes the script on the host (will be stored encrypted)
+  - Password: Password for this user (will be stored encrypted)
 * Translation page
     - Public Key: The public key of one of your peers
     - group name: A symbolic name for this peer
@@ -41,10 +42,10 @@ Since WireGuard internally only uses the public keys to identify peers, but this
 ## How it works
 * info.connection of the adapter is used to indicate that at least one WireGuard interface is online and reported by `wg show all`. If no Wireguard interface is online - nothing is reported. In that case an error gets logged and the adapters traffic light turns yellow. 
 * This adapter opens an ssh shell on every configured host, executes the `wg show all dump` command, drops the shell and parses the result.
-* Since every public key is unique, the adapter uses them to translate the public key into user-friendly readable and recognisable names.
+* Since every public key is unique, the adapter uses them to translate the public key into user-friendly, readable and recognisable names.
 * WireGuard unfortunately doesn't provide the "connected" state by itself. It only provides the last handshake information.
-This adapter calculates the connected state that way, that it assumes a peer is connected when the last handshake is received
-less than 130 seconds before. This is because handshakes usually occur every 120 seconds.
+Since handshakes usually occur every 120 seconds - this adapter calculates the connected state that way, that it assumes a peer is connected when the last handshake is received
+less than 130 seconds before.
 
 ## DANGER! Keep your eyes and your mind open! 
 Since the `wg` command (which is executed to grab the state of WireGuard) requires permissions near to `root` (admin privileges), think well of what you are doing here and how you configure the user you place in config.
