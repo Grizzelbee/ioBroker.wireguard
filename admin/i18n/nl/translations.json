@@ -5,6 +5,8 @@
     "Important": "Belangrijk",
     "Installation_hint_1": "Deze adapter ondersteunt WireGuard zowel op Linux als op Windows.",
     "Installation_hint_2": "wg-opdracht moet in PATH staan ​​en de gebruiker heeft beheerdersrechten nodig.",
+    "Installation_hint_3": "Tip: Raadpleeg voor veiligheidstips met betrekking tot de uitvoerende gebruiker en sudo het ReadMe-bestand op github.",
+    "Installation_hint_4": "Klik hier om veiligheidstips voor github te lezen.",
     "Main settings": "Belangrijkste instellingen",
     "Name": "Naam",
     "Password": "Wachtwoord",
@@ -13,5 +15,6 @@
     "Poll interval": "Poll-interval",
     "Public key": "Publieke sleutel",
     "Public-Key translations": "Public-Key vertalingen",
+    "Use sudo": "Gebruik sudo",
     "User": "Gebruiker"
 }

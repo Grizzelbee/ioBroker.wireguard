@@ -138,6 +138,8 @@
                     <b><span class="translate">Important</span>!&nbsp;</b>
                     <span class="translate">Installation_hint_1</span>
                     <span class="translate">Installation_hint_2</span>
+                    <span class="translate">Installation_hint_3</span>
+                    <span><a href="https://github.com/Grizzelbee/ioBroker.wireguard#security-hints" class="translate">Installation_hint_4</a></span>
                 </div>
             </div>
             <div class="row">
@@ -149,10 +151,11 @@
                             <thead>
                             <tr>
                                 <th data-name="_index" style="width: 5%" class="translate"></th>
-                                <th data-name="name" style="width: 20%" class="translate" for="name">Name</th>
+                                <th data-name="name" style="width: 15%" class="translate" for="name">Name</th>
                                 <th data-name="hostaddress" style="width: 20%" class="translate" for="hostaddress">Host address</th>
                                 <th data-name="user" style="width: 20%" class="translate encrypt" for="user">User</th>
                                 <th data-name="password" style="width: 20%" class="translate encrypt" for="password" data-type="password">Password</th>
+                                <th data-name="sudo" style="width: 5%" class="translate" for="sudo" data-type="checkbox">Use sudo</th>
                                 <th data-name="pollInterval" style="width: 20%" class="translate" for="pollInterval">Poll interval</th>
                                 <th data-buttons="delete up down" style="width: 5%"></th>
                             </tr>
@@ -173,7 +176,7 @@
                     <span><a class="btn-floating waves-effect waves-light blue table-button-add"><i class="material-icons">add</i></a></span>
                     <span class="translate">Click here to add a new translation</span>
                     <div class="table-values-div">
-                        <table id="tableHosts" class="table-values">
+                        <table id="tableHostsPubKey" class="table-values">
                             <thead>
                             <tr>
                                 <th data-name="_index" style="width: 5%" class="translate"></th>

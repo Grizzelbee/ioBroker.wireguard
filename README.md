@@ -30,31 +30,51 @@ Connect to WireGuard hosts and grab connection information on peers. This adapte
 Since WireGuard internally only uses the public keys to identify peers, but they are pretty inconvenient to read and recognize for humans the translation page was added. Feel free to add public keys and Names to it to get the names integrated into the object tree.
 
 * Main page
-  - Name: Just a symbolic name for the host, since it's more convenient than it's IP address
+  - Name: Just a symbolic name for the host, since it's more convenient and better memorable than it's IP address
   - Host address: IP address of the host. A fqdn or dns name works also. If you're running WireGuard and ioBroker on the same host you can just use `localhost` as IP.
   - User: The user which executes the script on the host (will be stored encrypted)
   - Password: Password for this user (will be stored encrypted)
+  - sudo: whether the wg command should be executed using sudo or not (requires valid config of sudoers! -> see [security hints])
+  - poll interval: pause between each poll in seconds (will also delay the first run after adapter start) 
 * Translation page
     - Public Key: The public key of one of your peers
     - group name: A symbolic name for this peer
  
 
 ## How it works
-* info.connection of the adapter is used to indicate that at least one WireGuard interface is online and reported by `wg show all`. If no Wireguard interface is online - nothing is reported. In that case an error gets logged and the adapters traffic light turns yellow. 
+* info.connection of the adapter is used to indicate that at least one WireGuard interface is online and reported by `wg show all`. If no Wireguard interface is online - nothing is reported. In that case an error gets logged and the adapters' traffic light turns yellow. 
 * This adapter opens an ssh shell on every configured host, executes the `wg show all dump` command, drops the shell and parses the result.
 * Since every public key is unique, the adapter uses them to translate the public key into user-friendly, readable and recognisable names.
 * WireGuard unfortunately doesn't provide the "connected" state by itself. It only provides the last handshake information.
 Since handshakes usually occur every 120 seconds - this adapter calculates the connected state that way, that it assumes a peer is connected when the last handshake is received
 less than 130 seconds before.
 
-## DANGER! Keep your eyes and your mind open! 
-Since the `wg` command (which is executed to grab the state of WireGuard) requires permissions near to `root` (admin privileges), think well of what you are doing here and how you configure the user you place in config.
-To protect these credentials as well as possible both - username and password - are encrypted. 
+## Security hints
+> I hardly recommend the use of sudoers under Linux! 
+
+These security hints rely mainly on linux since it's security system is more complex than the windows one. On a Windows server you'll simply need to use an administrative user. 
+Since the `wg` command (which is executed to grab the state of WireGuard) requires administrative permissions, think well of what you are doing here and how you configure the user you place in config.
+To protect these credentials as well as possible both - username and password - are encrypted.
+
+Basically there are three ways to execute the command:
+* use an administrative user (root or similar). This will work but expose your entire server in case the credentials get lost/stolen.
+* use of SetUID-Bit: Setting this bit allows (as far as I understood) each and evey user to execute the flagged file with administrative privileges without needing any password. **This includes hackers**. So setting this bit on the wg command exposes the entire wg-command with all it's power. If you like to do so execute `chmod u+s /usr/bin/wg` as an administrator.  
+* use of sudoers: The (from my perspective) most secure way is to set up a new simple user with basic privileges and add a simple line to the sudoers file which allows this user to execute the needed command without entering a password - and ONLY THIS command. Please refer to the documentation of your distribution for proper information on editing the sudoers file and using visudo. The screenshot below shows what needs to be added to the file. `wireguard-monitoring-user` is the user of your choice. The rest needs to be exactly like you see.
+  ```
+  #iobroker.wireguard adapter
+  wireguard-monitoring-user ALL=NOPASSWD:/usr/bin/wg show all dump
+  ```
+  This setting allows the `<wireguard-monitoring-user>` on `ALL` hosts to execute the `wg show all dump` command from the directory `/usr/bin/` (may need to be changed on your distribution) without needing a password (`NOPASSWD`).
+![Image](admin/sudoers_config.png)
 
 ## known issues
 * none
 
 ## Changelog
+### v1.1.0 (2022-03-06)
+* (grizzelbee) New: Added support for sudo when using a proper sudoers rule
+* (grizzelbee) Upd: Documentation update regarding security
+* (grizzelbee) Upd: dependency update
 
 ### v1.0.0 (2022-02-25)
 * (grizzelbee) New: Added individual online state indicator for each interface

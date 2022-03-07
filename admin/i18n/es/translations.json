@@ -5,6 +5,8 @@
     "Important": "Importante",
     "Installation_hint_1": "Este adaptador admite WireGuard tanto en Linux como en Windows.",
     "Installation_hint_2": "El comando wg debe estar en PATH y el usuario necesita privilegios de administrador.",
+    "Installation_hint_3": "Sugerencia: para obtener sugerencias de seguridad sobre el usuario que ejecuta y sudo, consulte el archivo Léame en github.",
+    "Installation_hint_4": "Haga clic aquí para leer las sugerencias de seguridad en github.",
     "Main settings": "Ajustes principales",
     "Name": "Nombre",
     "Password": "Clave",
@@ -13,5 +15,6 @@
     "Poll interval": "Intervalo de encuesta",
     "Public key": "Llave pública",
     "Public-Key translations": "Traducciones de clave pública",
+    "Use sudo": "Usa sudo",
     "User": "Usuario"
 }

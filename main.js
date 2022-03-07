@@ -21,15 +21,18 @@ let adapter=null;
  * @param {string} hostaddress IP address of the host
  * @param {string} user username which is used to connect to the host
  * @param {string} pass password for the user
+ * @param {boolean} sudo indicator whether sudo should be used
  * @returns {Promise<JSON|string>} returns a json structure when successful or an error message
  */
-async function getWireguardInfos(hostname, hostaddress, user, pass) {
+async function getWireguardInfos(hostname, hostaddress, user, pass, sudo) {
     adapter.log.info(`Connecting to host [${hostname}] on address [${hostaddress}]`);
     return new Promise(function(resolve, reject) {
         const conn = new Client();
+        const command = sudo? 'sudo wg show all dump':'wg show all dump';
+        adapter.log.debug(`Executing command: [${command}]`);
         conn.on('ready', () => {
             adapter.log.debug('ssh client :: ready');
-            conn.exec('wg show all dump', {},(error, responseStream) => {
+            conn.exec(command, {},(error, responseStream) => {
                 if (error) reject( error );
                 let rawdata = '';
                 responseStream.on('close', () => {
@@ -239,7 +242,7 @@ async function updateDevicetree(host, wgData) {
             adapter.log.debug(`Host: ${host} has ${ Object.keys(wgData).length } wireguard interface(s).`);
             const knownInterfaces = [];
             if (Object.keys(wgData).length === 0){
-                adapter.log.error(`No info returned from wg executable. Maybe your WireGuard server is down!`);
+                adapter.log.error(`No info returned from wg executable. Maybe your WireGuard server is down or monitoring user is missing permissions!`);
                 adapter.setState('info.connection', false, true);
             } else {
                 adapter.setState('info.connection', true, true);
@@ -337,7 +340,7 @@ class Wireguard extends utils.Adapter {
             for (let host=0; host < settings.hosts.length; host++) {
                 this.log.debug(JSON.stringify(settings.hosts[host]));
                 timeOuts.push(setInterval(async function pollHost() {
-                    const wgInfos = await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, adapter.decrypt(secret, settings.hosts[host].user), adapter.decrypt(secret, settings.hosts[host].password));
+                    const wgInfos = await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, adapter.decrypt(secret, settings.hosts[host].user), adapter.decrypt(secret, settings.hosts[host].password), settings.hosts[host].sudo);
                     const wgJson = await parseWireguardInfosToJson(wgInfos);
                     await updateDevicetree(settings.hosts[host].name, wgJson);
                 }, 1000 * settings.hosts[host].pollInterval));

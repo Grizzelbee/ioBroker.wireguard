@@ -5,6 +5,8 @@
     "Important": "Important",
     "Installation_hint_1": "This adapter support WireGuard either on Linux as well as on Windows.",
     "Installation_hint_2": "wg command needs to be in PATH and user needs administrator privileges.",
+    "Installation_hint_3": "Tip: For security hints regarding  the executing user and sudo please refer to the ReadMe file on github.",
+    "Installation_hint_4": "Click here to read the security hints on github.",
     "Main settings": "Main settings",
     "Name": "Name",
     "Password": "Password",
@@ -13,5 +15,6 @@
     "Poll interval": "Poll interval",
     "Public key": "Public key",
     "Public-Key translations": "Public-Key translations",
+    "Use sudo": "Use sudo",
     "User": "User"
 }

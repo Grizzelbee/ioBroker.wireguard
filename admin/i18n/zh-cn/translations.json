@@ -5,6 +5,8 @@
     "Important": "重要的",
     "Installation_hint_1": "该适配器在 Linux 和 Windows 上都支持 WireGuard。",
     "Installation_hint_2": "wg 命令需要在 PATH 中，并且用户需要管理员权限。",
+    "Installation_hint_3": "提示：有关执行用户和 sudo 的安全提示，请参阅 github 上的自述文件。",
+    "Installation_hint_4": "单击此处阅读 github 上的安全提示。",
     "Main settings": "主要设置",
     "Name": "姓名",
     "Password": "密码",
@@ -13,5 +15,6 @@
     "Poll interval": "轮询间隔",
     "Public key": "公钥",
     "Public-Key translations": "公钥翻译",
+    "Use sudo": "使用须藤",
     "User": "用户"
 }
