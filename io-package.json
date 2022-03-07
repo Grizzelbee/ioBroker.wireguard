@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "news": {
+            "1.1.0": {
+                "en": "Added support for sudo command via sudoers entry\nImproved documentation\nDependency updates",
+                "de": "Unterstützung für den sudo-Befehl über den sudoers-Eintrag hinzugefügt\nVerbesserte Dokumentation\nAbhängigkeitsaktualisierungen",
+                "ru": "Добавлена ​​поддержка команды sudo через запись sudoers\nУлучшенная документация\nОбновления зависимостей",
+                "pt": "Adicionado suporte para comando sudo via entrada sudoers\nDocumentação melhorada\nAtualizações de dependência",
+                "nl": "Ondersteuning toegevoegd voor sudo-opdracht via sudoers-invoer\nVerbeterde documentatie\nAfhankelijkheidsupdates",
+                "fr": "Ajout de la prise en charge de la commande sudo via l'entrée sudoers\nDocumentation améliorée\nMises à jour des dépendances",
+                "it": "Aggiunto supporto per il comando sudo tramite la voce sudoers\nDocumentazione migliorata\nAggiornamenti delle dipendenze",
+                "es": "Se agregó soporte para el comando sudo a través de la entrada sudoers\nDocumentación mejorada\nActualizaciones de dependencia",
+                "pl": "Dodano obsługę polecenia sudo za pośrednictwem wpisu sudoers\nUlepszona dokumentacja\nAktualizacje zależności",
+                "zh-cn": "通过 sudoers 条目添加了对 sudo 命令的支持\n改进的文档\n依赖项更新"
+            },
             "1.0.0": {
                 "en": "Added online state for each interface",
                 "de": "Online-Status für jede Schnittstelle hinzugefügt",
