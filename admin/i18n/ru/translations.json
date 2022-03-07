@@ -5,6 +5,8 @@
     "Important": "Важный",
     "Installation_hint_1": "Этот адаптер поддерживает WireGuard как в Linux, так и в Windows.",
     "Installation_hint_2": "Команда wg должна быть в PATH, а пользователю нужны права администратора.",
+    "Installation_hint_3": "Совет. Советы по безопасности относительно исполняющего пользователя и sudo см. в файле ReadMe на github.",
+    "Installation_hint_4": "Нажмите здесь, чтобы прочитать советы по безопасности на github.",
     "Main settings": "Основные настройки",
     "Name": "Имя",
     "Password": "Пароль",
@@ -13,5 +15,6 @@
     "Poll interval": "Интервал опроса",
     "Public key": "Открытый ключ",
     "Public-Key translations": "Переводы с открытым ключом",
+    "Use sudo": "Используйте судо",
     "User": "Пользователь"
 }
