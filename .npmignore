@@ -1,6 +1,7 @@
 gulpfile.js
 admin/i18n
 admin/Sicherungs*
+admin/sudoers_config.png
 tasks
 node_modules
 .idea
