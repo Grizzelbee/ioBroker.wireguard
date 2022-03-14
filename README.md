@@ -71,6 +71,10 @@ Basically there are three ways to execute the command:
 * none
 
 ## Changelog
+### v1.1.1 (2022-03-13)
+* (grizzelbee) Upd: Changed titleLang from WireGuard to WireGuard monitoring
+* (grizzelbee) Upd: dependency update
+
 ### v1.1.0 (2022-03-06)
 * (grizzelbee) New: Added support for sudo when using a proper sudoers rule
 * (grizzelbee) Upd: Documentation update regarding security

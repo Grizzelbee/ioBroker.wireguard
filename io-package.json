@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.1.0",
+        "version": "1.1.1",
         "news": {
+            "1.1.1": {
+                "en": "Changed titleLang from WireGuard to WireGuard monitoring\nDependency updates",
+                "de": "TitleLang von WireGuard auf WireGuard-Überwachung geändert\nAbhängigkeitsaktualisierungen",
+                "ru": "Изменен titleLang с WireGuard на мониторинг WireGuard\nОбновления зависимостей",
+                "pt": "Título alteradoLang do monitoramento do WireGuard para o WireGuard\nAtualizações de dependência",
+                "nl": "Gewijzigde titelLang van WireGuard naar WireGuard monitoring\nVerbeterde documentatie\nAfhankelijkheidsupdates",
+                "fr": "Modification du titreLang de WireGuard à la surveillance WireGuard\nMises à jour des dépendances",
+                "it": "TitleLang modificato da WireGuard al monitoraggio WireGuard\nAggiornamenti delle dipendenze",
+                "es": "Se cambió titleLang de WireGuard a monitoreo de WireGuard.\nActualizaciones de dependencia",
+                "pl": "Zmieniono tytułLang z WireGuard na WireGuard monitoring\nAktualizacje zależności",
+                "zh-cn": "将 titleLang 从 WireGuard 更改为 WireGuard 监控\n依赖项更新"
+            },
             "1.1.0": {
                 "en": "Added support for sudo command via sudoers entry\nImproved documentation\nDependency updates",
                 "de": "Unterstützung für den sudo-Befehl über den sudoers-Eintrag hinzugefügt\nVerbesserte Dokumentation\nAbhängigkeitsaktualisierungen",
@@ -114,16 +126,16 @@
         },
         "title": "WireGuard",
         "titleLang": {
-            "en": "WireGuard",
-            "de": "WireGuard",
-            "ru": "WireGuard",
-            "pt": "WireGuard",
-            "nl": "WireGuard",
-            "fr": "WireGuard",
-            "it": "WireGuard",
-            "es": "Guardia de alambre",
-            "pl": "WireGuard",
-            "zh-cn": "线卫"
+            "en": "WireGuard monitoring",
+            "de": "WireGuard-Überwachung",
+            "ru": "Мониторинг WireGuard",
+            "pt": "Monitoramento WireGuard",
+            "nl": "WireGuard-bewaking",
+            "fr": "Surveillance WireGuard",
+            "it": "Monitoraggio WireGuard",
+            "es": "Monitoreo de WireGuard",
+            "pl": "Monitorowanie WireGuard",
+            "zh-cn": "WireGuard 监控"
         },
         "desc": {
             "en": "Connect to WireGuard hosts and grab connection information on peers",
