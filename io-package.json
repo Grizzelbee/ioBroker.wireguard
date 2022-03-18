@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.1.1",
+        "version": "1.1.2",
         "news": {
+            "1.1.2": {
+                "en": "Added donate button\nDependency updates",
+                "de": "Schaltfläche \"Spenden\" hinzugefügt \n Abhängigkeitsaktualisierungen",
+                "ru": "Добавлена ​​кнопка пожертвования \n Обновления зависимостей",
+                "pt": "Adicionado botão de doação\nAtualizações de dependência",
+                "nl": "Donatieknop toegevoegd \n Afhankelijkheidsupdates",
+                "fr": "Bouton de don ajouté \n Mises à jour des dépendances",
+                "it": "Aggiunto pulsante di donazione\nAggiornamenti sulle dipendenze",
+                "es": "Botón de donación agregado \n Actualizaciones de dependencia",
+                "pl": "Dodano przycisk darowizny\nAktualizacje zależności",
+                "zh-cn": "添加了捐赠按钮\n依赖更新"
+            },
             "1.1.1": {
                 "en": "Changed titleLang from WireGuard to WireGuard monitoring\nDependency updates",
                 "de": "TitleLang von WireGuard auf WireGuard-Überwachung geändert\nAbhängigkeitsaktualisierungen",
