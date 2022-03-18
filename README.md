@@ -74,6 +74,10 @@ Basically there are three ways to execute the command:
 * none
 
 ## Changelog
+### v1.1.2 (2022-03-17)
+* (grizzelbee) New: Added donate button
+* (grizzelbee) Upd: dependency update
+
 ### v1.1.1 (2022-03-13)
 * (grizzelbee) Upd: Changed titleLang from WireGuard to WireGuard monitoring
 * (grizzelbee) Upd: dependency update
