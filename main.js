@@ -347,7 +347,7 @@ class Wireguard extends utils.Adapter {
             for (let host=0; host < settings.hosts.length; host++) {
                 this.log.debug(JSON.stringify(settings.hosts[host]));
                 timeOuts.push(setInterval(async function pollHost() {
-                    await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, adapter.decrypt(secret, settings.hosts[host].user), adapter.decrypt(secret, settings.hosts[host].password), settings.hosts[host].sudo)
+                    await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, adapter.decrypt(secret, settings.hosts[host].user), adapter.decrypt(secret, settings.hosts[host].password), settings.hosts[host].sudo, settings.hosts[host].docker)
                         .then(async (wgInfos)=> {
                             await parseWireguardInfosToJson(wgInfos)
                                 .then(async (wgJson)=>{
