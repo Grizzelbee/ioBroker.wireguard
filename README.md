@@ -83,7 +83,7 @@ Basically there are three ways to execute the command:
 
 ## Changelog
 ### v1.2.0 (2022-04-21)
-* (grizzelbee) New: Added support for WireGuard in a docker container
+* (grizzelbee) New: Added support for WireGuard inside a docker container
 
 ### v1.1.3 (2022-03-31)
 * (grizzelbee) New: Fixed sentry error [WIREGUARD-1](https://sentry.io/organizations/grizzelbee/issues/3027754005/events/?project=6215712)
