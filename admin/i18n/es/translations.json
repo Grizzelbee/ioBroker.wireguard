@@ -7,6 +7,8 @@
     "Installation_hint_2": "El comando wg debe estar en PATH y el usuario necesita privilegios de administrador.",
     "Installation_hint_3": "Sugerencia: para obtener sugerencias de seguridad sobre el usuario que ejecuta y sudo, consulte el archivo Léame en github.",
     "Installation_hint_4": "Haga clic aquí para leer las sugerencias de seguridad en github.",
+    "Installation_hint_5": "Marque la casilla de verificación de la ventana acoplable si está ejecutando WireGuard dentro de un contenedor de la ventana acoplable; ",
+    "Installation_hint_6": "marque sudo si necesita sudo para ejecutar el comando sin contraseña.",
     "Main settings": "Ajustes principales",
     "Name": "Nombre",
     "Password": "Clave",
@@ -17,5 +19,7 @@
     "Public-Key translations": "Traducciones de clave pública",
     "Use sudo": "Usa sudo",
     "User": "Usuario",
-    "donation": "Si te gusta este adaptador y consideras apoyarme:"
+    "docker": "estibador",
+    "donation": "Si te gusta este adaptador y consideras apoyarme:",
+    "sudo": "sudo"
 }

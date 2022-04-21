@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.1.3",
+        "version": "1.2.0",
         "news": {
+            "1.2.0": {
+                "en": "Added support for WireGuard inside a docker container\nDependencies got updated",
+                "de": "Unterstützung für WireGuard in einem Docker-Container hinzugefügt \n Abhängigkeiten wurden aktualisiert",
+                "ru": "Добавлена ​​поддержка WireGuard внутри док-контейнера \n Обновлены зависимости",
+                "pt": "Adicionado suporte para WireGuard dentro de um contêiner docker\nAs dependências foram atualizadas",
+                "nl": "Ondersteuning toegevoegd voor WireGuard in een docker-container \n Afhankelijkheden zijn bijgewerkt",
+                "fr": "Ajout de la prise en charge de WireGuard dans un conteneur Docker \n Les dépendances ont été mises à jour",
+                "it": "Aggiunto supporto per WireGuard all'interno di un contenitore mobile\nLe dipendenze sono state aggiornate",
+                "es": "Se agregó soporte para WireGuard dentro de un contenedor docker \n Las dependencias se actualizaron",
+                "pl": "Dodano wsparcie dla WireGuard wewnątrz kontenera docker \n Zależności zostały zaktualizowane",
+                "zh-cn": "在 docker 容器内添加了对 WireGuard 的支持\n更新了依赖项"
+            },
             "1.1.3": {
                 "en": "Fixed some errors reported by sentry\nDependencies got updated",
                 "de": "Einige von Sentry gemeldete Fehler wurden behoben.\nAbhängigkeiten wurden aktualisiert",
@@ -223,6 +235,8 @@
                 "hostaddress": "",
                 "user": "",
                 "password": "",
+                "sudo": false,
+                "docker": false,
                 "pollInterval": 120
             }
         ]

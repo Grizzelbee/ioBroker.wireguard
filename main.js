@@ -22,13 +22,15 @@ let adapter=null;
  * @param {string} user username which is used to connect to the host
  * @param {string} pass password for the user
  * @param {boolean} sudo indicator whether sudo should be used
+ * @param {boolean} docker indicator whether sudo should be used
  * @returns {Promise<JSON|string>} returns a json structure when successful or an error message
  */
-async function getWireguardInfos(hostname, hostaddress, user, pass, sudo) {
-    adapter.log.info(`Connecting to host [${hostname}] on address [${hostaddress}]`);
+async function getWireguardInfos(hostname, hostaddress, user, pass, sudo, docker) {
+    adapter.log.info(`Retrieving WireGuard status from host [${hostname}] on address [${hostaddress}]`);
     return new Promise(function(resolve, reject) {
         const conn = new Client();
-        const command = sudo ? 'sudo wg show all dump' : 'wg show all dump';
+        let command = docker ? 'docker exec -it wireguard /usr/bin/wg show all dump' : 'wg show all dump';
+        command = sudo ? 'sudo ' + command : command;
         conn.on('ready', () => {
             adapter.log.debug('ssh client :: authenticated');
             adapter.log.debug(`Executing command: [${command}]`);
@@ -345,7 +347,7 @@ class Wireguard extends utils.Adapter {
             for (let host=0; host < settings.hosts.length; host++) {
                 this.log.debug(JSON.stringify(settings.hosts[host]));
                 timeOuts.push(setInterval(async function pollHost() {
-                    await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, adapter.decrypt(secret, settings.hosts[host].user), adapter.decrypt(secret, settings.hosts[host].password), settings.hosts[host].sudo)
+                    await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, adapter.decrypt(secret, settings.hosts[host].user), adapter.decrypt(secret, settings.hosts[host].password), settings.hosts[host].sudo, settings.hosts[host].docker)
                         .then(async (wgInfos)=> {
                             await parseWireguardInfosToJson(wgInfos)
                                 .then(async (wgJson)=>{

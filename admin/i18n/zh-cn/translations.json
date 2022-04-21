@@ -7,6 +7,8 @@
     "Installation_hint_2": "wg 命令需要在 PATH 中，并且用户需要管理员权限。",
     "Installation_hint_3": "提示：有关执行用户和 sudo 的安全提示，请参阅 github 上的自述文件。",
     "Installation_hint_4": "单击此处阅读 github 上的安全提示。",
+    "Installation_hint_5": "如果您在 docker 容器中运行 WireGuard，请选中 docker 复选框；",
+    "Installation_hint_6": "如果您需要 sudo 来执行没有密码的命令，请检查 sudo。",
     "Main settings": "主要设置",
     "Name": "姓名",
     "Password": "密码",
@@ -17,5 +19,7 @@
     "Public-Key translations": "公钥翻译",
     "Use sudo": "使用须藤",
     "User": "用户",
-    "donation": "如果你喜欢这个适配器并考虑支持我："
+    "docker": "码头工人",
+    "donation": "如果你喜欢这个适配器并考虑支持我：",
+    "sudo": "须藤"
 }

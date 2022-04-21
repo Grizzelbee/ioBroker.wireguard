@@ -1,5 +1,8 @@
 gulpfile.js
 admin/i18n
+admin/i18n/*
+admin/build
+admin/build/*
 admin/Sicherungs*
 admin/sudoers_config.png
 tasks
