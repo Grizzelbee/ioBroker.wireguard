@@ -38,11 +38,19 @@ Since WireGuard internally only uses the public keys to identify peers, but they
   - User: The user which executes the script on the host (will be stored encrypted)
   - Password: Password for this user (will be stored encrypted)
   - sudo: whether the wg command should be executed using sudo or not (requires valid config of sudoers! -> see [security hints])
+  - Docker: Executes a `docker exec`command to reach a wireguard server inside a docker container. Please check if it fits your needs or whether you may switch to a supported container.
   - poll interval: pause between each poll in seconds (will also delay the first run after adapter start) 
 * Translation page
     - Public Key: The public key of one of your peers
     - group name: A symbolic name for this peer
  
+### executed command line depends on checkboxes:
+* No checkbox checked: `wg show all dump` will be executed (for root-like users and use of the SetUID-Bit)
+* Sudo checkbox is checked: `sudo wg show all dump` will be executed (works with proper sudoers line)
+* Docker checkbox is checked: `docker exec -it wireguard /usr/bin/wg show all dump` will be executed
+* Sudo and Docker checkboxes are checked: `sudo docker exec -it wireguard /usr/bin/wg show all dump` will be executed
+
+> If you use WireGuard in a docker container, I assume you are familiar enough with both technologies and security concepts to configure your system to execute the shown commands in a way that doesn't ask for any password - since this is not supported.  
 
 ## How it works
 * info.connection of the adapter is used to indicate that at least one WireGuard interface is online and reported by `wg show all`. If no Wireguard interface is online - nothing is reported. In that case an error gets logged and the adapters' traffic light turns yellow. 
@@ -74,6 +82,9 @@ Basically there are three ways to execute the command:
 * none
 
 ## Changelog
+### v1.2.0 (2022-04-21)
+* (grizzelbee) New: Added support for WireGuard in a docker container
+
 ### v1.1.3 (2022-03-31)
 * (grizzelbee) New: Fixed sentry error [WIREGUARD-1](https://sentry.io/organizations/grizzelbee/issues/3027754005/events/?project=6215712)
 * (grizzelbee) New: Fixed sentry error [WIREGUARD-H](https://sentry.io/organizations/grizzelbee/issues/3129951381/events/?project=6215712)
