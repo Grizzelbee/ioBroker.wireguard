@@ -1,8 +1,10 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.2.0",
+        "version": "1.2.1",
         "news": {
+            "1.2.1": {
+                "en": "Fixed tty issue in docker option."},
             "1.2.0": {
                 "en": "Added support for WireGuard inside a docker container\nDependencies got updated",
                 "de": "Unterstützung für WireGuard in einem Docker-Container hinzugefügt \n Abhängigkeiten wurden aktualisiert",
