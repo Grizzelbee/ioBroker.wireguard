@@ -34,7 +34,7 @@ async function getWireguardInfos(hostname, hostaddress, user, pass, sudo, docker
         conn.on('ready', () => {
             adapter.log.debug('ssh client :: authenticated');
             adapter.log.debug(`Executing command: [${command}]`);
-            conn.exec(command, {}, (error, responseStream) => {
+            conn.exec(command, {pty: true}, (error, responseStream) => {
                 if (error) reject(error);
                 let rawdata = '';
                 responseStream.on('close', () => {
