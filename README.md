@@ -12,7 +12,7 @@
 [![NPM](https://nodei.co/npm/iobroker.wireguard.png?downloads=true)](https://nodei.co/npm/iobroker.wireguard/)
 
 ## wireguard adapter for ioBroker
-Connect to WireGuard hosts and grab connection information on peers. This adapter is intended to be a monitoring instance for your WireGuard hosts. 
+Connect to WireGuard hosts and grab connection information on peers. This adapter is intended to be a monitoring instance for your WireGuard hosts. It supports plain installations and docker as well. 
 
 > If you like this adapter and consider supporting me <br/>
 > [![Donate with payPal](admin/paypal-donate-button.png)](https://www.paypal.com/donate/?hosted_button_id=SPUDTXGNG2MYG)
@@ -50,7 +50,17 @@ Since WireGuard internally only uses the public keys to identify peers, but they
 * Docker checkbox is checked: `docker exec -it wireguard /usr/bin/wg show all dump` will be executed
 * Sudo and Docker checkboxes are checked: `sudo docker exec -it wireguard /usr/bin/wg show all dump` will be executed
 
-> If you use WireGuard in a docker container, I assume you are familiar enough with both technologies and security concepts to configure your system to execute the shown commands in a way that doesn't ask for any password - since this is not supported.  
+> If you use WireGuard in a docker container, I assume you are familiar enough with both technologies and security concepts to configure your system to execute the shown commands in a way that doesn't ask for any password.  
+
+### Docker 
+Basically everything said about regular installations also applies for docker and works the same way.
+Except the needed checkboxes to get the proper command executed and the needed sudoers line. If you use WireGuard inside 
+a docker container you may need a sudoers line similar to this:
+```
+<wg-monitoring-user> ALL=NOPASSWD:/usr/bin/docker exec -it wireguard /usr/bin/wg show all dump
+```
+This adapter expects the name `wireguard` for your WireGuard container and the `wg` command in `/usr/bin/`inside the container. 
+These values currently can't be customized.
 
 ## How it works
 * info.connection of the adapter is used to indicate that at least one WireGuard interface is online and reported by `wg show all`. If no Wireguard interface is online - nothing is reported. In that case an error gets logged and the adapters' traffic light turns yellow. 
