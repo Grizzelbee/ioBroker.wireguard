@@ -1,20 +1,15 @@
 gulpfile.js
-admin/i18n
-admin/i18n/*
-admin/build
-admin/build/*
+translations.json
+admin/build/index.*
 admin/Sicherungs*
-admin/sudoers_config.png
 tasks
 node_modules
 .idea
 .git
 .github
-/node_modules
 test
 .travis.yml
 appveyor.yml
-
 # CorelDraw files
 *.cdr
 *.bak
