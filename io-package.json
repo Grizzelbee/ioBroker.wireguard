@@ -201,7 +201,7 @@
         "main": "main.js",
         "icon": "wireguard.svg",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/grizzelbee/ioBroker.wireguard/main/admin/wireguard.svg",
+        "extIcon": "https://raw.githubusercontent.com/Grizzelbee/ioBroker.wireguard/main/admin/wireguard.svg",
         "readme": "https://github.com/grizzelbee/ioBroker.wireguard/blob/main/README.md",
         "loglevel": "info",
         "mode": "daemon",
