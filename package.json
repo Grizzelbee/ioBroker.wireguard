@@ -24,10 +24,12 @@
     "ssh2": "^1.9.0"
   },
   "devDependencies": {
+    "@alcalzone/release-script": "^3.5.9",
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.9",
     "@iobroker/testing": "^2.6.0",
     "@material-ui/core": "^4.12.4",
+    "@snyk/protect": "^1.918.0",
     "@types/gulp": "^4.0.9",
     "axios": "^0.26.1",
     "chai": "^4.3.6",
@@ -61,10 +63,12 @@
     "test:unit": "mocha test/unit --exit",
     "test:integration": "mocha test/integration --exit",
     "test": "npm run test:js && npm run test:package",
-    "lint": "eslint --ext .js,.jsx"
+    "lint": "eslint --ext .js,.jsx",
+    "release": "release-script"
   },
   "bugs": {
     "url": "https://github.com/Grizzelbee/ioBroker.wireguard/issues"
   },
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "snyk": true
 }

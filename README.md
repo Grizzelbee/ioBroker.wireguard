@@ -92,6 +92,8 @@ Basically there are three ways to execute the command:
 * none
 
 ## Changelog
+### **WORK IN PROGRESS**
+
 ### v1.2.1 (2022-04-24)
 * (grizzelbee) Fixed: [#20](https://github.com/Grizzelbee/ioBroker.wireguard/issues/20) Fixed a bug in tty linking which prevented docker option to work.
 
