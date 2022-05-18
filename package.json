@@ -29,7 +29,7 @@
     "@iobroker/testing": "^2.6.0",
     "@material-ui/core": "^4.12.4",
     "@types/gulp": "^4.0.9",
-    "axios": "^0.26.1",
+    "axios": "^0.27.2",
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
     "eslint": "^8.14.0",
