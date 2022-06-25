@@ -1,7 +1,10 @@
 {
+    "Click here to add a new config file": "Нажмите здесь, чтобы добавить новый файл конфигурации",
     "Click here to add a new host": "Нажмите здесь, чтобы добавить новый хост",
     "Click here to add a new translation": "Нажмите здесь, чтобы добавить новый перевод",
+    "Example: host: Testhost (same as NAME on main page), Interface: wg0, config file: /etc/wireguard/wg0.conf": "Пример: хост: Testhost (то же, что и ИМЯ на главной странице), интерфейс: wg0, файл конфигурации: /etc/wireguard/wg0.conf\":",
     "Host address": "Адрес хоста (IP)",
+    "Host name": "Имя хоста",
     "Important": "Важный",
     "Installation_hint_1": "Этот адаптер поддерживает WireGuard как в Linux, так и в Windows.",
     "Installation_hint_2": "Команда wg должна быть в PATH, а пользователю нужны права администратора.",
@@ -9,6 +12,7 @@
     "Installation_hint_4": "Нажмите здесь, чтобы прочитать советы по безопасности на github.",
     "Installation_hint_5": "Установите флажок Docker, если вы используете WireGuard внутри контейнера Docker; ",
     "Installation_hint_6": "проверьте sudo, если вам нужно sudo для выполнения команды без пароля.",
+    "Interface name": "Имя интерфейса",
     "Main settings": "Основные настройки",
     "Name": "Имя",
     "Password": "Пароль",
@@ -19,7 +23,10 @@
     "Public-Key translations": "Переводы с открытым ключом",
     "Use sudo": "Используйте судо",
     "User": "Пользователь",
+    "You need to list all your WireGuard config files here (with full path) to use the peer reactivation feature. For more information please see the readme file on github.": "Вам нужно указать здесь все файлы конфигурации WireGuard (с полным путем), чтобы использовать функцию повторной активации одноранговых узлов. ",
+    "config file": "файл конфигурации",
     "docker": "докер",
     "donation": "Если вам нравится этот адаптер и вы можете поддержать меня:",
-    "sudo": "судо"
+    "sudo": "судо",
+    "wgConfigFile": "конфигурационный файл wg"
 }

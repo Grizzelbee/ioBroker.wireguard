@@ -1,7 +1,10 @@
 {
+    "Click here to add a new config file": "Klik hier om een ​​nieuw configuratiebestand toe te voegen",
     "Click here to add a new host": "Klik hier om een ​​nieuwe host toe te voegen",
     "Click here to add a new translation": "Klik hier om een ​​nieuwe vertaling toe te voegen",
+    "Example: host: Testhost (same as NAME on main page), Interface: wg0, config file: /etc/wireguard/wg0.conf": "Voorbeeld: host: Testhost (zelfde als NAAM op hoofdpagina), Interface: wg0, configuratiebestand: /etc/wireguard/wg0.conf\":",
     "Host address": "Host adres (IP)",
+    "Host name": "Hostnaam",
     "Important": "Belangrijk",
     "Installation_hint_1": "Deze adapter ondersteunt WireGuard zowel op Linux als op Windows.",
     "Installation_hint_2": "wg-opdracht moet in PATH staan ​​en de gebruiker heeft beheerdersrechten nodig.",
@@ -9,6 +12,7 @@
     "Installation_hint_4": "Klik hier om veiligheidstips voor github te lezen.",
     "Installation_hint_5": "Schakel het selectievakje Docker in als u WireGuard in een docker-container gebruikt; ",
     "Installation_hint_6": "vink sudo aan als je sudo nodig hebt om de opdracht zonder wachtwoord uit te voeren.",
+    "Interface name": "Interfacenaam",
     "Main settings": "Belangrijkste instellingen",
     "Name": "Naam",
     "Password": "Wachtwoord",
@@ -19,7 +23,10 @@
     "Public-Key translations": "Public-Key vertalingen",
     "Use sudo": "Gebruik sudo",
     "User": "Gebruiker",
+    "You need to list all your WireGuard config files here (with full path) to use the peer reactivation feature. For more information please see the readme file on github.": "U moet hier al uw WireGuard-configuratiebestanden vermelden (met volledig pad) om de peer-reactiveringsfunctie te gebruiken. ",
+    "config file": "config-bestand",
     "docker": "havenarbeider",
     "donation": "Als je deze adapter leuk vindt en overweegt mij te steunen:",
-    "sudo": "sudo"
+    "sudo": "sudo",
+    "wgConfigFile": "wg-configuratiebestand"
 }

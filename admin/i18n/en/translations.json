@@ -1,7 +1,10 @@
 {
+    "Click here to add a new config file": "Click here to add a new config file",
     "Click here to add a new host": "Click here to add a new host",
     "Click here to add a new translation": "Click here to add a new translation",
+    "Example: host: Testhost (same as NAME on main page), Interface: wg0, config file: /etc/wireguard/wg0.conf": "Example: host: Testhost (same as NAME on main page), Interface: wg0, config file: /etc/wireguard/wg0.conf\":",
     "Host address": "Host address (IP)",
+    "Host name": "Host name",
     "Important": "Important",
     "Installation_hint_1": "This adapter support WireGuard either on Linux as well as on Windows.",
     "Installation_hint_2": "wg command needs to be in PATH and user needs administrator privileges.",
@@ -9,6 +12,7 @@
     "Installation_hint_4": "Click here to read the security hints on github.",
     "Installation_hint_5": "Check docker checkbox if you are running WireGuard inside a docker container; ",
     "Installation_hint_6": "activate sudo if you need sudo to execute the command without password.",
+    "Interface name": "Interface name",
     "Main settings": "Main settings",
     "Name": "Name",
     "Password": "Password",
@@ -19,7 +23,10 @@
     "Public-Key translations": "Public-Key translations",
     "Use sudo": "sudo",
     "User": "User",
+    "You need to list all your WireGuard config files here (with full path) to use the peer reactivation feature. For more information please see the readme file on github.": "You need to list all your WireGuard config files here (with full path) to use the peer reactivation feature. For more information please see the readme file on github.",
+    "config file": "Config file",
     "docker": "docker",
     "donation": "If you like this adapter and consider supporting me:",
-    "sudo": "sudo"
+    "sudo": "sudo",
+    "wgConfigFile": ""
 }
