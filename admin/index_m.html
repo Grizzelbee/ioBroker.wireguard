@@ -21,6 +21,7 @@
 
         let hosts = [];
         let names = [];
+        let configFiles = [];
 
         // the function loadSettings has to exist ...
         async function load(settings, onChange) {
@@ -47,11 +48,13 @@
             // Set default language
             hosts = settings.hosts || [];
             names = settings.names || [];
+            configFiles = settings.configFiles || [];
             onChange(false);
             await decryptTableFields('tableHosts', hosts, (data)=> {
                 values2table('hosts', data, onChange);
             });
             values2table('names', names, onChange);
+            values2table('configFiles', configFiles, onChange);
         }
 
         function save(callback) {
@@ -71,6 +74,7 @@
             // Get edited table
             obj.hosts = table2values('hosts');
             obj.names = table2values('names');
+            obj.configFiles = table2values('configFiles');
             encryptTableFields('tableHosts', obj.hosts);
             callback(obj);
         }
@@ -128,6 +132,7 @@
                 <ul class="tabs">
                     <li class="tab col s2"><a href="#tab-main" class="translate active">Main settings</a></li>
                     <li class="tab col s2"><a href="#tab-names" class="translate">Public-Key translations</a></li>
+                    <li class="tab col s2"><a href="#tab-configFiles" class="translate">WireGuard config files</a></li>
                 </ul>
             </div>
         </div>
@@ -156,11 +161,11 @@
                         <table id="tableHosts" class="table-values">
                             <thead>
                             <tr>
-                                <th data-name="_index" style="width: 5%" class="translate"></th>
-                                <th data-name="name" style="width: 15%" class="translate" for="name">Name</th>
+                                <th data-name="_index" style="width: 2%" class="translate"></th>
+                                <th data-name="name" style="width: 10%" class="translate" for="name">Name</th>
                                 <th data-name="hostaddress" style="width: 15%" class="translate" for="hostaddress">Host address</th>
-                                <th data-name="user" style="width: 20%" class="translate encrypt" for="user">User</th>
-                                <th data-name="password" style="width: 20%" class="translate encrypt" for="password" data-type="password">Password</th>
+                                <th data-name="user" style="width: 15%" class="translate encrypt" for="user">User</th>
+                                <th data-name="password" style="width: 13%" class="translate encrypt" for="password" data-type="password">Password</th>
                                 <th data-name="sudo" style="width: 5%" class="translate" for="sudo" data-type="checkbox">sudo</th>
                                 <th data-name="docker" style="width: 5%" class="translate" for="docker" data-type="checkbox">Docker</th>
                                 <th data-name="pollInterval" style="width: 5%" class="translate" for="pollInterval">Poll interval</th>
@@ -197,29 +202,34 @@
                 </div>
             </div>
         </div>
+        <div id="tab-configFiles" class="col s12 page">
+            <div class="row">
+                <div class="col s12">
+                    <p class="translate">You need to list all your WireGuard config files here (with full path) to use the peer reactivation feature. For more information please see the readme file on github.</p>
+                    <p class="translate">Example: host: Testhost (same as NAME on main page), Interface: wg0, config file: /etc/wireguard/wg0.conf</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12" id="configFiles">
+                    <span><a class="btn-floating waves-effect waves-light blue table-button-add"><i class="material-icons">add</i></a></span>
+                    <span class="translate">Click here to add a new config file</span>
+                    <div class="table-values-div">
+                        <table id="tableConfigFiles" class="table-values">
+                            <thead>
+                            <tr>
+                                <th data-name="_index" style="width: 5%" class="translate"></th>
+                                <th data-name="hostName" style="width: 20%" class="translate" for="hostName">Host name</th>
+                                <th data-name="iFace" style="width: 20%" class="translate" for="iFace">Interface name</th>
+                                <th data-name="configFile" style="width: 20%" class="translate" for="configFile">config file</th>
+                                <th data-buttons="delete up down" style="width: 5%"></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
 </html>
-
-<!--
-        <div class="row">
-            <div class="col s12" id="names">
-                <p class="translate">Please add all public key to name translations here. This will make it more convenient for you to identify the peers in the object tree.</p>
-                <a class="btn-floating waves-effect waves-light blue table-button-add"><i class="material-icons">add</i></a>
-                <span class="translate">Click here to add a new translation</span>
-                <div class="table-values-div">
-                    <table class="table-values">
-                        <thead>
-                        <tr>
-                            <th data-name="_index" style="width: 5%" class="translate"></th>
-                            <th data-name="pubKey" style="width: 45%" class="translate" for="pubKey">Public key</th>
-                            <th data-name="groupname" style="width: 45%" class="translate" for="groupname">Name</th>
-                            <th data-buttons="delete up down" style="width: 5%"></th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-        </div>
--->
