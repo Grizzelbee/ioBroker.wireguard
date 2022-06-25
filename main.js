@@ -9,28 +9,18 @@
 const utils = require('@iobroker/adapter-core');
 
 // Load your modules here, e.g.:
-const {Client} = require('ssh2');
-const timeOuts=[];
-let adapter=null;
+const {Client}   = require('ssh2');
+const knownPeers = [];
+const timeOuts   = [];
+let adapter      = null;
+let secret       = '';
 
 
-/**
- * Opens an ssh connection to the given host, executes the wg-json command and returns the output data of that command.
- *
- * @param {string} hostname symbolic name of the host
- * @param {string} hostaddress IP address of the host
- * @param {string} user username which is used to connect to the host
- * @param {string} pass password for the user
- * @param {boolean} sudo indicator whether sudo should be used
- * @param {boolean} docker indicator whether sudo should be used
- * @returns {Promise<JSON|string>} returns a json structure when successful or an error message
- */
-async function getWireguardInfos(hostname, hostaddress, user, pass, sudo, docker) {
-    adapter.log.info(`Retrieving WireGuard status from host [${hostname}] on address [${hostaddress}]`);
-    return new Promise(function(resolve, reject) {
+
+async function execCommand(hostaddress, user, pass, command){
+    return new Promise((resolve, reject) => {
+        adapter.log.debug(`Executing command [${command}] on host ${hostaddress}.`);
         const conn = new Client();
-        let command = docker ? 'docker exec -it wireguard /usr/bin/wg show all dump' : 'wg show all dump';
-        command = sudo ? 'sudo ' + command : command;
         conn.on('ready', () => {
             adapter.log.debug('ssh client :: authenticated');
             adapter.log.debug(`Executing command: [${command}]`);
@@ -56,10 +46,77 @@ async function getWireguardInfos(hostname, hostaddress, user, pass, sudo, docker
         conn.connect({
             host: hostaddress,
             port: 22,
-            username: user,
-            password: pass
+            username: adapter.decrypt(secret, user),
+            password: adapter.decrypt(secret, pass)
         });
     });
+}
+
+
+/**
+ * Opens an ssh connection to the given host, executes the wg-json command and returns the output data of that command.
+ *
+ * @param {string} hostname symbolic name of the host
+ * @param {string} hostaddress IP address of the host
+ * @param {string} user username which is used to connect to the host
+ * @param {string} pass password for the user
+ * @param {boolean} sudo indicator whether sudo should be used
+ * @param {boolean} docker indicator whether sudo should be used
+ * @returns {Promise<JSON|string>} returns a json structure when successful or an error message
+ */
+async function getWireguardInfos(hostname, hostaddress, user, pass, sudo, docker) {
+    adapter.log.debug(`Retrieving WireGuard status of host [${hostname}] on address [${hostaddress}]`);
+    let command = docker ? 'docker exec -it wireguard /usr/bin/wg show all dump' : 'wg show all dump';
+    command = sudo ? 'sudo ' + command : command;
+    return new Promise(function(resolve, reject) {
+        execCommand(hostaddress, user, pass, command)
+            .then((result) => {
+                resolve(result);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+}
+
+function getExtendedCommand(command, hostaddress){
+    for(let i=0; i < adapter.config.hosts.length; i++){
+        if (adapter.config.hosts[i].hostaddress === hostaddress){
+            command = adapter.config.hosts[i].docker? 'docker exec -it wireguard /usr/bin/'+command : command;
+            command = adapter.config.hosts[i].sudo? 'sudo '+command : command;
+            return command;
+        } else {
+            throw new Error(`Command couldn't be extended: ${command}`);
+        }
+    }
+}
+
+function suspendPeer(hostaddress, path, user, pass, iFace, peer){
+    adapter.log.info(`Suspending peer [${peer}] of interface ${iFace} on host ${hostaddress}.`);
+    // adapter.log.info(`knownPeers [${knownPeers}].`);
+    return new Promise(function(resolve, reject) {
+        const command = getExtendedCommand(`wg set ${iFace} peer ${peer} remove`, hostaddress);
+        execCommand(hostaddress, user, pass, command)
+            .then((result) => {
+                adapter.setState(path+'.connected', false, true);
+                adapter.setState(path+'.isSuspended', true, true);
+                resolve(result);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+}
+
+async function restorePeers(hostaddress, user, pass, iFace, configFile){
+    const command = getExtendedCommand(`wg syncconf ${iFace} ${configFile}`, hostaddress);
+    execCommand(hostaddress, user, pass, command)
+        .then((result) => {
+            return result;
+        })
+        .catch((error) => {
+            throw new Error(error);
+        });
 }
 
 /**
@@ -80,16 +137,16 @@ async function parseWireguardInfosToJson(wgRawData){
     for ( let i=0; i<data.length; i++ ) {
         if ( i===0 || (data[i][0] !== data[i-1][0]) ){
             if (data[i][0] === '') break;
-            adapter.log.debug(`New Interface: ${data[i][0]}. Initialize object.`);
+            adapter.log.silly(`New Interface: ${data[i][0]}. Initialize object.`);
             wg[data[i][0]]= {};
-            // wg[data[i][0]].privateKey = data[i][1]; // don#t show the private key in ioBroker
+            // wg[data[i][0]].privateKey = data[i][1]; // don't show the private key in ioBroker
             wg[data[i][0]].publicKey= data[i][2];
             wg[data[i][0]].listenPort = data[i][3];
             wg[data[i][0]].fwmark = data[i][4];
             wg[data[i][0]].peers = {};
         }else{
             // interface public_key preshared_key endpoint allowed_ips latest_handshake transfer_rx transfer_tx persistent_keepalive
-            adapter.log.debug(`New Peer ${data[i][1]} for interface ${ data[i][0] }`);
+            adapter.log.silly(`New Peer ${data[i][1]} for interface ${ data[i][0] }`);
             wg[data[i][0]].peers[data[i][1]] = {};
             wg[data[i][0]].peers[data[i][1]].presharedKey = data[i][2];
             wg[data[i][0]].peers[data[i][1]].endpoint = data[i][3];
@@ -129,12 +186,24 @@ function createOrExtendObject(id, objData, value) {
 
 
 /**
- * sets the connected state of a peer
+ * sets the connected state of a peer and also creates the syspend_Peer button and the isSuspended indicator
  *
  * @param {string} path path to the peer in object tree
  * @param {boolean} value value to set
  */
 function setConnectedState(path, value) {
+    createOrExtendObject(`${path}.suspend_Peer`, {
+        type: 'state',
+        common: {
+            name: `Suspend this peer temporarily.`,
+            // 'icon':''
+            'read': false,
+            'write': true,
+            'type': 'boolean',
+            'role':'button'
+        }
+    }, true);
+    adapter.subscribeStates(`${path}.suspend_Peer`);
     createOrExtendObject(`${path}.connected`, {
         type: 'state',
         common: {
@@ -146,6 +215,17 @@ function setConnectedState(path, value) {
             'type': 'boolean'
         }
     }, value);
+    createOrExtendObject(`${path}.isSuspended`, {
+        type: 'state',
+        common: {
+            name: `Indicates whether this peer is currently suspended.`,
+            // 'icon':''
+            'read': true,
+            'write': false,
+            'type': 'boolean',
+            'role':'indicator'
+        }
+    }, false); // !knownPeers.includes( path.split('.', 5).pop() ) );
 }
 
 /**
@@ -158,7 +238,7 @@ function extractTreeItems(path, obj ){
     let finalValue;
     // build key-value pairs from object structure
     for (const [key, value] of Object.entries(obj) ) {
-        adapter.log.debug(`Key ${key}: Value ${value} | typeof value ${ typeof value}`);
+        // adapter.log.debug(`Key ${key}: Value ${value} | typeof value ${ typeof value}`);
         finalValue = value;
         const obj = {
             type: 'state',
@@ -197,12 +277,13 @@ function extractTreeItems(path, obj ){
         // If there is an object inside the given structure, dive one level deeper
         if (typeof value === 'object'){
             // It's an object - so iterate deeper
-            adapter.log.debug(`Deeper Object: name ${key} | value ${JSON.stringify(value)}`);
+            // adapter.log.debug(`Deeper Object: name ${key} | value ${JSON.stringify(value)}`);
             let groupname = key;
             // assign group name translation if given on config page
             for (let n=0; n < adapter.config.names.length; n++){
                 if ( key === adapter.config.names[n].pubKey ){
                     groupname = adapter.config.names[n].groupname;
+                    knownPeers.push(key);
                     break;
                 }
             }
@@ -253,7 +334,6 @@ async function updateDevicetree(host, wgData) {
                 adapter.setState('info.connection', false, true);
             } else {
                 adapter.setState('info.connection', true, true);
-
                 // loop through wg interfaces of current host
                 for (let n=0; n < Object.keys(wgData).length; n++){
                     const obj = {
@@ -277,13 +357,26 @@ async function updateDevicetree(host, wgData) {
                             'role':'indicator.reachable'
                         }
                     };
+                    const restorePeers = {
+                        type: 'state',
+                        common: {
+                            name: `Restore all suspended peers.`,
+                            // 'icon':''
+                            'read': true,
+                            'write': true,
+                            'type': 'boolean',
+                            'role':'button'
+                        }
+                    };
                     const baseId = `${host}-${ Object.keys(wgData)[n]}`;
                     knownInterfaces.push(baseId);
                     createOrExtendObject( baseId, obj, '' );
+                    createOrExtendObject( baseId+'.restore_all_Peers', restorePeers, true );
+                    adapter.subscribeStates(baseId+'.restore_all_Peers');
                     // loop through children of interface
                     extractTreeItems(baseId, wgData[Object.keys(wgData)[n]]);
                     if (n === Object.keys(wgData).length-1){
-                        adapter.log.debug(`Going to set online states of interfaces.`);
+                        // adapter.log.debug(`Going to set online states of interfaces.`);
                         // set online state of every interface
                         adapter.getDevices((err, devices)=>{
                             for (let i=0; i < devices.length; i++) {
@@ -315,10 +408,50 @@ class Wireguard extends utils.Adapter {
             name: 'wireguard',
         });
         this.on('ready', this.onReady.bind(this));
-        // this.on('stateChange', this.onStateChange.bind(this));
+        this.on('stateChange', this.onStateChange.bind(this));
         // this.on('objectChange', this.onObjectChange.bind(this));
         // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
+    }
+
+    async onStateChange(id, state){
+        if (state) {
+            // The state was changed
+            // this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+            if (!state.ack) {
+                // manual change / request
+                // wireguard.0.ganymed-wg0.peers.kBTx8Hyd6V51XSzI2fhzR0Wngfhwg3cAJNBvSevCi3Q=.suspend_Peer
+                let hostaddress = '';
+                let user        = '';
+                let pass        = '';
+                let configFile  = '';
+                const iFace = id.split('.', 3).pop().split('-').pop();
+                const peer = id.split('.', 5).pop();
+                const searchHost = id.split('.', 3).pop().split('-', 1).pop();
+                for (let host=0; host < this.config.hosts.length; host++) {
+                    if (this.config.hosts[host].name === searchHost) {
+                        hostaddress = this.config.hosts[host].hostaddress;
+                        user = this.config.hosts[host].user;
+                        pass = this.config.hosts[host].password;
+                        break;
+                    }
+                }
+                if ('suspend_Peer' === id.split('.').pop()){
+                    adapter.log.info(`suspending peer on interface ${iFace}`);
+                    await suspendPeer(hostaddress, id.split('.', 5).join('.'), user, pass, iFace, peer);
+                } else if ('restore_all_Peers' === id.split('.').pop()){
+                    adapter.log.info(`restoring all peers for interface ${iFace} on host ${searchHost}`);
+                    for (let i=0; i < this.config.configFiles.length; i++) {
+                        adapter.log.info(`Config: iFace=${this.config.configFiles[i].iFace}, host=${this.config.configFiles[i].hostName}`);
+                        if ((this.config.configFiles[i].hostName === searchHost) && (this.config.configFiles[i].iFace === iFace) ){
+                            configFile = this.config.configFiles[i].configFile;
+                            break;
+                        }
+                    }
+                    await restorePeers(hostaddress, user, pass, iFace, configFile);
+                }
+            }
+        }
     }
 
     /**
@@ -330,8 +463,7 @@ class Wireguard extends utils.Adapter {
         // Initialize your adapter here
         adapter = this; // preserve adapter reference to address functions etc. correctly later
         const settings = this.config;
-        let secret;
-        adapter.getForeignObject('system.config', (err, obj) => {
+        this.getForeignObject('system.config', (err, obj) => {
             if (obj && obj.native && obj.native.secret) {
                 secret = obj.native.secret;
             } else {
@@ -345,9 +477,8 @@ class Wireguard extends utils.Adapter {
         }
         try{
             for (let host=0; host < settings.hosts.length; host++) {
-                this.log.debug(JSON.stringify(settings.hosts[host]));
                 timeOuts.push(setInterval(async function pollHost() {
-                    await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, adapter.decrypt(secret, settings.hosts[host].user), adapter.decrypt(secret, settings.hosts[host].password), settings.hosts[host].sudo, settings.hosts[host].docker)
+                    await getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, settings.hosts[host].user, settings.hosts[host].password, settings.hosts[host].sudo, settings.hosts[host].docker)
                         .then(async (wgInfos)=> {
                             await parseWireguardInfosToJson(wgInfos)
                                 .then(async (wgJson)=>{

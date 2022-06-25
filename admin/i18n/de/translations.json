@@ -1,7 +1,10 @@
 {
+    "Click here to add a new config file": "Klicken Sie hier, um eine neue Konfigurationsdatei hinzuzufügen",
     "Click here to add a new host": "Klicken Sie hier, um einen neuen Host hinzuzufügen",
     "Click here to add a new translation": "Klicken Sie hier, um eine neue Übersetzung hinzuzufügen",
+    "Example: host: Testhost (same as NAME on main page), Interface: wg0, config file: /etc/wireguard/wg0.conf": "Beispiel: Host: Testhost (identisch mit NAME auf der Hauptseite), Schnittstelle: wg0, Konfigurationsdatei: /etc/wireguard/wg0.conf\":",
     "Host address": "Hostadresse (IP)",
+    "Host name": "Hostname",
     "Important": "Wichtig",
     "Installation_hint_1": "Dieser Adapter unterstützt WireGuard sowohl unter Linux als auch unter Windows.",
     "Installation_hint_2": "Der wg-Befehl muss sich in PATH befinden und der Benutzer benötigt Administratorrechte.",
@@ -9,6 +12,7 @@
     "Installation_hint_4": "Klicken Sie hier, um Sicherheitshinweise auf github zu lesen.",
     "Installation_hint_5": "Aktivieren Sie das Docker-Kontrollkästchen, wenn Sie WireGuard in einem Docker-Container ausführen; ",
     "Installation_hint_6": "Aktivieren Sie sudo, wenn Sie sudo benötigen, um den Befehl ohne Passwort auszuführen.",
+    "Interface name": "Schnittstellenname",
     "Main settings": "Haupteinstellungen",
     "Name": "Name",
     "Password": "Passwort",
@@ -19,7 +23,10 @@
     "Public-Key translations": "Public-Key-Übersetzungen",
     "Use sudo": "Verwenden Sie sudo",
     "User": "Benutzer",
+    "You need to list all your WireGuard config files here (with full path) to use the peer reactivation feature. For more information please see the readme file on github.": "Sie müssen alle Ihre WireGuard-Konfigurationsdateien hier auflisten (mit vollständigem Pfad), um die Peer-Reaktivierungsfunktion zu verwenden. ",
+    "config file": "Konfigurationsdatei",
     "docker": "Docker",
     "donation": "Wenn Ihnen dieser Adapter gefällt und Sie erwägen, mich zu unterstützen:",
-    "sudo": "sudo"
+    "sudo": "sudo",
+    "wgConfigFile": "wg Konfigurationsdatei"
 }

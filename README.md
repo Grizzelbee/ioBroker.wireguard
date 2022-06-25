@@ -43,7 +43,11 @@ Since WireGuard internally only uses the public keys to identify peers, but they
 * Translation page
     - Public Key: The public key of one of your peers
     - group name: A symbolic name for this peer
- 
+* Config files page
+  - Name: Must be the same as on the Main page 
+  - Interface: Name of the interface stored in this config file (wg0, wg1, ...)
+  - config file: fully qualified path and name of the config file for this interface (/etc/wireguard/wg0.conf, ...)
+
 ### executed command line depends on checkboxes:
 * No checkbox checked: `wg show all dump` will be executed (for root-like users and use of the SetUID-Bit)
 * Sudo checkbox is checked: `sudo wg show all dump` will be executed (works with proper sudoers line)
@@ -55,9 +59,11 @@ Since WireGuard internally only uses the public keys to identify peers, but they
 ### Docker 
 Basically everything said about regular installations also applies for docker and works the same way.
 Except the needed checkboxes to get the proper command executed and the needed sudoers line. If you use WireGuard inside 
-a docker container you may need a sudoers line similar to this:
+a docker container you may need sudoers lines similar to this:
 ```
 <wg-monitoring-user> ALL=NOPASSWD:/usr/bin/docker exec -it wireguard /usr/bin/wg show all dump
+<wg-monitoring-user> ALL=NOPASSWD:/usr/bin/docker exec -it wireguard /usr/bin/wg set * peer * remove
+<wg-monitoring-user> ALL=NOPASSWD:/usr/bin/docker exec -it wireguard /usr/bin/wg syncconf * * 
 ```
 This adapter expects the name `wireguard` for your WireGuard container and the `wg` command in `/usr/bin/`inside the container. 
 These values currently can't be customized.
@@ -84,6 +90,8 @@ Basically there are three ways to execute the command:
   ```
   #iobroker.wireguard adapter
   wireguard-monitoring-user ALL=NOPASSWD:/usr/bin/wg show all dump
+  wireguard-monitoring-user ALL=NOPASSWD:/usr/bin/wg set * peer * remove
+  wireguard-monitoring-user ALL=NOPASSWD:/usr/bin/wg syncconf * * 
   ```
   This setting allows the `<wireguard-monitoring-user>` on `ALL` hosts to execute the `wg show all dump` command from the directory `/usr/bin/` (may need to be changed on your distribution) without needing a password (`NOPASSWD`).
 ![Image](admin/sudoers_config.png)
@@ -92,6 +100,12 @@ Basically there are three ways to execute the command:
 * none
 
 ## Changelog
+### **WORK IN PROGRESS**
+
+### v1.3.0 (2022-06-25)
+* (grizzelbee) Fixed: [#33](https://github.com/Grizzelbee/ioBroker.wireguard/issues/33) Added buttons to suspend single and restore all peers of an interface
+* (grizzelbee) Upd: dependencies got updated
+
 ### v1.2.1 (2022-04-24)
 * (grizzelbee) Fixed: [#20](https://github.com/Grizzelbee/ioBroker.wireguard/issues/20) Fixed a bug in tty linking which prevented docker option to work.
 

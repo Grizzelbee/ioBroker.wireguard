@@ -1,7 +1,10 @@
 {
+    "Click here to add a new config file": "单击此处添加新的配置文件",
     "Click here to add a new host": "单击此处添加新主机",
     "Click here to add a new translation": "单击此处添加新翻译",
+    "Example: host: Testhost (same as NAME on main page), Interface: wg0, config file: /etc/wireguard/wg0.conf": "示例：主机：Testhost（与主页上的名称相同），接口：wg0，配置文件：/etc/wireguard/wg0.conf”：",
     "Host address": "主机地址 (IP)",
+    "Host name": "主机名",
     "Important": "重要的",
     "Installation_hint_1": "该适配器在 Linux 和 Windows 上都支持 WireGuard。",
     "Installation_hint_2": "wg 命令需要在 PATH 中，并且用户需要管理员权限。",
@@ -9,6 +12,7 @@
     "Installation_hint_4": "单击此处阅读 github 上的安全提示。",
     "Installation_hint_5": "如果您在 docker 容器中运行 WireGuard，请选中 docker 复选框；",
     "Installation_hint_6": "如果您需要 sudo 来执行没有密码的命令，请检查 sudo。",
+    "Interface name": "接口名称",
     "Main settings": "主要设置",
     "Name": "姓名",
     "Password": "密码",
@@ -19,7 +23,10 @@
     "Public-Key translations": "公钥翻译",
     "Use sudo": "使用须藤",
     "User": "用户",
+    "You need to list all your WireGuard config files here (with full path) to use the peer reactivation feature. For more information please see the readme file on github.": "您需要在此处列出所有 WireGuard 配置文件（带有完整路径）才能使用对等重新激活功能。",
+    "config file": "配置文件",
     "docker": "码头工人",
     "donation": "如果你喜欢这个适配器并考虑支持我：",
-    "sudo": "须藤"
+    "sudo": "须藤",
+    "wgConfigFile": "wg配置文件"
 }
