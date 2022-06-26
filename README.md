@@ -63,6 +63,7 @@ a docker container you may need sudoers lines similar to this:
 ```
 <wg-monitoring-user> ALL=NOPASSWD:/usr/bin/docker exec -it wireguard /usr/bin/wg show all dump
 <wg-monitoring-user> ALL=NOPASSWD:/usr/bin/docker exec -it wireguard /usr/bin/wg set * peer * remove
+<wg-monitoring-user> ALL=NOPASSWD:/usr/bin/docker exec -it wireguard /usr/bin/wg set * peer * allowed-ips *
 <wg-monitoring-user> ALL=NOPASSWD:/usr/bin/docker exec -it wireguard /usr/bin/wg syncconf * * 
 ```
 This adapter expects the name `wireguard` for your WireGuard container and the `wg` command in `/usr/bin/`inside the container. 
@@ -91,6 +92,7 @@ Basically there are three ways to execute the command:
   #iobroker.wireguard adapter
   wireguard-monitoring-user ALL=NOPASSWD:/usr/bin/wg show all dump
   wireguard-monitoring-user ALL=NOPASSWD:/usr/bin/wg set * peer * remove
+  wireguard-monitoring-user ALL=NOPASSWD:/usr/bin/wg set * peer * allowed-ips *
   wireguard-monitoring-user ALL=NOPASSWD:/usr/bin/wg syncconf * * 
   ```
   This setting allows the `<wireguard-monitoring-user>` on `ALL` hosts to execute the `wg show all dump` command from the directory `/usr/bin/` (may need to be changed on your distribution) without needing a password (`NOPASSWD`).
@@ -102,8 +104,12 @@ Basically there are three ways to execute the command:
 ## Changelog
 ### **WORK IN PROGRESS**
 
+### v1.3.1 (2022-06-26)
+* (grizzelbee) New: [#33](https://github.com/Grizzelbee/ioBroker.wireguard/issues/33) Added button to resume a single peer
+
 ### v1.3.0 (2022-06-25)
-* (grizzelbee) Fixed: [#33](https://github.com/Grizzelbee/ioBroker.wireguard/issues/33) Added buttons to suspend single and restore all peers of an interface
+* (grizzelbee) New: [#33](https://github.com/Grizzelbee/ioBroker.wireguard/issues/33) Added buttons to suspend single and restore all peers of an interface
+* (grizzelbee) Chg: Changed polling log entry from info to debug 
 * (grizzelbee) Upd: dependencies got updated
 
 ### v1.2.1 (2022-04-24)

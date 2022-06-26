@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.3.0",
+        "version": "1.3.1",
         "news": {
+            "1.3.1": {
+                "en": "Added button restore a single peer.",
+                "de": "Schaltfläche zum Wiederherstellen eines einzelnen Peers hinzugefügt.",
+                "ru": "Добавлена ​​кнопка восстановления одного пира.",
+                "pt": "Adicionado botão restaurar um único par.",
+                "nl": "Toegevoegd knop herstel een enkele peer.",
+                "fr": "Ajout d'un bouton pour restaurer un seul pair.",
+                "it": "Aggiunto pulsante per ripristinare un singolo peer.",
+                "es": "Se agregó el botón restaurar un solo par.",
+                "pl": "Dodano przycisk przywracania jednego peera.",
+                "zh-cn": "添加了按钮恢复单个对等点。"
+            },
             "1.3.0": {
                 "en": "Added buttons to suspend single and restore all peers of an interface.",
                 "de": "Schaltflächen zum Suspendieren einzelner und Wiederherstellen aller Peers einer Schnittstelle hinzugefügt.",
