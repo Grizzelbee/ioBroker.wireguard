@@ -79,18 +79,34 @@ async function getWireguardInfos(hostname, hostaddress, user, pass, sudo, docker
     });
 }
 
+
+/**
+ *
+ * @param command {string}
+ * @param hostaddress {string}
+ * @returns {string|*}
+ */
 function getExtendedCommand(command, hostaddress){
-    for(let i=0; i < adapter.config.hosts.length; i++){
+    for (let i=0; i < adapter.config.hosts.length; i++){
         if (adapter.config.hosts[i].hostaddress === hostaddress){
             command = adapter.config.hosts[i].docker? 'docker exec -it wireguard /usr/bin/'+command : command;
             command = adapter.config.hosts[i].sudo? 'sudo '+command : command;
             return command;
-        } else {
-            throw new Error(`Command couldn't be extended: ${command}`);
         }
     }
+    throw new Error(`Command couldn't be extended: ${command}`);
 }
 
+/**
+ *
+ * @param hostaddress {string}
+ * @param path {string}
+ * @param user {string}
+ * @param pass {string}
+ * @param iFace {string}
+ * @param peer {string}
+ * @returns {Promise<unknown>}
+ */
 function suspendPeer(hostaddress, path, user, pass, iFace, peer){
     adapter.log.info(`Suspending peer [${peer}] of interface ${iFace} on host ${hostaddress}.`);
     // adapter.log.info(`knownPeers [${knownPeers}].`);
@@ -108,7 +124,45 @@ function suspendPeer(hostaddress, path, user, pass, iFace, peer){
     });
 }
 
-async function restorePeers(hostaddress, user, pass, iFace, configFile){
+
+/**
+ *
+ * @param hostaddress {string}
+ * @param path {string}
+ * @param user {string}
+ * @param pass {string}
+ * @param iFace {string}
+ * @param peer {string}
+ * @param ip {string}
+ * @returns {Promise<unknown>}
+ */
+function restorePeer(hostaddress, path, user, pass, iFace, peer, ip){
+    adapter.log.info(`Restoring peer [${peer}] of interface ${iFace} on host ${hostaddress} with IP [${ip}].`);
+    return new Promise(function(resolve, reject) {
+        const command = getExtendedCommand(`wg set ${iFace} peer ${peer} allowed-ips ${ip}`, hostaddress);
+        execCommand(hostaddress, user, pass, command)
+            .then((result) => {
+                adapter.setState(path+'.connected', true, true);
+                adapter.setState(path+'.isSuspended', false, true);
+                resolve(result);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+}
+
+
+/**
+ *
+ * @param hostaddress {string}
+ * @param user {string}
+ * @param pass {string}
+ * @param iFace {string}
+ * @param configFile {string}
+ * @returns {Promise<void>}
+ */
+async function restoreAllPeers(hostaddress, user, pass, iFace, configFile){
     const command = getExtendedCommand(`wg syncconf ${iFace} ${configFile}`, hostaddress);
     execCommand(hostaddress, user, pass, command)
         .then((result) => {
@@ -122,7 +176,7 @@ async function restorePeers(hostaddress, user, pass, iFace, configFile){
 /**
  * parses the commandline output of the wg show all dump command and parses it into a json structure
  *
- * @param wgRawData commandline output of wg show all dump command
+ * @param wgRawData {string} commandline output of wg show all dump command
  * @returns {Promise<{JSON}>} returns the parsed json object
  */
 async function parseWireguardInfosToJson(wgRawData){
@@ -204,6 +258,18 @@ function setConnectedState(path, value) {
         }
     }, true);
     adapter.subscribeStates(`${path}.suspend_Peer`);
+    createOrExtendObject(`${path}.restore_Peer`, {
+        type: 'state',
+        common: {
+            name: `Bring that temporarily suspended peer back to action.`,
+            // 'icon':''
+            'read': false,
+            'write': true,
+            'type': 'boolean',
+            'role':'button'
+        }
+    }, true);
+    adapter.subscribeStates(`${path}.restore_Peer`);
     createOrExtendObject(`${path}.connected`, {
         type: 'state',
         common: {
@@ -425,6 +491,7 @@ class Wireguard extends utils.Adapter {
                 let user        = '';
                 let pass        = '';
                 let configFile  = '';
+                const path = id.split('.', 5).join('.');
                 const iFace = id.split('.', 3).pop().split('-').pop();
                 const peer = id.split('.', 5).pop();
                 const searchHost = id.split('.', 3).pop().split('-', 1).pop();
@@ -437,10 +504,18 @@ class Wireguard extends utils.Adapter {
                     }
                 }
                 if ('suspend_Peer' === id.split('.').pop()){
-                    adapter.log.info(`suspending peer on interface ${iFace}`);
-                    await suspendPeer(hostaddress, id.split('.', 5).join('.'), user, pass, iFace, peer);
+                    adapter.log.info(`Suspending peer on interface ${iFace}`);
+                    await suspendPeer(hostaddress, path, user, pass, iFace, peer);
+                } else if ('restore_Peer' === id.split('.').pop()){
+                    adapter.log.info(`Path: ${path+'.allowedIps.0'}`);
+                    adapter.getState(path+'.allowedIps.0', function (err, state){
+                        if (!err && state) {
+                            adapter.log.info(`Restoring peer ${peer} with IP ${state.val} on interface ${iFace}.`);
+                            restorePeer(hostaddress, id.split('.', 5).join('.'), user, pass, iFace, peer, state.val);
+                        }
+                    });
                 } else if ('restore_all_Peers' === id.split('.').pop()){
-                    adapter.log.info(`restoring all peers for interface ${iFace} on host ${searchHost}`);
+                    adapter.log.info(`Restoring all peers for interface ${iFace} on host ${searchHost}`);
                     for (let i=0; i < this.config.configFiles.length; i++) {
                         adapter.log.info(`Config: iFace=${this.config.configFiles[i].iFace}, host=${this.config.configFiles[i].hostName}`);
                         if ((this.config.configFiles[i].hostName === searchHost) && (this.config.configFiles[i].iFace === iFace) ){
@@ -448,7 +523,7 @@ class Wireguard extends utils.Adapter {
                             break;
                         }
                     }
-                    await restorePeers(hostaddress, user, pass, iFace, configFile);
+                    await restoreAllPeers(hostaddress, user, pass, iFace, configFile);
                 }
             }
         }
