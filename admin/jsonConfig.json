@@ -1,0 +1,216 @@
+{
+    "type" : "tabs",
+    "i18n": true,
+    "items": {
+        "mainTab": {
+            "type": "panel",
+            "label": "Main config",
+            "items": {
+                "donationHelp": {
+                    "type": "staticText",
+                    "text": "If you like this adapter, please consider a donation to support my work."
+                },
+                "donateButton": {
+                    "newLine": true,
+                    "type": "staticImage",
+                    "sm": 4,
+                    "md": 2,
+                    "lg": 2,
+                    "src": "adapter/wireguard/admin/paypal-donate-button.png",
+                    "href": "https://www.paypal.com/donate/?hosted_button_id=SPUDTXGNG2MYG"
+                },
+
+                "hosts": {
+                    "type": "table",
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "label": "WireGuard hosts",
+                    "items": [
+                        {
+                            "type": "text",
+                            "attr": "name",
+                            "width": "20%",
+                            "title": {
+                                "en": "name",
+                                "de": "Name",
+                                "ru": "имя",
+                                "pt": "nome",
+                                "nl": "naam",
+                                "fr": "Nom",
+                                "it": "nome",
+                                "es": "nombre",
+                                "pl": "Nazwa",
+                                "zh-cn": "姓名"
+                            },
+                            "filter": true,
+                            "sort": true,
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "attr": "hostaddress",
+                            "width": "10%",
+                            "title": { "en" : "Host"},
+                            "tooltip": "May be an IP, DNS-Hostname or FQDN."
+                        },
+                        {
+                            "type": "number",
+                            "min": 1,
+                            "max": 65565,
+                            "attr": "port",
+                            "title": { "en" : "Port"},
+                            "tooltip": "The Port your SSH server listens to.",
+                            "width": "10%",
+                            "default": 22
+                        },
+                        {
+                            "type": "text",
+                            "attr": "user",
+                            "title": { "en": "User"},
+                            "tooltip": "Name of your WireGuard monitoring user.",
+                            "width": "10%",
+                            "encrypted": true
+                        },
+                        {
+                            "type": "password",
+                            "attr": "password",
+                            "title": {"en":  "Password"},
+                            "width": "10%"
+                        },
+                        {
+                            "type": "checkbox",
+                            "attr": "sudo",
+                            "title": {"en": "sudo"},
+                            "tooltip":"Check if you like to use sudo commands.",
+                            "width": "3%"
+                        },
+                        {
+                            "type": "checkbox",
+                            "attr": "docker",
+                            "title": {"en": "Docker"},
+                            "tooltip":"Check if you use WireGuard in Docker containers.",
+                            "width": "3%"
+                        },
+                        {
+                            "type": "number",
+                            "min": 1,
+                            "max": 65565,
+                            "attr": "pollInterval",
+                            "title": { "en" : "Pollinterval"},
+                            "tooltip": "Pollinterval - in Seconds.",
+                            "width": "4%"
+                        },
+                        {
+                            "type": "text",
+                            "attr": "containerName",
+                            "title": { "en": "Container"},
+                            "tooltip": "Name of your WireGuard Docker container.",
+                            "width": "10%"
+                        }
+                    ]
+                }
+
+            }
+        },
+        "names": {
+            "type": "panel",
+            "label": "Public key to username translations",
+            "items": {
+                "names": {
+                    "type": "table",
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "items": [
+                        {
+                            "type": "text",
+                            "attr": "groupname",
+                            "width": "50%",
+                            "title": {
+                                "en": "name",
+                                "de": "Name",
+                                "ru": "имя",
+                                "pt": "nome",
+                                "nl": "naam",
+                                "fr": "Nom",
+                                "it": "nome",
+                                "es": "nombre",
+                                "pl": "Nazwa",
+                                "zh-cn": "姓名"
+                            },
+                            "filter": true,
+                            "sort": true,
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "attr": "pubKey",
+                            "width": "50%",
+                            "title": {
+                                "en": "Public Key"
+                            },
+                            "filter": true,
+                            "sort": true,
+                            "default": ""
+                        }
+                    ]
+
+                }
+            }
+        },
+        "configFiles": {
+            "type": "panel",
+            "label": "WireGuard Config files",
+            "items": {
+                "configFiles": {
+                    "type": "table",
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "items": [
+                        {
+                            "type": "text",
+                            "attr": "hostName",
+                            "width": "33%",
+                            "title": {
+                                "en": "name",
+                                "de": "Name",
+                                "ru": "имя",
+                                "pt": "nome",
+                                "nl": "naam",
+                                "fr": "Nom",
+                                "it": "nome",
+                                "es": "nombre",
+                                "pl": "Nazwa",
+                                "zh-cn": "姓名"
+                            },
+                            "filter": true,
+                            "sort": true,
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "attr": "iFace",
+                            "width": "33%",
+                            "title": {
+                                "en": "Interface name"
+                            },
+                            "sort": true,
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "attr": "configFile",
+                            "width": "33%",
+                            "title": {
+                                "en": "Config file"
+                            },
+                            "default": ""
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
