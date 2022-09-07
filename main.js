@@ -24,7 +24,11 @@ async function execCommand(hostaddress, user, pass, command){
         conn.on('ready', () => {
             adapter.log.debug('ssh client :: authenticated');
             adapter.log.debug(`Executing command: [${command}]`);
-            conn.exec(command, {pty: true}, (error, responseStream) => {
+            conn.exec(command, {
+                term: process.env.TERM,
+                rows: process.stdout.rows,
+                cols: process.stdout.columns
+            }, (error, responseStream) => {
                 if (error) reject(error);
                 let rawdata = '';
                 responseStream.on('close', () => {

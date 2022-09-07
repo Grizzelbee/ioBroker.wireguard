@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.3.1",
+        "version": "1.3.2",
         "news": {
+            "1.3.2": {
+                "en": "Fixed \"Adapter doesn't come online\" bug caused by pseudo-tty settings.",
+                "de": "Fehler „Adapter kommt nicht online“ behoben, der durch Pseudo-TTY-Einstellungen verursacht wurde.",
+                "ru": "Исправлена ​​ошибка «Адаптер не подключается к сети», вызванная настройками псевдотерминала.",
+                "pt": "Corrigido o erro \"O adaptador não fica online\" causado por configurações pseudo-tty.",
+                "nl": "Opgelost: \"Adapter komt niet online\"-bug veroorzaakt door pseudo-tty-instellingen.",
+                "fr": "Correction du bogue \"L'adaptateur n'est pas en ligne\" causé par les paramètres de pseudo-tty.",
+                "it": "Risolto il bug \"L'adattatore non è online\" causato da impostazioni pseudo-tty.",
+                "es": "Se corrigió el error \"El adaptador no se conecta\" causado por la configuración de pseudo-tty.",
+                "pl": "Naprawiono błąd „Adapter nie przechodzi w tryb online” spowodowany przez ustawienia pseudo-tty.",
+                "zh-cn": "修复了由伪 tty 设置引起的“适配器不在线”错误。"
+            },
             "1.3.1": {
                 "en": "Added button restore a single peer.",
                 "de": "Schaltfläche zum Wiederherstellen eines einzelnen Peers hinzugefügt.",
