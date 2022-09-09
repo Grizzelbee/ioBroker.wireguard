@@ -4,16 +4,28 @@
         "version": "1.4.0",
         "news": {
             "1.4.0": {
-                "en": "Added Config options \"Port\" and \"Container\" name.",
-                "de": "Konfigurationsoptionen \"Port\" und \"Container\"-Name hinzugefügt.",
-                "ru": "Добавлены параметры конфигурации «Порт» и «Контейнер».",
-                "pt": "Adicionadas opções de configuração \"Porta\" e \"Contêiner\" nome.",
-                "nl": "Configuratie-opties \"Poort\" en \"Container\"-naam toegevoegd.",
-                "fr": "Ajout des options de configuration \"Port\" et \"Container\" name.",
-                "it": "Aggiunte le opzioni di configurazione \"Porta\" e il nome \"Contenitore\".",
-                "es": "Se agregaron las opciones de configuración \"Puerto\" y \"Contenedor\".",
-                "pl": "Dodano opcje konfiguracji „Port” i „Kontener”.",
-                "zh-cn": "添加了配置选项“端口”和“容器”名称。"
+                "en": "Moved Admin-UI to jsonConfig.",
+                "de": "Admin-UI nach jsonConfig verschoben.",
+                "ru": "Интерфейс администратора перемещен в jsonConfig.",
+                "pt": "Admin-UI movida para jsonConfig.",
+                "nl": "Admin-UI verplaatst naar jsonConfig.",
+                "fr": "Déplacement de l'interface utilisateur d'administration vers jsonConfig.",
+                "it": "Admin-UI spostata in jsonConfig.",
+                "es": "Se movió la interfaz de usuario de administración a jsonConfig.",
+                "pl": "Przeniesiono interfejs administratora do jsonConfig.",
+                "zh-cn": "将 Admin-UI 移至 jsonConfig。"
+            },
+            "1.3.2": {
+                "en": "Fixed \"Adapter doesn't come online\" bug caused by pseudo-tty settings.",
+                "de": "Fehler „Adapter kommt nicht online“ behoben, der durch Pseudo-TTY-Einstellungen verursacht wurde.",
+                "ru": "Исправлена ​​ошибка «Адаптер не подключается к сети», вызванная настройками псевдотерминала.",
+                "pt": "Corrigido o erro \"O adaptador não fica online\" causado por configurações pseudo-tty.",
+                "nl": "Opgelost: \"Adapter komt niet online\"-bug veroorzaakt door pseudo-tty-instellingen.",
+                "fr": "Correction du bogue \"L'adaptateur n'est pas en ligne\" causé par les paramètres de pseudo-tty.",
+                "it": "Risolto il bug \"L'adattatore non è online\" causato da impostazioni pseudo-tty.",
+                "es": "Se corrigió el error \"El adaptador no se conecta\" causado por la configuración de pseudo-tty.",
+                "pl": "Naprawiono błąd „Adapter nie przechodzi w tryb online” spowodowany przez ustawienia pseudo-tty.",
+                "zh-cn": "修复了由伪 tty 设置引起的“适配器不在线”错误。"
             },
             "1.3.1": {
                 "en": "Added button restore a single peer.",
@@ -208,7 +220,6 @@
                 "zh-cn": "首次出版"
             }
         },
-        "title": "WireGuard",
         "titleLang": {
             "en": "WireGuard monitoring",
             "de": "WireGuard-Überwachung",
@@ -237,10 +248,7 @@
             "grizzelbee <open.source@hingsen.de>"
         ],
         "keywords": [
-            "ioBroker",
-            "wireguard",
-            "Smart Home",
-            "home automation"
+            "wireguard"
         ],
         "license": "MIT",
         "platform": "Javascript/Node.js",
@@ -257,7 +265,7 @@
         "connectionType": "local",
         "dataSource": "poll",
         "adminUI": {
-            "config": "materialize"
+            "config": "json"
         },
         "materialize": true,
         "plugins": {
@@ -265,14 +273,54 @@
                 "dsn": "https://42007d6f59b74b5db06d6bfaf23d4d98@o505019.ingest.sentry.io/6215712"
             }
         },
+        "messages": [
+            {
+                "condition": {
+                    "operand": "and",
+                    "rules": [
+                        "oldVersion<1.4.0",
+                        "newVersion>=1.4.0"
+                    ]
+                },
+                "title": {
+                    "en": "Instance requires new configuration after update",
+                    "de": "Die Instanz erfordert nach dem Update eine neue Konfiguration",
+                    "ru": "Экземпляр требует новой конфигурации после обновления",
+                    "pt": "A instância requer uma nova configuração após a atualização",
+                    "nl": "Instantie vereist nieuwe configuratie na update",
+                    "fr": "L'instance nécessite une nouvelle configuration après la mise à jour",
+                    "it": "L'istanza richiede una nuova configurazione dopo l'aggiornamento",
+                    "es": "La instancia requiere una nueva configuración después de la actualización",
+                    "pl": "Instancja wymaga nowej konfiguracji po aktualizacji",
+                    "zh-cn": "实例更新后需要新配置"
+                },
+                "text": {
+                    "en": "After upgrading to Version 1.4.0 or later you need to reenter your monitoring user and password due to the change of the admin interface.",
+                    "de": "Nach dem Upgrade auf Version 1.4.0 oder höher müssen Sie Ihren Überwachungsbenutzer und Ihr Kennwort aufgrund der Änderung der Verwaltungsoberfläche erneut eingeben.",
+                    "ru": "После обновления до версии 1.4.0 или более поздней вам потребуется повторно ввести пользователя и пароль для мониторинга в связи с изменением интерфейса администратора.",
+                    "pt": "Após atualizar para a Versão 1.4.0 ou posterior, você precisa reinserir seu usuário e senha de monitoramento devido à alteração da interface administrativa.",
+                    "nl": "Na het upgraden naar versie 1.4.0 of hoger moet u uw monitoringgebruiker en wachtwoord opnieuw invoeren vanwege de wijziging van de beheerdersinterface.",
+                    "fr": "Après la mise à niveau vers la version 1.4.0 ou ultérieure, vous devez ressaisir votre utilisateur de surveillance et votre mot de passe en raison du changement de l'interface d'administration.",
+                    "it": "Dopo l'aggiornamento alla versione 1.4.0 o successiva, è necessario reinserire l'utente e la password di monitoraggio a causa della modifica dell'interfaccia di amministrazione.",
+                    "es": "Después de actualizar a la versión 1.4.0 o posterior, debe volver a ingresar su usuario y contraseña de monitoreo debido al cambio de la interfaz de administración.",
+                    "pl": "Po aktualizacji do wersji 1.4.0 lub nowszej musisz ponownie wprowadzić użytkownika i hasło monitorowania ze względu na zmianę interfejsu administratora.",
+                    "zh-cn": "升级到 1.4.0 或更高版本后，由于管理界面的变化，您需要重新输入您的监控用户和密码。"
+                },
+                "level": "warn",
+                "buttons": [
+                    "agree",
+                    "cancel"
+                ]
+            }
+        ],
         "globalDependencies": [
             {
-                "admin": ">=4.0.9"
+                "admin": ">=5.1.13"
             }
         ],
         "dependencies": [
             {
-                "js-controller": ">=3.0.0"
+                "js-controller": ">=3.3.22"
             }
         ]
     },
@@ -281,13 +329,13 @@
             {
                 "name": "",
                 "hostaddress": "",
+                "port": 22,
                 "user": "",
                 "password": "",
                 "sudo": false,
                 "docker": false,
-                "pollInterval": 120,
-                "port": 22,
-                "containerName": ""
+                "container": "",
+                "pollInterval": 120
             }
         ],
         "names": [
