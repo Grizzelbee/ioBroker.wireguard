@@ -35,11 +35,13 @@ Since WireGuard internally only uses the public keys to identify peers, but they
 * Main page
   - Name: Just a symbolic name for the host, since it's more convenient and better memorable than it's IP address
   - Host address: IP address of the host. A fqdn or dns name works also. If you're running WireGuard and ioBroker on the same host you can just use `localhost` as IP.
+  - Port: Port number of your ssh server. Default: 22
   - User: The user which executes the script on the host (will be stored encrypted)
   - Password: Password for this user (will be stored encrypted)
   - sudo: whether the wg command should be executed using sudo or not (requires valid config of sudoers! -> see [security hints])
   - Docker: Executes a `docker exec`command to reach a wireguard server inside a docker container. Please check if it fits your needs or whether you may switch to a supported container.
-  - poll interval: pause between each poll in seconds (will also delay the first run after adapter start) 
+  - poll interval: pause between each poll in seconds (will also delay the first run after adapter start)
+  - Container: Name of your docker container. Often "wireguard", but may differ especially when running more than one on a single server
 * Translation page
     - Public Key: The public key of one of your peers
     - group name: A symbolic name for this peer
