@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.3.2",
+        "version": "1.4.0",
         "news": {
             "1.4.0": {
                 "en": "Moved Admin-UI to jsonConfig.",
@@ -295,16 +295,16 @@
                     "zh-cn": "实例更新后需要新配置"
                 },
                 "text": {
-                    "en": "After upgrading to Version 1.4.0 or later you need to reenter your password and client secret due to the change of the admin interface.",
-                    "de": "Nach dem Upgrade auf Version 1.4.0 oder höher müssen Sie Ihr Kennwort und Ihren geheimen Clientschlüssel aufgrund der Änderung der Verwaltungsoberfläche erneut eingeben.",
-                    "ru": "После обновления до версии 1.4.0 или более поздней вам необходимо повторно ввести пароль и секрет клиента из-за изменения интерфейса администратора.",
-                    "pt": "Após o upgrade para a Versão 1.4.0 ou posterior, você precisa reinserir sua senha e segredo do cliente devido à alteração da interface administrativa.",
-                    "nl": "Na het upgraden naar versie 1.4.0 of hoger moet u uw wachtwoord en clientgeheim opnieuw invoeren vanwege de wijziging van de beheerdersinterface.",
-                    "fr": "Après la mise à niveau vers la version 1.4.0 ou ultérieure, vous devez ressaisir votre mot de passe et votre secret client en raison du changement de l'interface d'administration.",
-                    "it": "Dopo l'aggiornamento alla versione 1.4.0 o successiva, è necessario reinserire la password e il segreto client a causa della modifica dell'interfaccia di amministrazione.",
-                    "es": "Después de actualizar a la versión 1.4.0 o posterior, debe volver a ingresar su contraseña y el secreto del cliente debido al cambio de la interfaz de administración.",
-                    "pl": "Po aktualizacji do wersji 1.4.0 lub nowszej należy ponownie wprowadzić hasło i klucz klienta ze względu na zmianę interfejsu administratora.",
-                    "zh-cn": "升级到 1.4.0 或更高版本后，由于管理界面的更改，您需要重新输入密码和客户端密码。"
+                    "en": "After upgrading to Version 1.4.0 or later you need to reenter your monitoring user and password due to the change of the admin interface.",
+                    "de": "Nach dem Upgrade auf Version 1.4.0 oder höher müssen Sie Ihren Überwachungsbenutzer und Ihr Kennwort aufgrund der Änderung der Verwaltungsoberfläche erneut eingeben.",
+                    "ru": "После обновления до версии 1.4.0 или более поздней вам потребуется повторно ввести пользователя и пароль для мониторинга в связи с изменением интерфейса администратора.",
+                    "pt": "Após atualizar para a Versão 1.4.0 ou posterior, você precisa reinserir seu usuário e senha de monitoramento devido à alteração da interface administrativa.",
+                    "nl": "Na het upgraden naar versie 1.4.0 of hoger moet u uw monitoringgebruiker en wachtwoord opnieuw invoeren vanwege de wijziging van de beheerdersinterface.",
+                    "fr": "Après la mise à niveau vers la version 1.4.0 ou ultérieure, vous devez ressaisir votre utilisateur de surveillance et votre mot de passe en raison du changement de l'interface d'administration.",
+                    "it": "Dopo l'aggiornamento alla versione 1.4.0 o successiva, è necessario reinserire l'utente e la password di monitoraggio a causa della modifica dell'interfaccia di amministrazione.",
+                    "es": "Después de actualizar a la versión 1.4.0 o posterior, debe volver a ingresar su usuario y contraseña de monitoreo debido al cambio de la interfaz de administración.",
+                    "pl": "Po aktualizacji do wersji 1.4.0 lub nowszej musisz ponownie wprowadzić użytkownika i hasło monitorowania ze względu na zmianę interfejsu administratora.",
+                    "zh-cn": "升级到 1.4.0 或更高版本后，由于管理界面的变化，您需要重新输入您的监控用户和密码。"
                 },
                 "level": "warn",
                 "buttons": [

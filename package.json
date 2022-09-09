@@ -1,6 +1,6 @@
 {
   "name": "iobroker.wireguard",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "Connect to WireGuard hosts and grab connection information on peers",
   "author": {
     "name": "grizzelbee",
@@ -61,6 +61,7 @@
     "test:integration": "mocha test/integration --exit",
     "test": "npm run test:js && npm run test:package",
     "lint": "eslint --ext .js,.jsx",
+    "snyk-protect": "snyk-protect",
     "release": "release-script",
     "translate": "translate-adapter"
   },

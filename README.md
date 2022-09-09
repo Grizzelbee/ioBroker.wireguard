@@ -104,6 +104,10 @@ Basically there are three ways to execute the command:
 ## Changelog
 ### **WORK IN PROGRESS**
 
+### v1.4.0 (2022-09-09)
+* (grizzelbee) New: [#37](https://github.com/Grizzelbee/ioBroker.wireguard/issues/37) Added config options for port and docker container name
+* (grizzelbee) Chg: Moved over to new jsonConfig Admin UI
+
 ### v1.3.2 (2022-09-07)
 * (grizzelbee) New: [#38](https://github.com/Grizzelbee/ioBroker.wireguard/issues/38) Fixed "Adapter doesn't come online" bug caused by pseudo-tty settings 
 
