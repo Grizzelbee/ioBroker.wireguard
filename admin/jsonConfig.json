@@ -8,18 +8,41 @@
             "items": {
                 "donationHelp": {
                     "type": "staticText",
-                    "text": "If you like this adapter, please consider a donation to support my work."
+                    "text": "donation"
                 },
                 "donateButton": {
-                    "newLine": true,
                     "type": "staticImage",
-                    "sm": 4,
-                    "md": 2,
-                    "lg": 2,
                     "src": "adapter/wireguard/admin/paypal-donate-button.png",
                     "href": "https://www.paypal.com/donate/?hosted_button_id=SPUDTXGNG2MYG"
                 },
-
+                "installationHint1": {
+                    "type": "staticText",
+                    "text": "Installation_hint_1",
+                    "newLine": true
+                },
+                "installationHint2": {
+                    "type": "staticText",
+                    "text": "Installation_hint_2"
+                },
+                "installationHint3": {
+                    "type": "staticText",
+                    "text": "Installation_hint_3",
+                    "newLine": true
+                },
+                "installationHint4": {
+                    "type": "staticLink",
+                    "text": "Installation_hint_4",
+                    "href": "https://github.com/Grizzelbee/ioBroker.wireguard#security-hints"
+                },
+                "installationHint5": {
+                    "type": "staticText",
+                    "text": "Installation_hint_5",
+                    "newLine": true
+                },
+                "installationHint6": {
+                    "type": "staticText",
+                    "text": "Installation_hint_6"
+                },
                 "hosts": {
                     "type": "table",
                     "sm": 12,
@@ -67,7 +90,7 @@
                         {
                             "type": "text",
                             "attr": "user",
-                            "title": { "en": "User"},
+                            "title": {                                         "en": "User",                                             "de": "Benutzer",                                         "ru": "Пользователь",                                     "pt": "Do utilizador",                                    "nl": "Gebruiker",                                        "fr": "Utilisateur",                                      "it": "Utente",                                           "es": "Usuario",                                          "pl": "Użytkownik",                                       "zh-cn": "用户"},
                             "tooltip": "Name of your WireGuard monitoring user.",
                             "width": "10%",
                             "encrypted": true
@@ -75,7 +98,7 @@
                         {
                             "type": "password",
                             "attr": "password",
-                            "title": {"en":  "Password"},
+                            "title": {                                     "en": "Password",                                         "de": "Passwort",                                         "ru": "Пароль",                                           "pt": "Senha",                                            "nl": "Wachtwoord",                                       "fr": "Mot de passe",                                     "it": "Parola d'ordine",                                  "es": "Clave",                                            "pl": "Hasło",                                            "zh-cn": "密码"},
                             "width": "10%"
                         },
                         {
@@ -97,7 +120,7 @@
                             "min": 1,
                             "max": 65565,
                             "attr": "pollInterval",
-                            "title": { "en" : "Pollinterval"},
+                            "title": {                                "en": "Poll interval",                                    "de": "Abfrageintervall",                                 "ru": "Интервал опроса",                                  "pt": "Intervalo de sondagem",                            "nl": "Poll-interval",                                    "fr": "Intervalle de sondage",                            "it": "Intervallo di sondaggio",                          "es": "Intervalo de encuesta",                            "pl": "Interwał sondowania",                              "zh-cn": "轮询间隔"},
                             "tooltip": "Pollinterval - in Seconds.",
                             "width": "4%"
                         },
@@ -117,6 +140,10 @@
             "type": "panel",
             "label": "Public key to username translations",
             "items": {
+                "installationHint7": {
+                    "type": "staticText",
+                    "text": "Please add all public key to name translations here. This will make it more convenient for you to identify the peers in the object tree."
+                },
                 "names": {
                     "type": "table",
                     "sm": 12,
@@ -163,6 +190,14 @@
             "type": "panel",
             "label": "WireGuard Config files",
             "items": {
+                "installationHint8": {
+                    "type": "staticText",
+                    "text": "You need to list all your WireGuard config files here (with full path) to use the peer reactivation feature. For more information please see the readme file on github."
+                },
+                "installationHint9": {
+                    "type": "staticText",
+                    "text": "Example: host: Testhost (same as NAME on main page), Interface: wg0, config file: /etc/wireguard/wg0.conf"
+                },
                 "configFiles": {
                     "type": "table",
                     "sm": 12,
@@ -187,15 +222,15 @@
                             },
                             "filter": true,
                             "sort": true,
+                            "tooltip": "Name of the referenced host - must be the same as NAME on main config page!",
                             "default": ""
                         },
                         {
                             "type": "text",
                             "attr": "iFace",
                             "width": "33%",
-                            "title": {
-                                "en": "Interface name"
-                            },
+                            "title": {                               "en": "Interface name",                                   "de": "Schnittstellenname",                               "ru": "Имя интерфейса",                                   "pt": "Nome da interface",                                "nl": "Interfacenaam",                                    "fr": "Nom de l'interface",                               "it": "Nome interfaccia",                                 "es": "Nombre de la interfaz",                            "pl": "Nazwa interfejsu",                                 "zh-cn": "接口名称"},
+                            "tooltip": "Name of your WireGuard interface. e.g. wg0",
                             "sort": true,
                             "default": ""
                         },
@@ -203,9 +238,8 @@
                             "type": "text",
                             "attr": "configFile",
                             "width": "33%",
-                            "title": {
-                                "en": "Config file"
-                            },
+                            "title": {                                  "en": "Config file",                                      "de": "Konfigurationsdatei",                              "ru": "Файл конфигурации",                                "pt": "Arquivo de configuração",                          "nl": "Configuratiebestand",                              "fr": "Fichier de configuration",                         "it": "File di configurazione",                           "es": "Archivo de configuración",                         "pl": "Plik konfiguracyjny",                              "zh-cn": "配置文件"},
+                            "tooltip": "Fully qualified path of the config file for this interface. Often: /etc/wireguard/wg0.conf",
                             "default": ""
                         }
                     ]

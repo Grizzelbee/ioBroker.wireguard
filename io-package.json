@@ -220,7 +220,6 @@
                 "zh-cn": "首次出版"
             }
         },
-        "title": "WireGuard",
         "titleLang": {
             "en": "WireGuard monitoring",
             "de": "WireGuard-Überwachung",
@@ -249,10 +248,7 @@
             "grizzelbee <open.source@hingsen.de>"
         ],
         "keywords": [
-            "ioBroker",
-            "wireguard",
-            "Smart Home",
-            "home automation"
+            "wireguard"
         ],
         "license": "MIT",
         "platform": "Javascript/Node.js",
