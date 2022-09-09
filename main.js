@@ -16,10 +16,18 @@ let adapter      = null;
 let secret       = '';
 
 
-
+/**
+ *
+ * @param hostaddress {string} Host address of the host to run this command on
+ * @param port {number}
+ * @param user {string} encrypted username for the host
+ * @param pass{string} encrypted password for the host
+ * @param command{string} the command to execute on this host
+ * @returns {Promise<unknown>}
+ */
 async function execCommand(hostaddress, port, user, pass, command){
     return new Promise((resolve, reject) => {
-
+        adapter.log.debug(`Trying to reach host ${hostaddress}.`);
         const conn = new Client();
         // Event handler if connection is in state "onReady"
         conn.on('ready', () => {
@@ -66,7 +74,7 @@ async function execCommand(hostaddress, port, user, pass, command){
  *
  * @param {string} hostname symbolic name of the host
  * @param {string} hostaddress IP address of the host
- * @param {number} port SSH Port at the server
+ * @param {number} port SSH port of the host
  * @param {string} user username which is used to connect to the host
  * @param {string} pass password for the user
  * @param {boolean} sudo indicator whether sudo should be used
@@ -93,18 +101,38 @@ async function getWireguardInfos(hostname, hostaddress, port, user, pass, sudo, 
  *
  * @param command {string}
  * @param hostaddress {string}
+ * @param container {string}
  * @returns {string|*}
  */
-function getExtendedCommand(command, hostaddress){
+function getExtendedCommand(command, hostaddress, container){
     for (let i=0; i < adapter.config.hosts.length; i++){
         if (adapter.config.hosts[i].hostaddress === hostaddress){
-            command = adapter.config.hosts[i].docker? 'docker exec -it wireguard /usr/bin/'+command : command;
+            command = adapter.config.hosts[i].docker? `docker exec -it ${container} /usr/bin/${command}` : command;
             command = adapter.config.hosts[i].sudo? 'sudo '+command : command;
             return command;
         }
     }
     throw new Error(`Command couldn't be extended: ${command}`);
 }
+
+
+/**
+ * Translates the publicKey of a peer to its symbolic name in config.
+ *
+ * @param publicKey {string} The public Key to translate
+ * @returns {string} symbolic name of the peer or the public key if no name was found
+ */
+function getPeerName(publicKey) {
+    for (let i = 0; i < adapter.config.names.length; i++) {
+        if (adapter.config.names[i].pubKey === publicKey) {
+            return adapter.config.names[i].groupname;
+        }
+    }
+    return publicKey;
+}
+
+
+
 
 /**
  *
@@ -115,13 +143,13 @@ function getExtendedCommand(command, hostaddress){
  * @param pass {string}
  * @param iFace {string}
  * @param peer {string}
+ * @param container {string}
  * @returns {Promise<unknown>}
  */
-function suspendPeer(hostaddress, port, path, user, pass, iFace, peer){
-    adapter.log.info(`Suspending peer [${peer}] of interface ${iFace} on host ${hostaddress}.`);
-    // adapter.log.info(`knownPeers [${knownPeers}].`);
+function suspendPeer(hostaddress, port, path, user, pass, iFace, peer, container){
+    adapter.log.info(`Suspending peer [${getPeerName(peer)}] of interface ${iFace} on host ${hostaddress}.`);
     return new Promise(function(resolve, reject) {
-        const command = getExtendedCommand(`wg set ${iFace} peer ${peer} remove`, hostaddress);
+        const command = getExtendedCommand(`wg set ${iFace} peer ${peer} remove`, hostaddress, container);
         execCommand(hostaddress, port, user, pass, command)
             .then((result) => {
                 adapter.setState(path+'.connected', false, true);
@@ -145,12 +173,13 @@ function suspendPeer(hostaddress, port, path, user, pass, iFace, peer){
  * @param iFace {string}
  * @param peer {string}
  * @param ip {string}
+ * @param container {string}
  * @returns {Promise<unknown>}
  */
-function restorePeer(hostaddress, port, path, user, pass, iFace, peer, ip){
-    adapter.log.info(`Restoring peer [${peer}] of interface ${iFace} on host ${hostaddress} with IP [${ip}].`);
+function restorePeer(hostaddress, port, path, user, pass, iFace, peer, ip, container){
+    adapter.log.info(`Restoring peer [${getPeerName(peer)}] of interface ${iFace} on host ${hostaddress} with IP [${ip}].`);
     return new Promise(function(resolve, reject) {
-        const command = getExtendedCommand(`wg set ${iFace} peer ${peer} allowed-ips ${ip}`, hostaddress);
+        const command = getExtendedCommand(`wg set ${iFace} peer ${peer} allowed-ips ${ip}`, hostaddress, container);
         execCommand(hostaddress, port, user, pass, command)
             .then((result) => {
                 adapter.setState(path+'.connected', true, true);
@@ -172,10 +201,11 @@ function restorePeer(hostaddress, port, path, user, pass, iFace, peer, ip){
  * @param pass {string}
  * @param iFace {string}
  * @param configFile {string}
+ * @param container {string}
  * @returns {Promise<void>}
  */
-async function restoreAllPeers(hostaddress, port, user, pass, iFace, configFile){
-    const command = getExtendedCommand(`wg syncconf ${iFace} ${configFile}`, hostaddress);
+async function restoreAllPeers(hostaddress, port, user, pass, iFace, configFile, container){
+    const command = getExtendedCommand(`wg syncconf ${iFace} ${configFile}`, hostaddress, container);
     execCommand(hostaddress, port, user, pass, command)
         .then((result) => {
             return result;
@@ -487,8 +517,6 @@ class Wireguard extends utils.Adapter {
         });
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
-        // this.on('objectChange', this.onObjectChange.bind(this));
-        // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
     }
 
@@ -498,34 +526,36 @@ class Wireguard extends utils.Adapter {
             // this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
             if (!state.ack) {
                 // manual change / request
-                // wireguard.0.ganymed-wg0.peers.kBTx8Hyd6V51XSzI2fhzR0Wngfhwg3cAJNBvSevCi3Q=.suspend_Peer
                 let hostaddress = '';
                 let user        = '';
                 let pass        = '';
                 let configFile  = '';
                 let port        = 22;
+                let container   = '';
                 const path = id.split('.', 5).join('.');
                 const iFace = id.split('.', 3).pop().split('-').pop();
                 const peer = id.split('.', 5).pop();
                 const searchHost = id.split('.', 3).pop().split('-', 1).pop();
+                const requestedAction = id.split('.').pop();
                 for (let host=0; host < this.config.hosts.length; host++) {
                     if (this.config.hosts[host].name === searchHost) {
                         hostaddress = this.config.hosts[host].hostaddress;
+                        container   = this.config.hosts[host].container;
                         port = this.config.hosts[host].port;
                         user = this.config.hosts[host].user;
                         pass = this.config.hosts[host].password;
                         break;
                     }
                 }
-                if ('suspend_Peer' === id.split('.').pop()){
-                    adapter.log.info(`Suspending peer on interface ${iFace}`);
-                    await suspendPeer(hostaddress, port, path, user, pass, iFace, peer);
+                adapter.log.debug(`Received request to ${requestedAction}.`);
+                if ('suspend_Peer' === requestedAction){
+                    await suspendPeer(hostaddress, port, path, user, pass, iFace, peer, container);
                 } else if ('restore_Peer' === id.split('.').pop()){
                     adapter.log.info(`Path: ${path+'.allowedIps.0'}`);
                     adapter.getState(path+'.allowedIps.0', function (err, state){
                         if (!err && state) {
                             adapter.log.info(`Restoring peer ${peer} with IP ${state.val} on interface ${iFace}.`);
-                            restorePeer(hostaddress, port, id.split('.', 5).join('.'), user, pass, iFace, peer, state.val);
+                            restorePeer(hostaddress, port, id.split('.', 5).join('.'), user, pass, iFace, peer, state.val, container);
                         }
                     });
                 } else if ('restore_all_Peers' === id.split('.').pop()){
@@ -537,7 +567,7 @@ class Wireguard extends utils.Adapter {
                             break;
                         }
                     }
-                    await restoreAllPeers(hostaddress, port, user, pass, iFace, configFile);
+                    await restoreAllPeers(hostaddress, port, user, pass, iFace, configFile, container);
                 }
             }
         }
