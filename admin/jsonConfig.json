@@ -1,5 +1,5 @@
 {
-    "type" : "tabs",
+    "type": "tabs",
     "i18n": true,
     "items": {
         "mainTab": {
@@ -74,15 +74,48 @@
                             "type": "text",
                             "attr": "hostaddress",
                             "width": "10%",
-                            "title": { "en" : "Host"},
-                            "tooltip": "May be an IP, DNS-Hostname or FQDN."
+                            "title": {
+                                "en": "Host",
+                                "de": "Gastgeber",
+                                "ru": "Хозяин",
+                                "pt": "Hospedeiro",
+                                "nl": "Gastheer",
+                                "fr": "Héberger",
+                                "it": "Ospite",
+                                "es": "Anfitrión",
+                                "pl": "Gospodarz",
+                                "zh-cn": "主持人"
+                            },
+                            "tooltip": {
+                                "en": "May be an IP, DNS-Hostname or FQDN.",
+                                "de": "Kann eine IP, ein DNS-Hostname oder ein FQDN sein.",
+                                "ru": "Может быть IP, DNS-имя хоста или полное доменное имя.",
+                                "pt": "Pode ser um IP, DNS-Hostname ou FQDN.",
+                                "nl": "Kan een IP, DNS-hostnaam of FQDN zijn.",
+                                "fr": "Peut être une adresse IP, un nom d'hôte DNS ou un FQDN.",
+                                "it": "Può essere un IP, un nome host DNS o un FQDN.",
+                                "es": "Puede ser una IP, DNS-Hostname o FQDN.",
+                                "pl": "Może być adresem IP, nazwą hosta DNS lub nazwą FQDN.",
+                                "zh-cn": "可以是 IP、DNS 主机名或 FQDN。"
+                            }
                         },
                         {
                             "type": "number",
                             "min": 1,
                             "max": 65565,
                             "attr": "port",
-                            "title": { "en" : "Port"},
+                            "title": {
+                                "en": "Port",
+                                "de": "Port",
+                                "ru": "Порт",
+                                "pt": "Porta",
+                                "nl": "Haven",
+                                "fr": "Port",
+                                "it": "Porta",
+                                "es": "Puerto",
+                                "pl": "Port",
+                                "zh-cn": "港口"
+                            },
                             "tooltip": "The Port your SSH server listens to.",
                             "width": "10%",
                             "default": 22
@@ -90,7 +123,18 @@
                         {
                             "type": "text",
                             "attr": "user",
-                            "title": {                                         "en": "User",                                             "de": "Benutzer",                                         "ru": "Пользователь",                                     "pt": "Do utilizador",                                    "nl": "Gebruiker",                                        "fr": "Utilisateur",                                      "it": "Utente",                                           "es": "Usuario",                                          "pl": "Użytkownik",                                       "zh-cn": "用户"},
+                            "title": {
+                                "en": "User",
+                                "de": "Benutzer",
+                                "ru": "Пользователь",
+                                "pt": "Do utilizador",
+                                "nl": "Gebruiker",
+                                "fr": "Utilisateur",
+                                "it": "Utente",
+                                "es": "Usuario",
+                                "pl": "Użytkownik",
+                                "zh-cn": "用户"
+                            },
                             "tooltip": "Name of your WireGuard monitoring user.",
                             "width": "10%",
                             "encrypted": true
@@ -98,21 +142,54 @@
                         {
                             "type": "password",
                             "attr": "password",
-                            "title": {                                     "en": "Password",                                         "de": "Passwort",                                         "ru": "Пароль",                                           "pt": "Senha",                                            "nl": "Wachtwoord",                                       "fr": "Mot de passe",                                     "it": "Parola d'ordine",                                  "es": "Clave",                                            "pl": "Hasło",                                            "zh-cn": "密码"},
+                            "title": {
+                                "en": "Password",
+                                "de": "Passwort",
+                                "ru": "Пароль",
+                                "pt": "Senha",
+                                "nl": "Wachtwoord",
+                                "fr": "Mot de passe",
+                                "it": "Parola d'ordine",
+                                "es": "Clave",
+                                "pl": "Hasło",
+                                "zh-cn": "密码"
+                            },
                             "width": "10%"
                         },
                         {
                             "type": "checkbox",
                             "attr": "sudo",
-                            "title": {"en": "sudo"},
-                            "tooltip":"Check if you like to use sudo commands.",
+                            "title": {
+                                "en": "sudo",
+                                "de": "sudo",
+                                "ru": "судо",
+                                "pt": "sudo",
+                                "nl": "sudo",
+                                "fr": "sudo",
+                                "it": "sudo",
+                                "es": "sudo",
+                                "pl": "sudo",
+                                "zh-cn": "须藤"
+                            },
+                            "tooltip": "Check if you like to use sudo commands.",
                             "width": "3%"
                         },
                         {
                             "type": "checkbox",
                             "attr": "docker",
-                            "title": {"en": "Docker"},
-                            "tooltip":"Check if you use WireGuard in Docker containers.",
+                            "title": {
+                                "en": "Docker",
+                                "de": "Docker",
+                                "ru": "Докер",
+                                "pt": "Janela de encaixe",
+                                "nl": "Docker",
+                                "fr": "Docker",
+                                "it": "Docker",
+                                "es": "Estibador",
+                                "pl": "Doker",
+                                "zh-cn": "码头工人"
+                            },
+                            "tooltip": "Check if you use WireGuard in Docker containers.",
                             "width": "3%"
                         },
                         {
@@ -120,20 +197,41 @@
                             "min": 1,
                             "max": 65565,
                             "attr": "pollInterval",
-                            "title": {                                "en": "Poll interval",                                    "de": "Abfrageintervall",                                 "ru": "Интервал опроса",                                  "pt": "Intervalo de sondagem",                            "nl": "Poll-interval",                                    "fr": "Intervalle de sondage",                            "it": "Intervallo di sondaggio",                          "es": "Intervalo de encuesta",                            "pl": "Interwał sondowania",                              "zh-cn": "轮询间隔"},
+                            "title": {
+                                "en": "Poll interval",
+                                "de": "Abfrageintervall",
+                                "ru": "Интервал опроса",
+                                "pt": "Intervalo de sondagem",
+                                "nl": "Poll-interval",
+                                "fr": "Intervalle de sondage",
+                                "it": "Intervallo di sondaggio",
+                                "es": "Intervalo de encuesta",
+                                "pl": "Interwał sondowania",
+                                "zh-cn": "轮询间隔"
+                            },
                             "tooltip": "Pollinterval - in Seconds.",
                             "width": "4%"
                         },
                         {
                             "type": "text",
                             "attr": "containerName",
-                            "title": { "en": "Container"},
+                            "title": {
+                                "en": "Container",
+                                "de": "Container",
+                                "ru": "Контейнер",
+                                "pt": "Recipiente",
+                                "nl": "container",
+                                "fr": "Récipient",
+                                "it": "Contenitore",
+                                "es": "Envase",
+                                "pl": "Pojemnik",
+                                "zh-cn": "容器"
+                            },
                             "tooltip": "Name of your WireGuard Docker container.",
                             "width": "10%"
                         }
                     ]
                 }
-
             }
         },
         "names": {
@@ -175,14 +273,22 @@
                             "attr": "pubKey",
                             "width": "50%",
                             "title": {
-                                "en": "Public Key"
+                                "en": "Public Key",
+                                "de": "Öffentlicher Schlüssel",
+                                "ru": "Открытый ключ",
+                                "pt": "Chave pública",
+                                "nl": "Publieke sleutel",
+                                "fr": "Clé publique",
+                                "it": "Chiave pubblica",
+                                "es": "Llave pública",
+                                "pl": "Klucz publiczny",
+                                "zh-cn": "公钥"
                             },
                             "filter": true,
                             "sort": true,
                             "default": ""
                         }
                     ]
-
                 }
             }
         },
@@ -229,7 +335,18 @@
                             "type": "text",
                             "attr": "iFace",
                             "width": "33%",
-                            "title": {                               "en": "Interface name",                                   "de": "Schnittstellenname",                               "ru": "Имя интерфейса",                                   "pt": "Nome da interface",                                "nl": "Interfacenaam",                                    "fr": "Nom de l'interface",                               "it": "Nome interfaccia",                                 "es": "Nombre de la interfaz",                            "pl": "Nazwa interfejsu",                                 "zh-cn": "接口名称"},
+                            "title": {
+                                "en": "Interface name",
+                                "de": "Schnittstellenname",
+                                "ru": "Имя интерфейса",
+                                "pt": "Nome da interface",
+                                "nl": "Interfacenaam",
+                                "fr": "Nom de l'interface",
+                                "it": "Nome interfaccia",
+                                "es": "Nombre de la interfaz",
+                                "pl": "Nazwa interfejsu",
+                                "zh-cn": "接口名称"
+                            },
                             "tooltip": "Name of your WireGuard interface. e.g. wg0",
                             "sort": true,
                             "default": ""
@@ -238,7 +355,18 @@
                             "type": "text",
                             "attr": "configFile",
                             "width": "33%",
-                            "title": {                                  "en": "Config file",                                      "de": "Konfigurationsdatei",                              "ru": "Файл конфигурации",                                "pt": "Arquivo de configuração",                          "nl": "Configuratiebestand",                              "fr": "Fichier de configuration",                         "it": "File di configurazione",                           "es": "Archivo de configuración",                         "pl": "Plik konfiguracyjny",                              "zh-cn": "配置文件"},
+                            "title": {
+                                "en": "Config file",
+                                "de": "Konfigurationsdatei",
+                                "ru": "Файл конфигурации",
+                                "pt": "Arquivo de configuração",
+                                "nl": "Configuratiebestand",
+                                "fr": "Fichier de configuration",
+                                "it": "File di configurazione",
+                                "es": "Archivo de configuración",
+                                "pl": "Plik konfiguracyjny",
+                                "zh-cn": "配置文件"
+                            },
                             "tooltip": "Fully qualified path of the config file for this interface. Often: /etc/wireguard/wg0.conf",
                             "default": ""
                         }

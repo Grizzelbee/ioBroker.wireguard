@@ -44,5 +44,6 @@
     "donation": "Jeśli podoba Ci się ten adapter i rozważ wsparcie mnie:",
     "sudo": "sudo",
     "wgConfigFile": "wg pliku konfiguracyjnego",
-    "Name of the referenced host - must be the same as NAME on main config page!": "Nazwa wskazanego hosta - musi być taka sama jak NAME na głównej stronie konfiguracji!"
+    "Name of the referenced host - must be the same as NAME on main config page!": "Nazwa wskazanego hosta - musi być taka sama jak NAME na głównej stronie konfiguracji!",
+    "_Installation_hint_1": "Ten adapter obsługuje WireGuard zarówno w systemie Linux, jak i Windows."
 }

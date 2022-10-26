@@ -44,5 +44,6 @@
     "donation": "Se você gosta deste adaptador e considera me apoiar:",
     "sudo": "sudo",
     "wgConfigFile": "arquivo de configuração wg",
-    "Name of the referenced host - must be the same as NAME on main config page!": "Nome do host referenciado - deve ser o mesmo que NAME na página de configuração principal!"
+    "Name of the referenced host - must be the same as NAME on main config page!": "Nome do host referenciado - deve ser o mesmo que NAME na página de configuração principal!",
+    "_Installation_hint_1": "Este adaptador suporta WireGuard tanto no Linux quanto no Windows."
 }

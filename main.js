@@ -9,11 +9,11 @@
 const utils = require('@iobroker/adapter-core');
 
 // Load your modules here, e.g.:
-const {Client}   = require('ssh2');
-const knownPeers = [];
+const {Client}       = require('ssh2');
+const knownPeers     = [];
+const connectedPeers = [];
 const timeOuts   = [];
 let adapter      = null;
-let secret       = '';
 
 
 /**
@@ -252,6 +252,7 @@ async function parseWireguardInfosToJson(wgRawData){
             wg[data[i][0]].peers[data[i][1]].transferTx = data[i][7];
             wg[data[i][0]].peers[data[i][1]].persistentKeepalive = data[i][8];
         }
+        wg[data[i][0]].peersConnected = connectedPeers.length;
     }
     return(wg);
 }
@@ -323,6 +324,11 @@ function setConnectedState(path, value) {
             'type': 'boolean'
         }
     }, value);
+    if (value){
+        if (!connectedPeers.includes(path.split('.', 5).pop()) ){
+            connectedPeers.push(path.split('.', 5).pop());
+        }
+    }
     createOrExtendObject(`${path}.isSuspended`, {
         type: 'state',
         common: {
@@ -367,6 +373,11 @@ function extractTreeItems(path, obj ){
                 break;
             }
             case 'endpoint': obj.common.role='info.ip';
+                break;
+            case 'connectedPeers': {
+                obj.common.role='value';
+                obj.common.type='number';
+            }
                 break;
             case 'listenPort': obj.common.role='info.port';
                 break;
@@ -582,13 +593,6 @@ class Wireguard extends utils.Adapter {
         // Initialize your adapter here
         adapter = this; // preserve adapter reference to address functions etc. correctly later
         const settings = this.config;
-        this.getForeignObject('system.config', (err, obj) => {
-            if (obj && obj.native && obj.native.secret) {
-                secret = obj.native.secret;
-            } else {
-                throw new Error('Unable to decrypt config data.');
-            }
-        });
         if (settings.hosts.length === 1){
             this.log.info(`There is ${settings.hosts.length} wireguard host to monitor.`);
         } else {

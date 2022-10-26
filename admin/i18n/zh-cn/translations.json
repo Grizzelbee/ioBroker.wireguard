@@ -44,5 +44,6 @@
     "donation": "如果你喜欢这个适配器并考虑支持我：",
     "sudo": "须藤",
     "wgConfigFile": "wg配置文件",
-    "Name of the referenced host - must be the same as NAME on main config page!": "引用主机的名称 - 必须与主配置页面上的名称相同！"
+    "Name of the referenced host - must be the same as NAME on main config page!": "引用主机的名称 - 必须与主配置页面上的名称相同！",
+    "_Installation_hint_1": "该适配器在 Linux 和 Windows 上都支持 WireGuard。"
 }
