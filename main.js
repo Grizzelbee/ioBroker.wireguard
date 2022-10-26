@@ -325,8 +325,15 @@ function setConnectedState(path, value) {
         }
     }, value);
     if (value){
-        if (!connectedPeers.includes(path.split('.', 5).pop()) ){
-            connectedPeers.push(path.split('.', 5).pop());
+        const item = path.split('.', 5).pop();
+        if (!connectedPeers.includes(item) ){
+            connectedPeers.push(item);
+        }
+    } else {
+        const item = path.split('.', 5).pop();
+        if (!connectedPeers.includes(item) ){
+            const index = connectedPeers.indexOf(item);
+            connectedPeers.splice(index, 1);
         }
     }
     createOrExtendObject(`${path}.isSuspended`, {
