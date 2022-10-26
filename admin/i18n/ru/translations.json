@@ -44,5 +44,6 @@
     "donation": "Если вам нравится этот адаптер и вы можете поддержать меня:",
     "sudo": "судо",
     "wgConfigFile": "конфигурационный файл wg",
-    "Name of the referenced host - must be the same as NAME on main config page!": "Имя указанного хоста — должно совпадать с ИМЯ на главной странице конфигурации!"
+    "Name of the referenced host - must be the same as NAME on main config page!": "Имя указанного хоста — должно совпадать с ИМЯ на главной странице конфигурации!",
+    "_Installation_hint_1": "Этот адаптер поддерживает WireGuard как в Linux, так и в Windows."
 }
