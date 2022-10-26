@@ -106,6 +106,9 @@ Basically there are three ways to execute the command:
 ## Changelog
 ### **WORK IN PROGRESS**
 
+### v1.4.1 (2022-10-26)
+* (grizzelbee) New: Showing number of currently connected peers for each interface
+
 ### v1.4.0 (2022-09-09)
 * (grizzelbee) New: [#37](https://github.com/Grizzelbee/ioBroker.wireguard/issues/37) Added config options for port and docker container name
 * (grizzelbee) Chg: Moved over to new jsonConfig Admin UI

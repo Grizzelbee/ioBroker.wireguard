@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.4.0",
+        "version": "1.4.1",
         "news": {
+            "1.4.1": {
+                "en": "Showing number of currently connected peers for each interface.",
+                "de": "Zeigt die Anzahl der aktuell verbundenen Peers für jede Schnittstelle an.",
+                "ru": "Отображение количества подключенных в настоящее время одноранговых узлов для каждого интерфейса.",
+                "pt": "Mostrando o número de peers atualmente conectados para cada interface.",
+                "nl": "Toont het aantal momenteel verbonden peers voor elke interface.",
+                "fr": "Affichage du nombre de pairs actuellement connectés pour chaque interface.",
+                "it": "Mostra il numero di peer attualmente connessi per ciascuna interfaccia.",
+                "es": "Muestra el número de pares actualmente conectados para cada interfaz.",
+                "pl": "Pokazuje liczbę aktualnie podłączonych peerów dla każdego interfejsu.",
+                "uk": "Показує кількість підключених наразі однорангових вузлів для кожного інтерфейсу.",
+                "zh-cn": "显示每个接口当前连接的对等点的数量。"
+            },
             "1.4.0": {
                 "en": "Moved Admin-UI to jsonConfig.",
                 "de": "Admin-UI nach jsonConfig verschoben.",
@@ -13,7 +26,8 @@
                 "it": "Admin-UI spostata in jsonConfig.",
                 "es": "Se movió la interfaz de usuario de administración a jsonConfig.",
                 "pl": "Przeniesiono interfejs administratora do jsonConfig.",
-                "zh-cn": "将 Admin-UI 移至 jsonConfig。"
+                "zh-cn": "将 Admin-UI 移至 jsonConfig。",
+                "uk": "Інтерфейс адміністратора перенесено в jsonConfig."
             },
             "1.3.2": {
                 "en": "Fixed \"Adapter doesn't come online\" bug caused by pseudo-tty settings.",
@@ -25,7 +39,8 @@
                 "it": "Risolto il bug \"L'adattatore non è online\" causato da impostazioni pseudo-tty.",
                 "es": "Se corrigió el error \"El adaptador no se conecta\" causado por la configuración de pseudo-tty.",
                 "pl": "Naprawiono błąd „Adapter nie przechodzi w tryb online” spowodowany przez ustawienia pseudo-tty.",
-                "zh-cn": "修复了由伪 tty 设置引起的“适配器不在线”错误。"
+                "zh-cn": "修复了由伪 tty 设置引起的“适配器不在线”错误。",
+                "uk": "Виправлено помилку «Адаптер не підключається до мережі», спричинену налаштуваннями псевдо-tty."
             },
             "1.3.1": {
                 "en": "Added button restore a single peer.",
@@ -37,7 +52,8 @@
                 "it": "Aggiunto pulsante per ripristinare un singolo peer.",
                 "es": "Se agregó el botón restaurar un solo par.",
                 "pl": "Dodano przycisk przywracania jednego peera.",
-                "zh-cn": "添加了按钮恢复单个对等点。"
+                "zh-cn": "添加了按钮恢复单个对等点。",
+                "uk": "Додана кнопка відновлення окремого вузла."
             },
             "1.3.0": {
                 "en": "Added buttons to suspend single and restore all peers of an interface.",
@@ -49,7 +65,8 @@
                 "it": "Aggiunti pulsanti per sospendere il singolo e ripristinare tutti i peer di un'interfaccia.",
                 "es": "Se agregaron botones para suspender solo y restaurar todos los pares de una interfaz.",
                 "pl": "Dodano przyciski do zawieszania pojedynczego i przywracania wszystkich równorzędnych interfejsu.",
-                "zh-cn": "添加了暂停单个和恢复接口的所有对等点的按钮。"
+                "zh-cn": "添加了暂停单个和恢复接口的所有对等点的按钮。",
+                "uk": "Додано кнопки для призупинення одного і відновлення всіх однорангових інтерфейсів."
             },
             "1.2.1": {
                 "en": "Fixed tty issue in docker option.",
@@ -61,7 +78,8 @@
                 "it": "Risolto il problema con tty nell'opzione Docker.",
                 "es": "Solucionado el problema de tty en la opción docker.",
                 "pl": "Naprawiono problem z tty w opcji dockera.",
-                "zh-cn": "修复了 docker 选项中的 tty 问题。"
+                "zh-cn": "修复了 docker 选项中的 tty 问题。",
+                "uk": "Виправлено проблему tty у параметрі докера."
             },
             "1.2.0": {
                 "en": "Added support for WireGuard inside a docker container\nDependencies got updated",
@@ -73,7 +91,8 @@
                 "it": "Aggiunto supporto per WireGuard all'interno di un contenitore mobile\nLe dipendenze sono state aggiornate",
                 "es": "Se agregó soporte para WireGuard dentro de un contenedor docker \n Las dependencias se actualizaron",
                 "pl": "Dodano wsparcie dla WireGuard wewnątrz kontenera docker \n Zależności zostały zaktualizowane",
-                "zh-cn": "在 docker 容器内添加了对 WireGuard 的支持\n更新了依赖项"
+                "zh-cn": "在 docker 容器内添加了对 WireGuard 的支持\n更新了依赖项",
+                "uk": "Додано підтримку WireGuard у контейнері докерів\nЗалежності оновлено"
             },
             "1.1.3": {
                 "en": "Fixed some errors reported by sentry\nDependencies got updated",
@@ -85,7 +104,8 @@
                 "it": "Risolti alcuni errori segnalati da sentinella\nLe dipendenze sono state aggiornate",
                 "es": "Se corrigieron algunos errores informados por centinela\nLas dependencias se actualizaron",
                 "pl": "Naprawiono niektóre błędy zgłoszone przez wartowników\nZależności zostały zaktualizowane",
-                "zh-cn": "修复了哨兵报告的一些错误\n更新了依赖项"
+                "zh-cn": "修复了哨兵报告的一些错误\n更新了依赖项",
+                "uk": "Виправлено деякі помилки, про які повідомляв вартовий\nЗалежності оновлено"
             },
             "1.1.2": {
                 "en": "Added donate button\nDependency updates",
@@ -97,7 +117,8 @@
                 "it": "Aggiunto pulsante di donazione\nAggiornamenti sulle dipendenze",
                 "es": "Botón de donación agregado \n Actualizaciones de dependencia",
                 "pl": "Dodano przycisk darowizny\nAktualizacje zależności",
-                "zh-cn": "添加了捐赠按钮\n依赖更新"
+                "zh-cn": "添加了捐赠按钮\n依赖更新",
+                "uk": "Додана кнопка пожертви\nОновлення залежностей"
             },
             "1.1.1": {
                 "en": "Changed titleLang from WireGuard to WireGuard monitoring\nDependency updates",
@@ -109,7 +130,8 @@
                 "it": "TitleLang modificato da WireGuard al monitoraggio WireGuard\nAggiornamenti delle dipendenze",
                 "es": "Se cambió titleLang de WireGuard a monitoreo de WireGuard.\nActualizaciones de dependencia",
                 "pl": "Zmieniono tytułLang z WireGuard na WireGuard monitoring\nAktualizacje zależności",
-                "zh-cn": "将 titleLang 从 WireGuard 更改为 WireGuard 监控\n依赖项更新"
+                "zh-cn": "将 titleLang 从 WireGuard 更改为 WireGuard 监控\n依赖项更新",
+                "uk": "Моніторинг titleLang змінено з WireGuard на WireGuard\nОновлення залежностей"
             },
             "1.1.0": {
                 "en": "Added support for sudo command via sudoers entry\nImproved documentation\nDependency updates",
@@ -121,7 +143,8 @@
                 "it": "Aggiunto supporto per il comando sudo tramite la voce sudoers\nDocumentazione migliorata\nAggiornamenti delle dipendenze",
                 "es": "Se agregó soporte para el comando sudo a través de la entrada sudoers\nDocumentación mejorada\nActualizaciones de dependencia",
                 "pl": "Dodano obsługę polecenia sudo za pośrednictwem wpisu sudoers\nUlepszona dokumentacja\nAktualizacje zależności",
-                "zh-cn": "通过 sudoers 条目添加了对 sudo 命令的支持\n改进的文档\n依赖项更新"
+                "zh-cn": "通过 sudoers 条目添加了对 sudo 命令的支持\n改进的文档\n依赖项更新",
+                "uk": "Додано підтримку команди sudo через запис sudoers\nПокращена документація\nОновлення залежностей"
             },
             "1.0.0": {
                 "en": "Added online state for each interface",
@@ -133,7 +156,8 @@
                 "it": "Aggiunto stato online per ogni interfaccia",
                 "es": "Estado en línea agregado para cada interfaz",
                 "pl": "Dodano stan online dla każdego interfejsu",
-                "zh-cn": "为每个接口添加在线状态"
+                "zh-cn": "为每个接口添加在线状态",
+                "uk": "Додано стан онлайн для кожного інтерфейсу"
             },
             "0.9.5": {
                 "en": "Added Windows support\nremoved usage of wg-json script.",
@@ -145,7 +169,8 @@
                 "it": "Aggiunto il supporto di Windows\nrimosso l'utilizzo dello script wg-json.",
                 "es": "Se agregó compatibilidad con Windows \n se eliminó el uso del script wg-json.",
                 "pl": "Dodano obsługę Windows \n usunięto użycie skryptu wg-json.",
-                "zh-cn": "添加了 Windows 支持\n删除了 wg-json 脚本的使用。"
+                "zh-cn": "添加了 Windows 支持\n删除了 wg-json 脚本的使用。",
+                "uk": "Додана підтримка Windows\nвидалено використання сценарію wg-json."
             },
             "0.9.2": {
                 "en": "Improved handling in case that the WireGuard server down.",
@@ -157,7 +182,8 @@
                 "it": "Gestione migliorata nel caso in cui il server WireGuard sia inattivo.",
                 "es": "Manejo mejorado en caso de que el servidor WireGuard se caiga.",
                 "pl": "Ulepszona obsługa w przypadku awarii serwera WireGuard.",
-                "zh-cn": "改进了 WireGuard 服务器关闭时的处理。"
+                "zh-cn": "改进了 WireGuard 服务器关闭时的处理。",
+                "uk": "Покращена робота у випадку, якщо сервер WireGuard не працює."
             },
             "0.9.1": {
                 "en": "Improved optical quality of admin page - no technical improvements",
@@ -169,7 +195,8 @@
                 "it": "Qualità ottica migliorata della pagina di amministrazione - nessun miglioramento tecnico",
                 "es": "Calidad óptica mejorada de la página de administración: sin mejoras técnicas",
                 "pl": "Poprawiona jakość optyczna strony administratora - brak ulepszeń technicznych",
-                "zh-cn": "改进了管理页面的光学质量 - 没有技术改进"
+                "zh-cn": "改进了管理页面的光学质量 - 没有技术改进",
+                "uk": "Покращена оптична якість адміністративної сторінки - жодних технічних покращень"
             },
             "0.9.0": {
                 "en": "Added translations and encryption of host credentials",
@@ -181,7 +208,8 @@
                 "it": "Aggiunte traduzioni e crittografia delle credenziali host",
                 "es": "Se agregaron traducciones y encriptación de credenciales de host.",
                 "pl": "Dodano tłumaczenia i szyfrowanie danych uwierzytelniających hosta",
-                "zh-cn": "添加了主机凭据的翻译和加密"
+                "zh-cn": "添加了主机凭据的翻译和加密",
+                "uk": "Додано переклади та шифрування облікових даних хоста"
             },
             "0.8.0": {
                 "en": "Basic functionality",
@@ -193,7 +221,8 @@
                 "it": "Funzionalità di base",
                 "es": "Funcionalidad básica",
                 "pl": "Podstawowa funkcjonalność",
-                "zh-cn": "基本功能"
+                "zh-cn": "基本功能",
+                "uk": "Основний функціонал"
             },
             "0.2.0": {
                 "en": "working admin",
@@ -205,7 +234,8 @@
                 "it": "amministratore di lavoro",
                 "es": "administrador de trabajo",
                 "pl": "pracujący administrator",
-                "zh-cn": "工作管理员"
+                "zh-cn": "工作管理员",
+                "uk": "робочий адмін"
             },
             "0.0.1": {
                 "en": "initial release",
@@ -217,7 +247,8 @@
                 "it": "Versione iniziale",
                 "es": "Versión inicial",
                 "pl": "Pierwsze wydanie",
-                "zh-cn": "首次出版"
+                "zh-cn": "首次出版",
+                "uk": "початковий випуск"
             }
         },
         "titleLang": {
@@ -230,7 +261,8 @@
             "it": "Monitoraggio WireGuard",
             "es": "Monitoreo de WireGuard",
             "pl": "Monitorowanie WireGuard",
-            "zh-cn": "WireGuard 监控"
+            "zh-cn": "WireGuard 监控",
+            "uk": "Моніторинг WireGuard"
         },
         "desc": {
             "en": "Connect to WireGuard hosts and grab connection information on peers",
@@ -242,7 +274,8 @@
             "it": "Connettiti agli host WireGuard e prendi le informazioni di connessione sui peer",
             "es": "Conéctese a los hosts de WireGuard y obtenga información de conexión de sus pares",
             "pl": "Połącz się z hostami WireGuard i zdobądź informacje o połączeniach na komputerach równorzędnych",
-            "zh-cn": "连接到 WireGuard 主机并获取对等方的连接信息"
+            "zh-cn": "连接到 WireGuard 主机并获取对等方的连接信息",
+            "uk": "Підключіться до хостів WireGuard і отримайте інформацію про підключення до однорангових пристроїв"
         },
         "authors": [
             "grizzelbee <open.source@hingsen.de>"
@@ -292,7 +325,8 @@
                     "it": "L'istanza richiede una nuova configurazione dopo l'aggiornamento",
                     "es": "La instancia requiere una nueva configuración después de la actualización",
                     "pl": "Instancja wymaga nowej konfiguracji po aktualizacji",
-                    "zh-cn": "实例更新后需要新配置"
+                    "zh-cn": "实例更新后需要新配置",
+                    "uk": "Після оновлення екземпляр потребує нової конфігурації"
                 },
                 "text": {
                     "en": "After upgrading to Version 1.4.0 or later you need to reenter your monitoring user and password due to the change of the admin interface.",
@@ -304,7 +338,8 @@
                     "it": "Dopo l'aggiornamento alla versione 1.4.0 o successiva, è necessario reinserire l'utente e la password di monitoraggio a causa della modifica dell'interfaccia di amministrazione.",
                     "es": "Después de actualizar a la versión 1.4.0 o posterior, debe volver a ingresar su usuario y contraseña de monitoreo debido al cambio de la interfaz de administración.",
                     "pl": "Po aktualizacji do wersji 1.4.0 lub nowszej musisz ponownie wprowadzić użytkownika i hasło monitorowania ze względu na zmianę interfejsu administratora.",
-                    "zh-cn": "升级到 1.4.0 或更高版本后，由于管理界面的变化，您需要重新输入您的监控用户和密码。"
+                    "zh-cn": "升级到 1.4.0 或更高版本后，由于管理界面的变化，您需要重新输入您的监控用户和密码。",
+                    "uk": "Після оновлення до версії 1.4.0 або пізнішої вам потрібно буде повторно ввести користувача моніторингу та пароль через зміну інтерфейсу адміністратора."
                 },
                 "level": "warn",
                 "buttons": [
