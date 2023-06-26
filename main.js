@@ -270,7 +270,7 @@ async function parseWireguardInfosToJson(wgRawData){
 function createOrExtendObject(id, objData, value) {
     adapter.getObject(id, function (err, oldObj) {
         if (!err && oldObj) {
-            if ( objData.name === oldObj.common.name ){
+            if ( objData.common.name === oldObj.common.name ){
                 adapter.setState(id, value, true);
             } else{
                 adapter.extendObject(id, objData, () => {adapter.setState(id, value, true);});
