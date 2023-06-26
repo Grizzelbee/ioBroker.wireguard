@@ -251,7 +251,7 @@
                         {
                             "type": "text",
                             "attr": "groupname",
-                            "width": "50%",
+                            "width": "20%",
                             "title": {
                                 "en": "name",
                                 "de": "Name",
@@ -270,8 +270,39 @@
                         },
                         {
                             "type": "text",
+                            "attr": "name",
+                            "width": "30%",
+                            "title": {
+                                "en": "name",
+                                "de": "Name",
+                                "ru": "имя",
+                                "pt": "nome",
+                                "nl": "naam",
+                                "fr": "Nom",
+                                "it": "nome",
+                                "es": "nombre",
+                                "pl": "Nazwa",
+                                "zh-cn": "姓名"
+                            },
+                            "filter": true,
+                            "sort": true,
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "attr": "device",
+                            "width": "30%",
+                            "title": {
+                                "en": "device"
+                            },
+                            "filter": true,
+                            "sort": true,
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
                             "attr": "pubKey",
-                            "width": "50%",
+                            "width": "20%",
                             "title": {
                                 "en": "Public Key",
                                 "de": "Öffentlicher Schlüssel",

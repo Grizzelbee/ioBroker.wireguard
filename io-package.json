@@ -376,6 +376,8 @@
         "names": [
             {
                 "pubKey": "",
+                "name": "",
+                "device": "",
                 "groupname": ""
             }
         ],
