@@ -250,8 +250,30 @@
                     "items": [
                         {
                             "type": "text",
+                            "attr": "user",
+                            "width": "20%",
+                            "title": {
+                                "en": "User"
+                            },
+                            "filter": true,
+                            "sort": true,
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
+                            "attr": "device",
+                            "width": "20%",
+                            "title": {
+                                "en": "Device"
+                            },
+                            "filter": true,
+                            "sort": true,
+                            "default": ""
+                        },
+                        {
+                            "type": "text",
                             "attr": "groupname",
-                            "width": "50%",
+                            "width": "20%",
                             "title": {
                                 "en": "name",
                                 "de": "Name",
@@ -271,7 +293,7 @@
                         {
                             "type": "text",
                             "attr": "pubKey",
-                            "width": "50%",
+                            "width": "40%",
                             "title": {
                                 "en": "Public Key",
                                 "de": "Öffentlicher Schlüssel",

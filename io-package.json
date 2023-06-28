@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.4.1",
+        "version": "1.5.0",
         "news": {
+            "1.5.0": {
+                "en": "New: Splitted Peer names in config in user and device names; So that you are able to group devices by user\nNew: Some new data fields: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount and connection states per user\nFix: Fixed continuous recreation of objects",
+                "de": "Neu: Aufgeteilte Peer-Namen in der Konfiguration in Benutzer- und Gerätenamen; Damit Sie Geräte nach Benutzer gruppieren können\nNeu: Einige neue Datenfelder: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount und Verbindungsstatus pro Benutzer\nFix: Kontinuierliche Neuerstellung von Objekten behoben",
+                "ru": "Новое: разделенные имена пиров в конфигурации в именах пользователей и устройств; Чтобы вы могли группировать устройства по пользователям \n Новое: некоторые новые поля данных:connectedPeers,connectedPeersCount,connectedUsers,connectedUsersCount и состояния подключения для каждого пользователя\nFix:Исправлено непрерывное воссоздание объектов",
+                "pt": "Novo: Nomes de pares divididos na configuração em nomes de usuários e dispositivos; Para que você possa agrupar dispositivos por usuário\nNovo: Alguns novos campos de dados: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount e estados de conexão por usuário\nCorreção: Corrigida recriação contínua de objetos",
+                "nl": "Nieuw: gesplitste namen van peers in configuratie in gebruikers- en apparaatnamen; Zodat u apparaten per gebruiker kunt groeperen\nNieuw: enkele nieuwe gegevensvelden: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount en verbindingsstatussen per gebruiker\nFix: vaste continue recreatie van objecten",
+                "fr": "Nouveau : Noms d'homologues fractionnés dans la configuration des noms d'utilisateur et d'appareil ; Pour que vous puissiez regrouper les appareils par utilisateur\nNouveau : Quelques nouveaux champs de données : connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount et les états de connexion par utilisateur\nFix : Correction de la recréation continue des objets",
+                "it": "Novità: nomi di peer divisi nella configurazione nei nomi di utenti e dispositivi; In modo che tu sia in grado di raggruppare i dispositivi per utente \n Novità: alcuni nuovi campi dati: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount e stati di connessione per utente \n Correzione: correzione della ricreazione continua di oggetti",
+                "es": "Nuevo: nombres de pares divididos en la configuración en nombres de usuario y dispositivo; Para que pueda agrupar dispositivos por usuario \n Nuevo: algunos campos de datos nuevos: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount y estados de conexión por usuario \n Solución: recreación continua fija de objetos",
+                "pl": "Nowość: Podzielone nazwy Peer w konfiguracji w nazwach użytkowników i urządzeń; Abyś mógł grupować urządzenia według użytkowników\nNowość: Niektóre nowe pola danych:connectedPeers,connectedPeersCount,connectUsers,connectUsersCount i stany połączeń na użytkownika\nPoprawka: Naprawiono ciągłe odtwarzanie obiektów",
+                "uk": "Нове: розділені імена вузлів у конфігурації в іменах користувачів і пристроїв; Щоб ви могли групувати пристрої за користувачами\nНове: деякі нові поля даних:connectedPeers,connectedPeersCount,connectedUsers,connectedUsersCount і стани з’єднання для кожного користувача\nВиправлення: виправлено постійне повторне створення об’єктів",
+                "zh-cn": "新：在用户和设备名称中的配置中分割对等名称；这样您就可以按用户对设备进行分组\n新增：一些新的数据字段：connectedPeers、connectedPeersCount、connectedUsers、connectedUsersCount 和每个用户的连接状态\n修复：修复了对象的连续重新创建"
+            },
             "1.4.1": {
                 "en": "Showing number of currently connected peers for each interface.",
                 "de": "Zeigt die Anzahl der aktuell verbundenen Peers für jede Schnittstelle an.",
@@ -346,6 +359,46 @@
                     "agree",
                     "cancel"
                 ]
+            },
+            {
+                "condition": {
+                    "operand": "and",
+                    "rules": [
+                        "oldVersion<1.5.0",
+                        "newVersion>=1.5.0"
+                    ]
+                },
+                "title": {
+                    "en": "Instance requires new configuration after update",
+                    "de": "Die Instanz erfordert nach dem Update eine neue Konfiguration",
+                    "ru": "Экземпляр требует новой конфигурации после обновления",
+                    "pt": "A instância requer uma nova configuração após a atualização",
+                    "nl": "Instantie vereist nieuwe configuratie na update",
+                    "fr": "L'instance nécessite une nouvelle configuration après la mise à jour",
+                    "it": "L'istanza richiede una nuova configurazione dopo l'aggiornamento",
+                    "es": "La instancia requiere una nueva configuración después de la actualización",
+                    "pl": "Instancja wymaga nowej konfiguracji po aktualizacji",
+                    "zh-cn": "实例更新后需要新配置",
+                    "uk": "Після оновлення екземпляр потребує нової конфігурації"
+                },
+                "text": {
+                    "en": "The current group name in config has been deprecated and will be removed in a future release. So please review your config and move over to user name and device configuration for your peer names.",
+                    "de": "Der aktuelle Gruppenname in der Konfiguration ist veraltet und wird in einer zukünftigen Version entfernt. Überprüfen Sie daher bitte Ihre Konfiguration und wechseln Sie zur Benutzernamen- und Gerätekonfiguration für Ihre Peer-Namen.",
+                    "ru": "Текущее имя группы в конфигурации устарело и будет удалено в будущем выпуске. Поэтому, пожалуйста, просмотрите свою конфигурацию и перейдите к конфигурации имени пользователя и устройства для ваших одноранговых имен.",
+                    "pt": "O nome do grupo atual na configuração foi obsoleto e será removido em uma versão futura. Portanto, revise sua configuração e vá para o nome de usuário e a configuração do dispositivo para seus nomes de pares.",
+                    "nl": "De huidige groepsnaam in de configuratie is verouderd en zal in een toekomstige versie worden verwijderd. Controleer dus uw configuratie en ga naar gebruikersnaam en apparaatconfiguratie voor uw peer-namen.",
+                    "fr": "Le nom de groupe actuel dans la configuration est obsolète et sera supprimé dans une prochaine version. Veuillez donc revoir votre configuration et passer à la configuration du nom d'utilisateur et de l'appareil pour vos noms d'homologues.",
+                    "it": "Il nome del gruppo corrente in config è stato deprecato e verrà rimosso in una versione futura. Quindi, controlla la tua configurazione e passa al nome utente e alla configurazione del dispositivo per i tuoi nomi peer.",
+                    "es": "El nombre de grupo actual en la configuración ha quedado obsoleto y se eliminará en una versión futura. Por lo tanto, revise su configuración y pase a la configuración de nombre de usuario y dispositivo para los nombres de sus compañeros.",
+                    "pl": "Bieżąca nazwa grupy w konfiguracji została uznana za przestarzałą i zostanie usunięta w przyszłej wersji. Sprawdź więc swoją konfigurację i przejdź do nazwy użytkownika i konfiguracji urządzenia dla nazw równorzędnych.",
+                    "uk": "Поточна назва групи в конфігурації застаріла та буде видалена в майбутньому випуску. Тому, будь ласка, перегляньте свою конфігурацію та перейдіть до імені користувача та конфігурації пристрою для імен однорангових пристроїв.",
+                    "zh-cn": "配置中的当前组名称已被弃用，并将在未来版本中删除。因此，请检查您的配置，然后转到对等名称的用户名和设备配置。"
+                },
+                "level": "warn",
+                "buttons": [
+                    "agree",
+                    "cancel"
+                ]
             }
         ],
         "globalDependencies": [
@@ -376,6 +429,8 @@
         "names": [
             {
                 "pubKey": "",
+                "user": "",
+                "device": "",
                 "groupname": ""
             }
         ],
