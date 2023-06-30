@@ -430,21 +430,23 @@ class Wireguard extends utils.Adapter {
     getDescByPeer(peerId){
         if (settingsPeerMap[peerId]){
             adapter.log.debug(`getDescByPeer: Found config for ${peerId}`);
-            if (Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'user') && Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'device') ){
-                const result = settingsPeerMap[peerId].user + ' - ' + settingsPeerMap[peerId].device;
-                adapter.log.debug(`getDescByPeer: result=${result}`);
-                if (result.trim() === '-') {
-                    if (Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'desc') ){
-                        adapter.log.debug(`getDescByPeer: desc=${settingsPeerMap[peerId].desc}`);
-                        return settingsPeerMap[peerId].desc;
-                    } else return result;
-                } else if (Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'desc') ){
-                    return settingsPeerMap[peerId].desc || 'No description given. Please configure some.';
-                } else {
-                    return 'No description given. Please configure some.';
+            if ( Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'user') || Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'device')){
+                // initialize string
+                let result = '';
+                if ( Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'user') ) {
+                    // add user to result if there is some
+                    result += settingsPeerMap[peerId].user;
+                    if (Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'device')) {
+                        // add device to result if there is some - and add a blank if there is already a user
+                        result += (result.length > 0 ? ' ' : '') + settingsPeerMap[peerId].device;
+                        return result;
+                    }
                 }
-            } else return 'No description given. Please configure some.';
-        } adapter.log.debug(`getDescByPeer: Unknown peerId ${peerId}`);
+            }
+        } else {
+            adapter.log.debug(`getDescByPeer: Unknown peerId ${peerId}`);
+            return '';
+        }
     }
 
     /**
@@ -509,7 +511,7 @@ class Wireguard extends utils.Adapter {
         adapter.createOrExtendObject(`${path}.restore_Peer`, {
             type: 'state',
             common: {
-                name: `Bring that temporarily suspended peer back to action.`,
+                name: `Bring that temporarily suspended peer back into action.`,
                 // 'icon':''
                 'read': false,
                 'write': true,
@@ -610,7 +612,7 @@ class Wireguard extends utils.Adapter {
                 }
                 */
                 obj.type= 'group';
-                obj.common.name = adapter.getDescByPeer('Key: '+key);
+                obj.common.name = adapter.getDescByPeer(key);
                 obj.common.write= true;
                 adapter.createOrExtendObject( `${path}.${key}`, obj, null );
                 adapter.extractTreeItems(`${path}.${key}`, value);
