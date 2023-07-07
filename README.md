@@ -106,6 +106,11 @@ Basically there are three ways to execute the command:
 ## Changelog
 ### **WORK IN PROGRESS**
 
+
+### 1.5.1 (2023-06-27)
+* (grizzelbee) Fix:  [#65](https://github.com/Grizzelbee/ioBroker.wireguard/issues/65) Fixed - No names in object tree
+
+
 ### 1.5.0 (2023-06-27)
 * (grizzelbee) Deprecated: The current peer name/description will be dropped in one of the next versions. So please move over to Username/Device config.
 * (grizzelbee) New: Splitted Peer names in config in user and device names; So that you are able to group devices by user
