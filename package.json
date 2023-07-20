@@ -28,7 +28,7 @@
     "@iobroker/adapter-dev": "^1.2.0",
     "@iobroker/testing": "^4.1.0",
     "@material-ui/core": "^4.12.4",
-    "@snyk/protect": "^1.1185.0",
+    "@snyk/protect": "^1.1186.0",
     "@types/gulp": "^4.0.11",
     "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
