@@ -22,7 +22,7 @@
     "ssh2": "^1.14.0"
   },
   "devDependencies": {
-    "@alcalzone/release-script": "^3.5.9",
+    "@alcalzone/release-script": "^3.6.0",
     "@babel/cli": "^7.22.5",
     "@babel/core": "^7.22.5",
     "@iobroker/adapter-dev": "^1.2.0",
