@@ -24,13 +24,14 @@ class Wireguard extends utils.Adapter {
         super({
             ...options,
             name: 'wireguard',
+            _ifaceOnlineState : {}
         });
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
         this.on('unload', this.onUnload.bind(this));
 
-        const _ifaceOnlineState = this.getKnownInterfaces();
+        // let _ifaceOnlineState;
     }
 
     async onStateChange(id, state){
@@ -91,7 +92,7 @@ class Wireguard extends utils.Adapter {
      */
     async onReady() {
         // Reset the connection indicator during startup
-        this.setState('info.connection', true, true);
+        await this.setState('info.connection', true, true);
         // Initialize your adapter here
         adapter = this; // preserve adapter reference to address functions etc. correctly later
         const settings = this.config;
@@ -107,6 +108,9 @@ class Wireguard extends utils.Adapter {
             settingsPeerMap[settings.names[n].pubKey].desc = settings.names[n].groupname;
             settingsPeerMap[settings.names[n].pubKey].device = settings.names[n].device;
         }
+        // get all already known interfaces from device tree
+        adapter._knownInterfaces = await adapter.getKnownInterfaces();
+        adapter.log.debug(`_knownInterfaces=${JSON.stringify(adapter._knownInterfaces)}`);
         try{
             for (let host=0; host < settings.hosts.length; host++) {
                 timeOuts.push(setInterval(async function pollHost() {
@@ -121,7 +125,7 @@ class Wireguard extends utils.Adapter {
             }
         } catch(error)  {
             this.log.error(error);
-            this.setState('info.connection', false, true);
+            await this.setState('info.connection', false, true);
         }
     }
 
@@ -348,7 +352,6 @@ class Wireguard extends utils.Adapter {
                 wg[data[i][0]].publicKey= data[i][2];
                 wg[data[i][0]].listenPort = data[i][3];
                 wg[data[i][0]].fwmark = data[i][4];
-                wg[data[i][0]].online = true;
                 wg[data[i][0]].peers = {};
                 wg[data[i][0]].users = {};
             } else {
@@ -372,7 +375,7 @@ class Wireguard extends utils.Adapter {
                 }
                 // build users perspective
                 if (wg[data[i][0]].peers[data[i][1]].user !== '') {
-                    // there is a user name
+                    // there is a username
                     if ( Object.prototype.hasOwnProperty.call(wg[data[i][0]].users, wg[data[i][0]].peers[data[i][1]].user) ){
                         // there is already a connected state
                         wg[data[i][0]].users[wg[data[i][0]].peers[data[i][1]].user].connected = ( wg[data[i][0]].users[wg[data[i][0]].peers[data[i][1]].user].connected || wg[data[i][0]].peers[data[i][1]].connected );
@@ -446,7 +449,7 @@ class Wireguard extends utils.Adapter {
                 }
             }
         } else {
-            adapter.log.debug(`getDescByPeer: Unknown peerId ${peerId}`);
+            adapter.log.silly(`getDescByPeer: Unknown peerId ${peerId}`);
             return '';
         }
     }
@@ -591,7 +594,6 @@ class Wireguard extends utils.Adapter {
                     finalValue = Number(value*1000); // convert unix time to utc
                     break;
                 }
-                case 'online':
                 case 'connected':
                     obj.common.role='indicator.reachable';
                     obj.common.type='boolean';
@@ -617,7 +619,7 @@ class Wireguard extends utils.Adapter {
     }
 
     /**
-     * gets all already known interfaces from the device tree
+     * gets all already known interfaces from the device tree and sets their online state to false
      *
      *
      * @returns {object} a list of all devices / interfaces in the device tree with full Id-path
@@ -627,7 +629,10 @@ class Wireguard extends utils.Adapter {
             adapter.getDevices((err, devices)=>{
                 if (!err){
                     const result = {};
+                    // adapter.log.debug(`getKnownInterfaces: devices=${JSON.stringify(devices)}; length: ${devices.length}`);
                     for (let n=0; n < devices.length; n++) {
+                        result[ devices[n]._id.split('.').pop() ]={};
+                        result[ devices[n]._id.split('.').pop() ].id = devices[n]._id;
                         result[ devices[n]._id.split('.').pop() ].online = false;
                     }
                     resolve(result);
@@ -635,27 +640,39 @@ class Wireguard extends utils.Adapter {
             });
         });
     }
+
+
     /**
-     * sets all interfaces of a given host to offline to be able to set the proper online state later
+     * sets the online state of all known interfaces of the specified host to false aka offline
      *
-     * @param host string name of the host
-     * @returns {Promise<void>}
+     * @param host {string} name of the host
      */
-    async setKnownInterfacesOffline(host){
-        adapter.getDevices((err, devices)=>{
-            if (!err){
-                // const result = [];
-                for (let n=0; n < devices.length; n++) {
-                    // result.push(devices[n]._id.split('.').pop());
-                    adapter.log.debug(`setKnownInterfacesOffline: Host: ${host}; deviceId: ${devices[n]._id}`);
-                    if (devices[n]._id.split('.').pop().split('-').includes(host)) {
-                        adapter.log.debug(`setKnownInterfacesOffline: Setting interface ${devices[n]._id} offline.`);
-                        // adapter.createOrExtendObject(devices[n]._id+'.online', devices[n],false);
-                        adapter.setState(devices[n]._id + '.online', false, true);
-                    }
+    async setAllKnownInterfacesOffline(host){
+        for (const key in adapter._knownInterfaces){
+            if (key.split('-')[0] === host) adapter._knownInterfaces[key].online = false;
+        }
+    }
+
+    /**
+     * sets the online state of all known interfaces in the device tree
+     */
+    setAllKnownInterfacesOnlineState(){
+        adapter.log.debug(`setAllKnownInterfacesOnlineState: _knownInterfaces: ${JSON.stringify(adapter._knownInterfaces)}`);
+        //for (const key in adapter._knownInterfaces) adapter.setState(`${adapter._knownInterfaces[key].id}.online`, adapter._knownInterfaces[key].online, true);
+        for (const key in adapter._knownInterfaces){
+            const onlineState = {
+                type: 'state',
+                common: {
+                    name: `Online state of Interface ${key.split('-').pop()} on host ${key.split('-')[0]}`,
+                    // 'icon':''
+                    'read' : true,
+                    'write': false,
+                    'role' : 'indicator',
+                    'type' : 'boolean'
                 }
-            }
-        });
+            };
+            adapter.createOrExtendObject(`${adapter._knownInterfaces[key].id}.online`, onlineState, adapter._knownInterfaces[key].online);
+        }
     }
 
     /**
@@ -666,6 +683,8 @@ class Wireguard extends utils.Adapter {
      * @returns {Promise<unknown>}
      */
     async updateDevicetree(host, wgData) {
+        // set all knownInterfaces to offline
+        await adapter.setAllKnownInterfacesOffline(host);
         return new Promise(function(resolve, reject) {
             try{
                 // device tree structure
@@ -687,59 +706,41 @@ class Wireguard extends utils.Adapter {
                 // |            +-- 0..n      (state)
                 // +--------- repeat per peer
                 adapter.log.debug(`Host: ${host} has ${ Object.keys(wgData).length } wireguard interface(s).`);
-                adapter.setKnownInterfacesOffline(host);
                 if ( 0 === Object.keys(wgData).length ){
                     adapter.log.warn(`No info returned from wg executable for host ${host}. Maybe your WireGuard server is down or the monitoring user is missing permissions!`);
                     resolve('');
-                    // adapter.setState('info.connection', false, true);
                 } else {
-                    // adapter.setState('info.connection', true, true);
                     // loop through wg interfaces of current host
                     for (let n=0; n < Object.keys(wgData).length; n++){
+                        adapter._knownInterfaces[ `${host}-${Object.keys(wgData)[n]}` ].online = true;
                         const obj = {
                             type: 'device',
                             common: {
                                 name: `Interface ${Object.keys(wgData)[n]} on host ${host}`,
-                                // 'icon':''
+                                'icon':'mdi:network-interface-card',
+                                // 'icon':'',
                                 'read': true,
                                 'write': false,
                                 'type': 'string'
                             }
                         };
-                        /*
-                        const onlineState = {
-                            type: 'state',
-                            common: {
-                                name: `Interface is online`,
-                                // 'icon':''
-                                'read': true,
-                                'write': false,
-                                'type': 'boolean',
-                                'role':'indicator.reachable'
-                            }
-                        };
-
-                         */
                         const restorePeers = {
                             type: 'state',
                             common: {
                                 name: `Restore all suspended peers.`,
-                                // 'icon':''
+                                // 'icon':'',
                                 'read': true,
                                 'write': true,
                                 'type': 'boolean',
                                 'role':'button'
                             }
                         };
-                        // todo: Das hier ist quatsch!
-                        // todo: ich muss erst alle bekannten Interfaces auf connected=false setzen um danach alle,
-                        // todo: die hier erwähnt werden auf online zu setzen
                         const baseId = `${host}-${ Object.keys(wgData)[n]}`;
                         adapter.log.debug(`baseId: ${baseId}`);
                         adapter.createOrExtendObject( baseId, obj, '' );
-                        // adapter.createOrExtendObject(`${baseId}.online`, onlineState, true);
                         adapter.createOrExtendObject( baseId+'.restore_all_Peers', restorePeers, true );
                         adapter.subscribeStates(baseId+'.restore_all_Peers');
+                        adapter.setAllKnownInterfacesOnlineState();
                         // loop through children of interface
                         adapter.extractTreeItems(baseId, wgData[Object.keys(wgData)[n]]);
                     }
