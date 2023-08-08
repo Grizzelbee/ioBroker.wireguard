@@ -24,12 +24,14 @@ class Wireguard extends utils.Adapter {
         super({
             ...options,
             name: 'wireguard',
+            _ifaceOnlineState : {}
         });
-
 
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
         this.on('unload', this.onUnload.bind(this));
+
+        // let _ifaceOnlineState;
     }
 
     async onStateChange(id, state){
@@ -90,7 +92,7 @@ class Wireguard extends utils.Adapter {
      */
     async onReady() {
         // Reset the connection indicator during startup
-        this.setState('info.connection', false, true);
+        await this.setState('info.connection', true, true);
         // Initialize your adapter here
         adapter = this; // preserve adapter reference to address functions etc. correctly later
         const settings = this.config;
@@ -106,8 +108,10 @@ class Wireguard extends utils.Adapter {
             settingsPeerMap[settings.names[n].pubKey].desc = settings.names[n].groupname;
             settingsPeerMap[settings.names[n].pubKey].device = settings.names[n].device;
         }
+        // get all already known interfaces from device tree
+        adapter._knownInterfaces = await adapter.getKnownInterfaces();
+        adapter.log.debug(`_knownInterfaces=${JSON.stringify(adapter._knownInterfaces)}`);
         try{
-            // adapter.log.info(`settingsPeerMap => ${JSON.stringify(settingsPeerMap)}`);
             for (let host=0; host < settings.hosts.length; host++) {
                 timeOuts.push(setInterval(async function pollHost() {
                     const wgRawData = await adapter.getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, settings.hosts[host].port, settings.hosts[host].user, settings.hosts[host].password, settings.hosts[host].sudo, settings.hosts[host].docker);
@@ -121,7 +125,7 @@ class Wireguard extends utils.Adapter {
             }
         } catch(error)  {
             this.log.error(error);
-            this.setState('info.connection', false, true);
+            await this.setState('info.connection', false, true);
         }
     }
 
@@ -342,7 +346,7 @@ class Wireguard extends utils.Adapter {
         for ( let i=0; i<data.length; i++ ) {
             if ( i===0 || (data[i][0] !== data[i-1][0]) ){
                 if (data[i][0] === '') break;
-                adapter.log.silly(`New Interface: ${data[i][0]}. Initialize object.`);
+                adapter.log.debug(`New Interface: ${data[i][0]}. Initialize object.`);
                 wg[data[i][0]]= {};
                 // wg[data[i][0]].privateKey = data[i][1]; // don't show the private key of the interface in ioBroker
                 wg[data[i][0]].publicKey= data[i][2];
@@ -371,10 +375,11 @@ class Wireguard extends utils.Adapter {
                 }
                 // build users perspective
                 if (wg[data[i][0]].peers[data[i][1]].user !== '') {
-                    // there is a user name
+                    // there is a username
                     if ( Object.prototype.hasOwnProperty.call(wg[data[i][0]].users, wg[data[i][0]].peers[data[i][1]].user) ){
                         // there is already a connected state
                         wg[data[i][0]].users[wg[data[i][0]].peers[data[i][1]].user].connected = ( wg[data[i][0]].users[wg[data[i][0]].peers[data[i][1]].user].connected || wg[data[i][0]].peers[data[i][1]].connected );
+                        wg[data[i][0]].users[wg[data[i][0]].peers[data[i][1]].user][adapter.getDeviceByPeer(data[i][1])] = wg[data[i][0]].peers[data[i][1]].connected ;
                     } else {
                         // create new connected state
                         wg[data[i][0]].users[wg[data[i][0]].peers[data[i][1]].user] = {'connected' : wg[data[i][0]].peers[data[i][1]].connected};
@@ -429,22 +434,24 @@ class Wireguard extends utils.Adapter {
      */
     getDescByPeer(peerId){
         if (settingsPeerMap[peerId]){
-            adapter.log.debug(`getDescByPeer: Found config for ${peerId}`);
-            if (Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'user') && Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'device') ){
-                const result = settingsPeerMap[peerId].user + ' - ' + settingsPeerMap[peerId].device;
-                adapter.log.debug(`getDescByPeer: result=${result}`);
-                if (result.trim() === '-') {
-                    if (Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'desc') ){
-                        adapter.log.debug(`getDescByPeer: desc=${settingsPeerMap[peerId].desc}`);
-                        return settingsPeerMap[peerId].desc;
-                    } else return result;
-                } else if (Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'desc') ){
-                    return settingsPeerMap[peerId].desc || 'No description given. Please configure some.';
-                } else {
-                    return 'No description given. Please configure some.';
+            // adapter.log.debug(`getDescByPeer: Found config for ${peerId}`);
+            if ( Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'user') || Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'device')){
+                // initialize string
+                let result = '';
+                if ( Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'user') ) {
+                    // add user to result if there is some
+                    result += settingsPeerMap[peerId].user;
+                    if (Object.prototype.hasOwnProperty.call(settingsPeerMap[peerId], 'device')) {
+                        // add device to result if there is some - and add a blank if there is already a user
+                        result += (result.length > 0 ? ' ' : '') + settingsPeerMap[peerId].device;
+                        return result;
+                    }
                 }
-            } else return 'No description given. Please configure some.';
-        } adapter.log.debug(`getDescByPeer: Unknown peerId ${peerId}`);
+            }
+        } else {
+            adapter.log.silly(`getDescByPeer: Unknown peerId ${peerId}`);
+            return '';
+        }
     }
 
     /**
@@ -474,10 +481,10 @@ class Wireguard extends utils.Adapter {
         adapter.getObject(id, function (err, oldObj) {
             if (!err && oldObj) {
                 if ( objData.common.name === oldObj.common.name ){
-                    adapter.log.debug(`Same object detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
+                    // adapter.log.debug(`Same object detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
                     adapter.setState(id, value, true);
                 } else{
-                    adapter.log.debug(`New group name detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
+                    // adapter.log.debug(`New group name detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
                     adapter.extendObject(id, objData, () => {adapter.setState(id, value, true);});
                 }
             } else {
@@ -509,7 +516,7 @@ class Wireguard extends utils.Adapter {
         adapter.createOrExtendObject(`${path}.restore_Peer`, {
             type: 'state',
             common: {
-                name: `Bring that temporarily suspended peer back to action.`,
+                name: `Bring that temporarily suspended peer back into action.`,
                 // 'icon':''
                 'read': false,
                 'write': true,
@@ -592,25 +599,16 @@ class Wireguard extends utils.Adapter {
                     obj.common.type='boolean';
                     if (path.split('.').includes('peers')) adapter.setConnectedState(path, value);
                     break;
-
+                case 'users':
+                    obj.common.name='Connect states of users and their devices';
+                    break;
             }
             // If there is an object inside the given structure, dive one level deeper
             if (typeof value === 'object'){
                 // It's an object - so iterate deeper
-                // adapter.log.debug(`Deeper Object: name ${key} | value ${JSON.stringify(value)}`);
-                // const groupname = adapter.getDescByPeer(key);
-                // assign group name translation if given on config page
-                /*
-                for (let n=0; n < adapter.config.names.length; n++){
-                    if ( key === adapter.config.names[n].pubKey ){
-                        groupname = adapter.config.names[n].groupname;
-                        knownPeers.push(key);
-                        break;
-                    }
-                }
-                */
                 obj.type= 'group';
-                obj.common.name = adapter.getDescByPeer('Key: '+key);
+                obj.role= '';
+                obj.common.name = adapter.getDescByPeer(key);
                 obj.common.write= true;
                 adapter.createOrExtendObject( `${path}.${key}`, obj, null );
                 adapter.extractTreeItems(`${path}.${key}`, value);
@@ -620,6 +618,62 @@ class Wireguard extends utils.Adapter {
         }
     }
 
+    /**
+     * gets all already known interfaces from the device tree and sets their online state to false
+     *
+     *
+     * @returns {object} a list of all devices / interfaces in the device tree with full Id-path
+     */
+    async getKnownInterfaces(){
+        return new Promise(resolve => {
+            adapter.getDevices((err, devices)=>{
+                if (!err){
+                    const result = {};
+                    // adapter.log.debug(`getKnownInterfaces: devices=${JSON.stringify(devices)}; length: ${devices.length}`);
+                    for (let n=0; n < devices.length; n++) {
+                        result[ devices[n]._id.split('.').pop() ]={};
+                        result[ devices[n]._id.split('.').pop() ].id = devices[n]._id;
+                        result[ devices[n]._id.split('.').pop() ].online = false;
+                    }
+                    resolve(result);
+                }
+            });
+        });
+    }
+
+
+    /**
+     * sets the online state of all known interfaces of the specified host to false aka offline
+     *
+     * @param host {string} name of the host
+     */
+    async setAllKnownInterfacesOffline(host){
+        for (const key in adapter._knownInterfaces){
+            if (key.split('-')[0] === host) adapter._knownInterfaces[key].online = false;
+        }
+    }
+
+    /**
+     * sets the online state of all known interfaces in the device tree
+     */
+    setAllKnownInterfacesOnlineState(){
+        adapter.log.debug(`setAllKnownInterfacesOnlineState: _knownInterfaces: ${JSON.stringify(adapter._knownInterfaces)}`);
+        //for (const key in adapter._knownInterfaces) adapter.setState(`${adapter._knownInterfaces[key].id}.online`, adapter._knownInterfaces[key].online, true);
+        for (const key in adapter._knownInterfaces){
+            const onlineState = {
+                type: 'state',
+                common: {
+                    name: `Online state of Interface ${key.split('-').pop()} on host ${key.split('-')[0]}`,
+                    // 'icon':''
+                    'read' : true,
+                    'write': false,
+                    'role' : 'indicator',
+                    'type' : 'boolean'
+                }
+            };
+            adapter.createOrExtendObject(`${adapter._knownInterfaces[key].id}.online`, onlineState, adapter._knownInterfaces[key].online);
+        }
+    }
 
     /**
      * Assign the data to the right host inside the device tree
@@ -629,6 +683,8 @@ class Wireguard extends utils.Adapter {
      * @returns {Promise<unknown>}
      */
     async updateDevicetree(host, wgData) {
+        // set all knownInterfaces to offline
+        await adapter.setAllKnownInterfacesOffline(host);
         return new Promise(function(resolve, reject) {
             try{
                 // device tree structure
@@ -650,40 +706,29 @@ class Wireguard extends utils.Adapter {
                 // |            +-- 0..n      (state)
                 // +--------- repeat per peer
                 adapter.log.debug(`Host: ${host} has ${ Object.keys(wgData).length } wireguard interface(s).`);
-                const knownInterfaces = [];
-                if (Object.keys(wgData).length === 0){
-                    adapter.log.error(`No info returned from wg executable. Maybe your WireGuard server is down or the monitoring user is missing permissions!`);
-                    adapter.setState('info.connection', false, true);
+                if ( 0 === Object.keys(wgData).length ){
+                    adapter.log.warn(`No info returned from wg executable for host ${host}. Maybe your WireGuard server is down or the monitoring user is missing permissions!`);
+                    resolve('');
                 } else {
-                    adapter.setState('info.connection', true, true);
                     // loop through wg interfaces of current host
                     for (let n=0; n < Object.keys(wgData).length; n++){
+                        adapter._knownInterfaces[ `${host}-${Object.keys(wgData)[n]}` ].online = true;
                         const obj = {
                             type: 'device',
                             common: {
                                 name: `Interface ${Object.keys(wgData)[n]} on host ${host}`,
-                                // 'icon':''
+                                'icon':'mdi:network-interface-card',
+                                // 'icon':'',
                                 'read': true,
                                 'write': false,
                                 'type': 'string'
-                            }
-                        };
-                        const onlineState = {
-                            type: 'state',
-                            common: {
-                                name: `Interface is online`,
-                                // 'icon':''
-                                'read': true,
-                                'write': false,
-                                'type': 'boolean',
-                                'role':'indicator.reachable'
                             }
                         };
                         const restorePeers = {
                             type: 'state',
                             common: {
                                 name: `Restore all suspended peers.`,
-                                // 'icon':''
+                                // 'icon':'',
                                 'read': true,
                                 'write': true,
                                 'type': 'boolean',
@@ -691,25 +736,13 @@ class Wireguard extends utils.Adapter {
                             }
                         };
                         const baseId = `${host}-${ Object.keys(wgData)[n]}`;
-                        knownInterfaces.push(baseId);
+                        adapter.log.debug(`baseId: ${baseId}`);
                         adapter.createOrExtendObject( baseId, obj, '' );
                         adapter.createOrExtendObject( baseId+'.restore_all_Peers', restorePeers, true );
                         adapter.subscribeStates(baseId+'.restore_all_Peers');
+                        adapter.setAllKnownInterfacesOnlineState();
                         // loop through children of interface
                         adapter.extractTreeItems(baseId, wgData[Object.keys(wgData)[n]]);
-                        if (n === Object.keys(wgData).length-1){
-                            // adapter.log.debug(`Going to set online states of interfaces.`);
-                            // set online state of every interface
-                            adapter.getDevices((err, devices)=>{
-                                for (let i=0; i < devices.length; i++) {
-                                    if (knownInterfaces.includes(devices[i]._id.split('.').pop())) {
-                                        adapter.createOrExtendObject(`${devices[i]._id}.online`, onlineState, true);
-                                    } else {
-                                        adapter.createOrExtendObject(`${devices[i]._id}.online`, onlineState, false);
-                                    }
-                                }
-                            });
-                        }
                     }
                 }
             } catch(error){
