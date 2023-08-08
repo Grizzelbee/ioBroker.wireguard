@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.5.0",
+        "version": "1.5.1",
         "news": {
+            "1.5.1": {
+                "en": "Fixed: No names in object tree\nFixed: Online state of interface isn't set correctly if more than one server is queried\nDependencies got updated",
+                "de": "Behoben: Keine Namen im Objektbaum\nBehoben: Der Online-Status der Schnittstelle wird nicht korrekt eingestellt, wenn mehr als ein Server abgefragt wird\nAbhängigkeiten wurden aktualisiert",
+                "ru": "Исправлено: нет имен в дереве объектов. \n Исправлено: онлайн-состояние интерфейса устанавливается неправильно, если запрашивается более одного сервера. \n Зависимости были обновлены.",
+                "pt": "Corrigido: Sem nomes na árvore de objetos\nCorrigido: O estado online da interface não é definido corretamente se mais de um servidor for consultado\nAs dependências foram atualizadas",
+                "nl": "Opgelost: geen namen in de objectboom \n Opgelost: de online status van de interface is niet correct ingesteld als meer dan één server wordt opgevraagd \n Afhankelijkheden zijn bijgewerkt",
+                "fr": "Corrigé : aucun nom dans l'arborescence d'objets\nCorrigé : l'état en ligne de l'interface n'est pas défini correctement si plusieurs serveurs sont interrogés\nLes dépendances ont été mises à jour",
+                "it": "Risolto: nessun nome nell'albero degli oggetti\n Risolto: lo stato online dell'interfaccia non è impostato correttamente se viene interrogato più di un server\n Le dipendenze sono state aggiornate",
+                "es": "Solucionado: No hay nombres en el árbol de objetos. \n Solucionado: el estado en línea de la interfaz no se configura correctamente si se consulta más de un servidor. \n Las dependencias se actualizaron.",
+                "pl": "Naprawiono: brak nazw w drzewie obiektów\nNaprawiono: stan online interfejsu nie jest ustawiony poprawnie, jeśli zapytano więcej niż jeden serwer\nZaktualizowano zależności",
+                "uk": "Виправлено: немає імен у дереві об’єктів\nВиправлено: онлайн-стан інтерфейсу встановлено неправильно, якщо запитується більше ніж один сервер\nЗалежності оновлено",
+                "zh-cn": "已修复：对象树中没有名称\n已修复：如果查询多个服务器，则无法正确设置接口的在线状态\n依赖项已更新"
+            },
             "1.5.0": {
                 "en": "New: Splitted Peer names in config in user and device names; So that you are able to group devices by user\nNew: Some new data fields: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount and connection states per user\nFix: Fixed continuous recreation of objects",
                 "de": "Neu: Aufgeteilte Peer-Namen in der Konfiguration in Benutzer- und Gerätenamen; Damit Sie Geräte nach Benutzer gruppieren können\nNeu: Einige neue Datenfelder: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount und Verbindungsstatus pro Benutzer\nFix: Kontinuierliche Neuerstellung von Objekten behoben",

@@ -107,16 +107,17 @@ Basically there are three ways to execute the command:
 ### **WORK IN PROGRESS**
 
 
-### 1.5.1 (2023-06-27)
-* (grizzelbee) Fix:  [#65](https://github.com/Grizzelbee/ioBroker.wireguard/issues/65) Fixed - No names in object tree
-
+### 1.5.1 (2023-08-08)
+* (grizzelbee) Fix:  [#65](https://github.com/Grizzelbee/ioBroker.wireguard/issues/65) No names in object tree
+* (grizzelbee) Fix:  [#64](https://github.com/Grizzelbee/ioBroker.wireguard/issues/64) Online state of interface isn't set correctly if more than one server is queried
+* (grizzelbee) Upd: Dependencies got updated
 
 ### 1.5.0 (2023-06-27)
 * (grizzelbee) Deprecated: The current peer name/description will be dropped in one of the next versions. So please move over to Username/Device config.
 * (grizzelbee) New: Splitted Peer names in config in user and device names; So that you are able to group devices by user
 * (grizzelbee) New: Some new data fields: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount and connection states per user
 * (grizzelbee) Fix:  [#61](https://github.com/Grizzelbee/ioBroker.wireguard/issues/61) Fixed continuous recreation of objects
-* (grizzelbee) Upd: Dependencies got updates
+* (grizzelbee) Upd: Dependencies got updated
 * (grizzelbee) Upd: Dropped support for NodeJS 12
 * (grizzelbee) Upd: Added support for NodeJS 18
 
