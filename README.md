@@ -106,6 +106,9 @@ Basically there are three ways to execute the command:
 ## Changelog
 ### **WORK IN PROGRESS**
 
+### 1.5.5 (2023-08-09)
+* (grizzelbee) Fix: Added missing icon file
+
 ### 1.5.4 (2023-08-09)
 * (grizzelbee) Fix: Some fixes to make iobroker.adapterchecker happy
 
