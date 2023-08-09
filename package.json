@@ -1,6 +1,6 @@
 {
   "name": "iobroker.wireguard",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Connect to WireGuard hosts and grab connection information on peers",
   "author": {
     "name": "grizzelbee",
