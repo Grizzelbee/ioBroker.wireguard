@@ -106,6 +106,11 @@ Basically there are three ways to execute the command:
 ## Changelog
 ### **WORK IN PROGRESS**
 
+### 1.5.2 (2023-08-09)
+* (grizzelbee) Fix: Adapter does not crash anymore when host isn't reachable
+* (grizzelbee) Fix: Added .releaseconfig file 
+* (grizzelbee) Fix: Added icon to interface-device
+* (grizzelbee) Fix: Some fixes to make iobroker.adapterchecker happy
 
 ### 1.5.1 (2023-08-08)
 * (grizzelbee) Fix:  [#65](https://github.com/Grizzelbee/ioBroker.wireguard/issues/65) No names in object tree

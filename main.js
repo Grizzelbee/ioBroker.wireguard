@@ -114,10 +114,19 @@ class Wireguard extends utils.Adapter {
         try{
             for (let host=0; host < settings.hosts.length; host++) {
                 timeOuts.push(setInterval(async function pollHost() {
-                    const wgRawData = await adapter.getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, settings.hosts[host].port, settings.hosts[host].user, settings.hosts[host].password, settings.hosts[host].sudo, settings.hosts[host].docker);
-                    const wgJson = await adapter.parseWireguardInfosToJson(wgRawData);
-                    //await this.resetInterfaceOnlineState(this);
-                    await adapter.updateDevicetree(settings.hosts[host].name, wgJson);
+                    await adapter.getWireguardInfos(settings.hosts[host].name, settings.hosts[host].hostaddress, settings.hosts[host].port, settings.hosts[host].user, settings.hosts[host].password, settings.hosts[host].sudo, settings.hosts[host].docker)
+                        .then((wgRawData) => {
+                            adapter.parseWireguardInfosToJson(wgRawData)
+                                .then((wgJson)=>{
+                                    adapter.updateDevicetree(settings.hosts[host].name, wgJson);
+                                })
+                                .catch((err)=>{
+                                    adapter.log.warn(err);
+                                });
+                        })
+                        .catch((err)=>{
+                            adapter.log.warn(err);
+                        });
                 }, 1000 * settings.hosts[host].pollInterval));
             }
             for (let n=0; n < timeOuts.length; n++){
@@ -480,7 +489,7 @@ class Wireguard extends utils.Adapter {
     createOrExtendObject(id, objData, value) {
         adapter.getObject(id, function (err, oldObj) {
             if (!err && oldObj) {
-                if ( objData.common.name === oldObj.common.name ){
+                if ( objData.common.name === oldObj.common.name && objData.common.icon === oldObj.common.icon){
                     // adapter.log.debug(`Same object detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
                     adapter.setState(id, value, true);
                 } else{
@@ -667,7 +676,7 @@ class Wireguard extends utils.Adapter {
                     // 'icon':''
                     'read' : true,
                     'write': false,
-                    'role' : 'indicator',
+                    'role' : 'indicator.connected',
                     'type' : 'boolean'
                 }
             };
@@ -712,12 +721,15 @@ class Wireguard extends utils.Adapter {
                 } else {
                     // loop through wg interfaces of current host
                     for (let n=0; n < Object.keys(wgData).length; n++){
+                        if (!adapter._knownInterfaces[ `${host}-${Object.keys(wgData)[n]}` ]){
+                            adapter._knownInterfaces[ `${host}-${Object.keys(wgData)[n]}` ] = {};
+                        }
                         adapter._knownInterfaces[ `${host}-${Object.keys(wgData)[n]}` ].online = true;
                         const obj = {
                             type: 'device',
                             common: {
-                                name: `Interface ${Object.keys(wgData)[n]} on host ${host}`,
-                                'icon':'mdi:network-interface-card',
+                                name : `Interface ${Object.keys(wgData)[n]} on host ${host}`,
+                                icon : 'network-interface-card.svg',
                                 // 'icon':'',
                                 'read': true,
                                 'write': false,

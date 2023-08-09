@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.5.1",
+        "version": "1.5.2",
         "news": {
+            "1.5.2": {
+                "en": "Adapter does not crash anymore when host isn't reachable\nAdded .releaseconfig file\nAdded icon to interface-device\nSome fixes to make iobroker.adapterchecker happy",
+                "de": "Der Adapter stürzt nicht mehr ab, wenn der Host nicht erreichbar ist. \n .releaseconfig-Datei hinzugefügt \n Symbol zum Schnittstellengerät hinzugefügt \n Einige Korrekturen, um iobroker.adapterchecker zufrieden zu stellen",
+                "ru": "Адаптер больше не падает, когда хост недоступен \n Добавлен файл .releaseconfig \n Добавлен значок для интерфейса-устройства \n Некоторые исправления, чтобы сделать iobroker.adapterchecker счастливым",
+                "pt": "O adaptador não trava mais quando o host não está acessível\nAdicionado arquivo .releaseconfig\nAdicionado ícone ao dispositivo de interface\nAlgumas correções para deixar o iobroker.adapterchecker feliz",
+                "nl": "Adapter crasht niet meer wanneer de host niet bereikbaar is\n .releaseconfig-bestand toegevoegd\n Pictogram toegevoegd aan interface-apparaat\n Enkele oplossingen om iobroker.adapterchecker blij te maken",
+                "fr": "L'adaptateur ne plante plus lorsque l'hôte n'est pas accessible \n Ajout du fichier .releaseconfig \n Ajout d'une icône à l'interface-device \n Quelques correctifs pour rendre iobroker.adapterchecker heureux",
+                "it": "L'adattatore non si arresta più in modo anomalo quando l'host non è raggiungibile\n Aggiunto file .releaseconfig\n Aggiunta icona al dispositivo di interfaccia\n Alcune correzioni per rendere felice iobroker.adapterchecker",
+                "es": "El adaptador ya no falla cuando no se puede acceder al host \n Archivo .releaseconfig agregado \n Ícono agregado al dispositivo de interfaz \n Algunas correcciones para hacer feliz a iobroker.adapterchecker",
+                "pl": "Karta nie ulega już awarii, gdy host jest nieosiągalny \n Dodano plik .release config \n Dodano ikonę do urządzenia interfejsu \n Kilka poprawek, aby uszczęśliwić iobroker.",
+                "uk": "Адаптер більше не аварійно завершує роботу, коли хост недоступний\nДодано файл .releaseconfig\nДодано піктограму до інтерфейсного пристрою\nДеякі виправлення для задоволення iobroker.adapterchecker",
+                "zh-cn": "当主机无法访问时，适配器不再崩溃\n添加了 .releaseconfig 文件\n向接口设备添加了图标\n一些修复以使 iobroker.adapterchecker 满意"
+            },
             "1.5.1": {
                 "en": "Fixed: No names in object tree\nFixed: Online state of interface isn't set correctly if more than one server is queried\nDependencies got updated",
                 "de": "Behoben: Keine Namen im Objektbaum\nBehoben: Der Online-Status der Schnittstelle wird nicht korrekt eingestellt, wenn mehr als ein Server abgefragt wird\nAbhängigkeiten wurden aktualisiert",
@@ -184,97 +197,6 @@
                 "pl": "Dodano stan online dla każdego interfejsu",
                 "zh-cn": "为每个接口添加在线状态",
                 "uk": "Додано стан онлайн для кожного інтерфейсу"
-            },
-            "0.9.5": {
-                "en": "Added Windows support\nremoved usage of wg-json script.",
-                "de": "Windows-Unterstützung hinzugefügt\n Verwendung des wg-json-Skripts entfernt.",
-                "ru": "Добавлена ​​поддержка Windows \n удалено использование скрипта wg-json.",
-                "pt": "Adicionado suporte ao Windows \n uso removido do script wg-json.",
-                "nl": "Windows-ondersteuning toegevoegd \n gebruik van wg-json-script verwijderd.",
-                "fr": "Ajout de la prise en charge de Windows \n suppression de l'utilisation du script wg-json.",
-                "it": "Aggiunto il supporto di Windows\nrimosso l'utilizzo dello script wg-json.",
-                "es": "Se agregó compatibilidad con Windows \n se eliminó el uso del script wg-json.",
-                "pl": "Dodano obsługę Windows \n usunięto użycie skryptu wg-json.",
-                "zh-cn": "添加了 Windows 支持\n删除了 wg-json 脚本的使用。",
-                "uk": "Додана підтримка Windows\nвидалено використання сценарію wg-json."
-            },
-            "0.9.2": {
-                "en": "Improved handling in case that the WireGuard server down.",
-                "de": "Verbesserte Handhabung für den Fall, dass der WireGuard-Server ausfällt.",
-                "ru": "Улучшена обработка в случае, если сервер WireGuard не работает.",
-                "pt": "Manuseio aprimorado no caso de o servidor WireGuard cair.",
-                "nl": "Verbeterde afhandeling in het geval dat de WireGuard-server uitvalt.",
-                "fr": "Amélioration de la gestion en cas de panne du serveur WireGuard.",
-                "it": "Gestione migliorata nel caso in cui il server WireGuard sia inattivo.",
-                "es": "Manejo mejorado en caso de que el servidor WireGuard se caiga.",
-                "pl": "Ulepszona obsługa w przypadku awarii serwera WireGuard.",
-                "zh-cn": "改进了 WireGuard 服务器关闭时的处理。",
-                "uk": "Покращена робота у випадку, якщо сервер WireGuard не працює."
-            },
-            "0.9.1": {
-                "en": "Improved optical quality of admin page - no technical improvements",
-                "de": "Verbesserte optische Qualität der Admin-Seite - keine technischen Verbesserungen",
-                "ru": "Улучшено оптическое качество страницы администратора - без технических улучшений",
-                "pt": "Melhor qualidade óptica da página de administração - sem melhorias técnicas",
-                "nl": "Verbeterde optische kwaliteit van beheerderspagina - geen technische verbeteringen",
-                "fr": "Amélioration de la qualité optique de la page d'administration - aucune amélioration technique",
-                "it": "Qualità ottica migliorata della pagina di amministrazione - nessun miglioramento tecnico",
-                "es": "Calidad óptica mejorada de la página de administración: sin mejoras técnicas",
-                "pl": "Poprawiona jakość optyczna strony administratora - brak ulepszeń technicznych",
-                "zh-cn": "改进了管理页面的光学质量 - 没有技术改进",
-                "uk": "Покращена оптична якість адміністративної сторінки - жодних технічних покращень"
-            },
-            "0.9.0": {
-                "en": "Added translations and encryption of host credentials",
-                "de": "Übersetzungen und Verschlüsselung von Host-Anmeldeinformationen hinzugefügt",
-                "ru": "Добавлены переводы и шифрование учетных данных хоста.",
-                "pt": "Adicionadas traduções e criptografia de credenciais de host",
-                "nl": "Vertalingen en versleuteling van hostreferenties toegevoegd",
-                "fr": "Ajout de traductions et de cryptage des informations d'identification de l'hôte",
-                "it": "Aggiunte traduzioni e crittografia delle credenziali host",
-                "es": "Se agregaron traducciones y encriptación de credenciales de host.",
-                "pl": "Dodano tłumaczenia i szyfrowanie danych uwierzytelniających hosta",
-                "zh-cn": "添加了主机凭据的翻译和加密",
-                "uk": "Додано переклади та шифрування облікових даних хоста"
-            },
-            "0.8.0": {
-                "en": "Basic functionality",
-                "de": "Grundlegende Funktionalität",
-                "ru": "Базовая функциональность",
-                "pt": "Funcionalidade básica",
-                "nl": "Basisfunctionaliteit",
-                "fr": "Fonctionnalité de base",
-                "it": "Funzionalità di base",
-                "es": "Funcionalidad básica",
-                "pl": "Podstawowa funkcjonalność",
-                "zh-cn": "基本功能",
-                "uk": "Основний функціонал"
-            },
-            "0.2.0": {
-                "en": "working admin",
-                "de": "arbeitender Administrator",
-                "ru": "работающий администратор",
-                "pt": "administrador de trabalho",
-                "nl": "werkende beheerder",
-                "fr": "administrateur de travail",
-                "it": "amministratore di lavoro",
-                "es": "administrador de trabajo",
-                "pl": "pracujący administrator",
-                "zh-cn": "工作管理员",
-                "uk": "робочий адмін"
-            },
-            "0.0.1": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "zh-cn": "首次出版",
-                "uk": "початковий випуск"
             }
         },
         "titleLang": {
@@ -314,7 +236,7 @@
         "main": "main.js",
         "icon": "wireguard.svg",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/Grizzelbee/ioBroker.wireguard/main/admin/wireguard.svg",
+        "extIcon": "https://raw.githubusercontent.com/Grizzelbee/ioBroker.wireguard/main/wireguard.svg",
         "readme": "https://github.com/grizzelbee/ioBroker.wireguard/blob/main/README.md",
         "loglevel": "info",
         "mode": "daemon",
