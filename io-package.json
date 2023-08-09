@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.5.5",
+        "version": "1.5.6",
         "news": {
-            "1.5.5": {
+            "1.5.6": {
                 "en": "Added missing icon file",
                 "de": "Fehlende Symboldatei hinzugefügt",
                 "ru": "Добавлен отсутствующий файл значка",
