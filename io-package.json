@@ -1,8 +1,10 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.5.2",
+        "version": "1.5.3",
         "news": {
+            "1.5.3": {
+                "en": "Some fixes to make iobroker.adapterchecker happy"},
             "1.5.2": {
                 "en": "Adapter does not crash anymore when host isn't reachable\nAdded .releaseconfig file\nAdded icon to interface-device\nSome fixes to make iobroker.adapterchecker happy",
                 "de": "Der Adapter stürzt nicht mehr ab, wenn der Host nicht erreichbar ist. \n .releaseconfig-Datei hinzugefügt \n Symbol zum Schnittstellengerät hinzugefügt \n Einige Korrekturen, um iobroker.adapterchecker zufrieden zu stellen",
@@ -234,9 +236,9 @@
         "license": "MIT",
         "platform": "Javascript/Node.js",
         "main": "main.js",
-        "icon": "wireguard.svg",
+        "icon":    "https://raw.githubusercontent.com/Grizzelbee/ioBroker.wireguard/main/admin/wireguard.svg",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/Grizzelbee/ioBroker.wireguard/main/wireguard.svg",
+        "extIcon": "https://raw.githubusercontent.com/Grizzelbee/ioBroker.wireguard/main/admin/wireguard.svg",
         "readme": "https://github.com/grizzelbee/ioBroker.wireguard/blob/main/README.md",
         "loglevel": "info",
         "mode": "daemon",
