@@ -1,7 +1,7 @@
 ![Logo](admin/Logo_of_WireGuard.svg)
 
 # ioBroker.wireguard
-![Logo](wireguard.svg)
+![Logo](admin/wireguard.svg)
 
 [![NPM version](https://img.shields.io/npm/v/iobroker.wireguard.svg)](https://www.npmjs.com/package/iobroker.wireguard)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.wireguard.svg)](https://www.npmjs.com/package/iobroker.wireguard)
@@ -106,10 +106,8 @@ Basically there are three ways to execute the command:
 ## Changelog
 ### **WORK IN PROGRESS**
 
-### 1.5.5 (2023-08-09)
+### 1.5.6 (2023-08-09)
 * (grizzelbee) Fix: Added missing icon file
-
-### 1.5.4 (2023-08-09)
 * (grizzelbee) Fix: Some fixes to make iobroker.adapterchecker happy
 
 ### 1.5.2 (2023-08-09)
