@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.5.4",
+        "version": "1.5.5",
         "news": {
-            "1.5.4": {
-                "en": "Some fixes to make iobroker.adapterchecker happy",
-                "de": "Einige Korrekturen, um iobroker.adapterchecker glücklich zu machen",
-                "ru": "Некоторые исправления, чтобы сделать iobroker.adapterchecker счастливым",
-                "pt": "Algumas correções para deixar o iobroker.adapterchecker feliz",
-                "nl": "Enkele oplossingen om iobroker.adapterchecker blij te maken",
-                "fr": "Quelques correctifs pour rendre iobroker.adapterchecker heureux",
-                "it": "Alcune correzioni per rendere felice iobroker.adapterchecker",
-                "es": "Algunas correcciones para hacer feliz a iobroker.adapterchecker",
-                "pl": "Kilka poprawek, aby uszczęśliwić iobroker.adapterchecker",
-                "uk": "Деякі виправлення для задоволення iobroker.adapterchecker",
-                "zh-cn": "一些修复让 iobroker.adapterchecker 满意"
+            "1.5.5": {
+                "en": "Added missing icon file",
+                "de": "Fehlende Symboldatei hinzugefügt",
+                "ru": "Добавлен отсутствующий файл значка",
+                "pt": "Adicionado arquivo de ícone ausente",
+                "nl": "Ontbrekend pictogrambestand toegevoegd",
+                "fr": "Ajout du fichier d'icône manquant",
+                "it": "Aggiunto file icona mancante",
+                "es": "Archivo de icono faltante agregado",
+                "pl": "Dodano brakujący plik ikony",
+                "uk": "Додано відсутній файл значка",
+                "zh-cn": "添加了缺少的图标文件"
             },
             "1.5.2": {
                 "en": "Adapter does not crash anymore when host isn't reachable\nAdded .releaseconfig file\nAdded icon to interface-device\nSome fixes to make iobroker.adapterchecker happy",
