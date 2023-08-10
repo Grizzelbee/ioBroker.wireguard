@@ -1,20 +1,20 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.5.6",
+        "version": "1.5.7",
         "news": {
-            "1.5.6": {
-                "en": "Added missing icon file",
-                "de": "Fehlende Symboldatei hinzugefügt",
-                "ru": "Добавлен отсутствующий файл значка",
-                "pt": "Adicionado arquivo de ícone ausente",
-                "nl": "Ontbrekend pictogrambestand toegevoegd",
-                "fr": "Ajout du fichier d'icône manquant",
-                "it": "Aggiunto file icona mancante",
-                "es": "Archivo de icono faltante agregado",
-                "pl": "Dodano brakujący plik ikony",
-                "uk": "Додано відсутній файл значка",
-                "zh-cn": "添加了缺少的图标文件"
+            "1.5.7": {
+                "en": "Added missing icon file\nSome fixes to make iobroker.adapterchecker happy\nAnother icon fix",
+                "de": "Fehlende Symboldatei hinzugefügt\nEinige Korrekturen, um iobroker.adapterchecker glücklich zu machen\nEine weitere Symbolkorrektur",
+                "ru": "Добавлен отсутствующий файл значка \n Некоторые исправления, чтобы сделать iobroker.adapterchecker счастливым \n Еще одно исправление значка",
+                "pt": "Adicionado arquivo de ícone ausente \nAlgumas correções para deixar iobroker.adapterchecker feliz \nOutra correção de ícone",
+                "nl": "Ontbrekend pictogrambestand toegevoegd \n Enkele oplossingen om iobroker.adapterchecker blij te maken \n Nog een pictogramfix",
+                "fr": "Ajout du fichier d'icône manquant \n Quelques correctifs pour rendre iobroker.adapterchecker heureux \n Un autre correctif d'icône",
+                "it": "Aggiunto file icona mancante \n Alcune correzioni per rendere felice iobroker.adapterchecker \n Un'altra correzione dell'icona",
+                "es": "Se agregó el archivo de icono faltante \n Algunas correcciones para hacer feliz a iobroker.adapterchecker \n Otra corrección de icono",
+                "pl": "Dodano brakujący plik ikony \n Kilka poprawek, aby uszczęśliwić iobroker.adapterchecker \n Kolejna poprawka ikony",
+                "uk": "Додано відсутній файл значка\nДеякі виправлення, щоб зробити iobroker.adapterchecker щасливим\nЩе одне виправлення значка",
+                "zh-cn": "添加了丢失的图标文件\n一些修复以使 iobroker.adapterchecker 满意\n另一个图标修复"
             },
             "1.5.2": {
                 "en": "Adapter does not crash anymore when host isn't reachable\nAdded .releaseconfig file\nAdded icon to interface-device\nSome fixes to make iobroker.adapterchecker happy",
@@ -247,9 +247,9 @@
         "license": "MIT",
         "platform": "Javascript/Node.js",
         "main": "main.js",
-        "icon": "wireguard.svg",
+        "icon": "admin/wireguard.svg",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/Grizzelbee/ioBroker.wireguard/main/wireguard.svg",
+        "extIcon": "https://raw.githubusercontent.com/Grizzelbee/ioBroker.wireguard/main/admin/wireguard.svg",
         "readme": "https://github.com/grizzelbee/ioBroker.wireguard/blob/main/README.md",
         "loglevel": "info",
         "mode": "daemon",
