@@ -106,9 +106,10 @@ Basically there are three ways to execute the command:
 ## Changelog
 ### **WORK IN PROGRESS**
 
-### 1.5.6 (2023-08-09)
+### 1.5.7 (2023-08-10)
 * (grizzelbee) Fix: Added missing icon file
 * (grizzelbee) Fix: Some fixes to make iobroker.adapterchecker happy
+* (grizzelbee) Fix: Another icon fix
 
 ### 1.5.2 (2023-08-09)
 * (grizzelbee) Fix: Adapter does not crash anymore when host isn't reachable
