@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.5.7",
+        "version": "1.5.8",
         "news": {
+            "1.5.8": {
+                "en": "Interface is now correctly set to offline if host is not reachable.",
+                "de": "Die Schnittstelle wird jetzt korrekt auf offline gesetzt, wenn der Host nicht erreichbar ist.",
+                "ru": "Интерфейс теперь корректно устанавливается в автономный режим, если хост недоступен.",
+                "pt": "A interface agora está definida corretamente como offline se o host não estiver acessível.",
+                "nl": "Interface is nu correct ingesteld op offline als host niet bereikbaar is.",
+                "fr": "L'interface est maintenant correctement définie sur hors ligne si l'hôte n'est pas accessible.",
+                "it": "L'interfaccia ora è impostata correttamente su offline se l'host non è raggiungibile.",
+                "es": "La interfaz ahora está correctamente configurada como fuera de línea si no se puede acceder al host.",
+                "pl": "Interfejs jest teraz prawidłowo ustawiony na tryb offline, jeśli host jest nieosiągalny.",
+                "uk": "Інтерфейс тепер правильно налаштований на автономний режим, якщо хост недоступний.",
+                "zh-cn": "如果无法访问主机，接口现在会正确设置为脱机。"
+            },
             "1.5.7": {
                 "en": "Added missing icon file\nSome fixes to make iobroker.adapterchecker happy\nAnother icon fix",
                 "de": "Fehlende Symboldatei hinzugefügt\nEinige Korrekturen, um iobroker.adapterchecker glücklich zu machen\nEine weitere Symbolkorrektur",

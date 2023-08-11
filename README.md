@@ -106,6 +106,9 @@ Basically there are three ways to execute the command:
 ## Changelog
 ### **WORK IN PROGRESS**
 
+### 1.5.8 (2023-08-11)
+* (grizzelbee) Fix: Interface is now correctly set to offline if host is not reachable. 
+
 ### 1.5.7 (2023-08-10)
 * (grizzelbee) Fix: Added missing icon file
 * (grizzelbee) Fix: Some fixes to make iobroker.adapterchecker happy
