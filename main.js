@@ -126,6 +126,7 @@ class Wireguard extends utils.Adapter {
                         })
                         .catch((err)=>{
                             adapter.log.warn(err);
+                            adapter.setAllKnownInterfacesOffline(settings.hosts[host].name);
                         });
                 }, 1000 * settings.hosts[host].pollInterval));
             }
