@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.5.8",
+        "version": "1.5.9",
         "news": {
+            "1.5.9": {
+                "en": "First device of any user was missing in users viewing\nAdded an icon to peers, users, peer and user",
+                "de": "Das erste Gerät eines Benutzers fehlte in der Benutzeransicht.\nEin Symbol für Peers, Benutzer, Peer und Benutzer wurde hinzugefügt",
+                "ru": "Первое устройство любого пользователя отсутствовало при просмотре пользователями \n Добавлен значок для одноранговых узлов, пользователей, однорангового узла и пользователя.",
+                "pt": "Faltava o primeiro dispositivo de qualquer usuário na visualização dos usuários\nAdicionou um ícone para pares, usuários, par e usuário",
+                "nl": "Het eerste apparaat van een gebruiker ontbrak bij het bekijken van gebruikers\n Een pictogram toegevoegd aan peers, gebruikers, peer en gebruiker",
+                "fr": "Le premier appareil de n'importe quel utilisateur manquait dans la visualisation des utilisateurs \n Ajout d'une icône aux pairs, aux utilisateurs, aux pairs et à l'utilisateur",
+                "it": "Il primo dispositivo di qualsiasi utente mancava nella visualizzazione degli utenti\nAggiunta un'icona a peer, utenti, peer e utente",
+                "es": "Faltaba el primer dispositivo de cualquier usuario en la visualización de usuarios \n Se agregó un ícono a pares, usuarios, pares y usuarios",
+                "pl": "Brak pierwszego urządzenia dowolnego użytkownika podczas przeglądania użytkowników \n Dodano ikonę do rówieśników, użytkowników, rówieśników i użytkowników",
+                "uk": "Перший пристрій будь-якого користувача був відсутній під час перегляду користувачів\nДодано піктограму для однорангових пристроїв, користувачів, однорангового пристрою та користувача",
+                "zh-cn": "用户查看时缺少任何用户的第一台设备\n向同伴、用户、同伴和用户添加了图标"
+            },
             "1.5.8": {
                 "en": "Interface is now correctly set to offline if host is not reachable.",
                 "de": "Die Schnittstelle wird jetzt korrekt auf offline gesetzt, wenn der Host nicht erreichbar ist.",
