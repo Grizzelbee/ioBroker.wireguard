@@ -384,7 +384,7 @@ class Wireguard extends utils.Adapter {
                     if (!connectedUsers.includes(wg[data[i][0]].peers[data[i][1]].user)) connectedUsers.push(wg[data[i][0]].peers[data[i][1]].user);
                 }
                 // build users perspective
-                if (wg[data[i][0]].peers[data[i][1]].user !== '') {
+                if (wg[data[i][0]].peers[data[i][1]].user) {
                     // there is a username
                     if ( Object.prototype.hasOwnProperty.call(wg[data[i][0]].users, wg[data[i][0]].peers[data[i][1]].user) ){
                         // there is already a connected state
@@ -393,6 +393,7 @@ class Wireguard extends utils.Adapter {
                     } else {
                         // create new connected state
                         wg[data[i][0]].users[wg[data[i][0]].peers[data[i][1]].user] = {'connected' : wg[data[i][0]].peers[data[i][1]].connected};
+                        wg[data[i][0]].users[wg[data[i][0]].peers[data[i][1]].user][adapter.getDeviceByPeer(data[i][1])] = wg[data[i][0]].peers[data[i][1]].connected ;
                     }
                 }
             }
@@ -609,16 +610,26 @@ class Wireguard extends utils.Adapter {
                     obj.common.type='boolean';
                     if (path.split('.').includes('peers')) adapter.setConnectedState(path, value);
                     break;
-                case 'users':
-                    obj.common.name='Connect states of users and their devices';
-                    break;
             }
             // If there is an object inside the given structure, dive one level deeper
-            if (typeof value === 'object'){
+            if (typeof value === 'object') {
                 // It's an object - so iterate deeper
-                obj.type= 'group';
-                obj.role= '';
-                obj.common.name = adapter.getDescByPeer(key);
+                obj.type = 'group';
+                obj.role = '';
+                switch ( obj.common.name ) {
+                    case 'peers' :
+                        obj.common.name='Peers by public key';
+                        obj.common.icon='icons/peers.svg';
+                        break;
+                    case 'users' :
+                        obj.common.name='Connect-states of users and their devices by Name';
+                        obj.common.icon='icons/users.svg';
+                        break;
+                    default :
+                        obj.common.name = adapter.getDescByPeer(key);
+                        if (path.split('.').includes('peers')) obj.common.icon='icons/peer.svg';
+                        if (path.split('.').includes('users')) obj.common.icon='icons/user.svg';
+                }
                 obj.common.write= true;
                 adapter.createOrExtendObject( `${path}.${key}`, obj, null );
                 adapter.extractTreeItems(`${path}.${key}`, value);
@@ -730,7 +741,7 @@ class Wireguard extends utils.Adapter {
                             type: 'device',
                             common: {
                                 name : `Interface ${Object.keys(wgData)[n]} on host ${host}`,
-                                icon : 'network-interface-card.svg',
+                                icon : 'icons/network-interface-card.svg',
                                 // 'icon':'',
                                 'read': true,
                                 'write': false,

@@ -106,6 +106,10 @@ Basically there are three ways to execute the command:
 ## Changelog
 ### **WORK IN PROGRESS**
 
+### 1.5.9 (2023-08-12)
+* (grizzelbee) Fix: First device of any user was missing in users viewing
+* (grizzelbee) New: Added an icon to peers, users, peer and user
+
 ### 1.5.8 (2023-08-11)
 * (grizzelbee) Fix: Interface is now correctly set to offline if host is not reachable. 
 
