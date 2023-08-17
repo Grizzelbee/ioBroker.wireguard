@@ -106,6 +106,9 @@ Basically there are three ways to execute the command:
 ## Changelog
 ### **WORK IN PROGRESS**
 
+### 1.5.10 (2023-08-17)
+* (grizzelbee) Fix: Adapter doesn't crash anymore when user or device name is missing in config.
+
 ### 1.5.9 (2023-08-12)
 * (grizzelbee) Fix: First device of any user was missing in users viewing
 * (grizzelbee) New: Added an icon to peers, users, peer and user

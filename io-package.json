@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.5.9",
+        "version": "1.5.10",
         "news": {
+            "1.5.10": {
+                "en": "Adapter doesn't crash anymore when user or device name is missing in config.",
+                "de": "Der Adapter stürzt nicht mehr ab, wenn der Benutzer- oder Gerätename in der Konfiguration fehlt.",
+                "ru": "Адаптер больше не падает, когда имя пользователя или устройства отсутствует в конфигурации.",
+                "pt": "O adaptador não trava mais quando o nome do usuário ou do dispositivo está ausente na configuração.",
+                "nl": "Adapter crasht niet meer wanneer gebruikersnaam of apparaatnaam ontbreekt in configuratie.",
+                "fr": "L'adaptateur ne plante plus lorsque le nom de l'utilisateur ou de l'appareil est manquant dans la configuration.",
+                "it": "L'adattatore non si arresta più in modo anomalo quando il nome dell'utente o del dispositivo non è presente nella configurazione.",
+                "es": "El adaptador ya no falla cuando falta el nombre del usuario o del dispositivo en la configuración.",
+                "pl": "Adapter nie ulega już awariom, gdy w konfiguracji brakuje nazwy użytkownika lub urządzenia.",
+                "uk": "Адаптер більше не аварійно завершує роботу, якщо в конфігурації відсутнє ім’я користувача або пристрою.",
+                "zh-cn": "当配置中缺少用户或设备名称时，适配器不会再崩溃。"
+            },
             "1.5.9": {
                 "en": "First device of any user was missing in users viewing\nAdded an icon to peers, users, peer and user",
                 "de": "Das erste Gerät eines Benutzers fehlte in der Benutzeransicht.\nEin Symbol für Peers, Benutzer, Peer und Benutzer wurde hinzugefügt",
