@@ -387,14 +387,14 @@ class Wireguard extends utils.Adapter {
                 wg[iFace].peers[peer].persistentKeepalive = data[i][8];
                 if (wg[iFace].peers[peer].connected) connectedPeers.push(peer);
                 if (wg[iFace].peers[peer].connected) {
-                    if (!connectedUsers.includes(wg[iFace].peers[peer].user)) connectedUsers.push(wg[iFace].peers[peer].user);
+                    if (!connectedUsers.includes(user)) connectedUsers.push(user);
                 }
                 // build users perspective
                 if (user !== '' && user.at(-1) !== '.') {
                     // there is a username
-                    if ( Object.prototype.hasOwnProperty.call(wg[iFace].users, wg[iFace].peers[peer].user) ){
+                    if ( Object.prototype.hasOwnProperty.call(wg[iFace].users, user) ){
                         // there is already a connected state
-                        wg[iFace].users[user].connected = ( wg[iFace].users[wg[iFace].peers[peer].user].connected || wg[iFace].peers[peer].connected );
+                        wg[iFace].users[user].connected = ( wg[iFace].users[user].connected || wg[iFace].peers[peer].connected );
                     } else {
                         // create new connected state
                         wg[iFace].users[user] = {'connected' : wg[iFace].peers[peer].connected};
