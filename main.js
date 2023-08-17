@@ -354,53 +354,64 @@ class Wireguard extends utils.Adapter {
         // first row holds server data; rest are peers; last one is empty
         const wg = {};
         for ( let i=0; i<data.length; i++ ) {
+            let iFace;
             if ( i===0 || (data[i][0] !== data[i-1][0]) ){
                 if (data[i][0] === '') break;
-                adapter.log.debug(`New Interface: ${data[i][0]}. Initialize object.`);
-                wg[data[i][0]]= {};
-                // wg[data[i][0]].privateKey = data[i][1]; // don't show the private key of the interface in ioBroker
-                wg[data[i][0]].publicKey= data[i][2];
-                wg[data[i][0]].listenPort = data[i][3];
-                wg[data[i][0]].fwmark = data[i][4];
-                wg[data[i][0]].peers = {};
-                wg[data[i][0]].users = {};
+                iFace = data[i][0];
+                adapter.log.debug(`New Interface: ${iFace}. Initialize object.`);
+                wg[iFace]= {};
+                // wg[iFace].privateKey = data[i][1]; // don't show the private key of the interface in ioBroker
+                wg[iFace].publicKey= data[i][2];
+                wg[iFace].listenPort = data[i][3];
+                wg[iFace].fwmark = data[i][4];
+                wg[iFace].peers = {};
+                wg[iFace].users = {};
             } else {
                 // data fields: interface public_key preshared_key endpoint allowed_ips latest_handshake transfer_rx transfer_tx persistent_keepalive
                 // data fields: [0]       [1]        [2]           [3]      [4]         [5]              [6]         [7]         [8]
-                adapter.log.silly(`New Peer ${data[i][1]} for interface ${ data[i][0] }`);
-                wg[data[i][0]].peers[data[i][1]] = {};
-                wg[data[i][0]].peers[data[i][1]].user = adapter.getUserByPeer(data[i][1]);
-                wg[data[i][0]].peers[data[i][1]].device = adapter.getDeviceByPeer(data[i][1]);
-                wg[data[i][0]].peers[data[i][1]].presharedKey = data[i][2];
-                wg[data[i][0]].peers[data[i][1]].endpoint = data[i][3];
-                wg[data[i][0]].peers[data[i][1]].allowedIps = data[i][4].split(',');
-                wg[data[i][0]].peers[data[i][1]].latestHandshake = data[i][5];
-                wg[data[i][0]].peers[data[i][1]].connected = adapter.isPeerOnline(data[i][5]);
-                wg[data[i][0]].peers[data[i][1]].transferRx = data[i][6];
-                wg[data[i][0]].peers[data[i][1]].transferTx = data[i][7];
-                wg[data[i][0]].peers[data[i][1]].persistentKeepalive = data[i][8];
-                if (wg[data[i][0]].peers[data[i][1]].connected) connectedPeers.push(data[i][1]);
-                if (wg[data[i][0]].peers[data[i][1]].connected) {
-                    if (!connectedUsers.includes(wg[data[i][0]].peers[data[i][1]].user)) connectedUsers.push(wg[data[i][0]].peers[data[i][1]].user);
+                iFace = data[i][0];
+                const peer = data[i][1];
+                const user = adapter.getUserByPeer(peer);
+                const device = adapter.getDeviceByPeer(peer);
+                adapter.log.silly(`New Peer ${peer} for interface ${ iFace }`);
+                wg[iFace].peers[peer] = {};
+                wg[iFace].peers[peer].user = user;
+                wg[iFace].peers[peer].device = device;
+                wg[iFace].peers[peer].presharedKey = data[i][2];
+                wg[iFace].peers[peer].endpoint = data[i][3];
+                wg[iFace].peers[peer].allowedIps = data[i][4].split(',');
+                wg[iFace].peers[peer].latestHandshake = data[i][5];
+                wg[iFace].peers[peer].connected = adapter.isPeerOnline(data[i][5]);
+                wg[iFace].peers[peer].transferRx = data[i][6];
+                wg[iFace].peers[peer].transferTx = data[i][7];
+                wg[iFace].peers[peer].persistentKeepalive = data[i][8];
+                if (wg[iFace].peers[peer].connected) connectedPeers.push(peer);
+                if (wg[iFace].peers[peer].connected) {
+                    if (!connectedUsers.includes(wg[iFace].peers[peer].user)) connectedUsers.push(wg[iFace].peers[peer].user);
                 }
                 // build users perspective
-                if (wg[data[i][0]].peers[data[i][1]].user) {
+                if (user !== '' && user.at(-1) !== '.') {
                     // there is a username
-                    if ( Object.prototype.hasOwnProperty.call(wg[data[i][0]].users, wg[data[i][0]].peers[data[i][1]].user) ){
+                    if ( Object.prototype.hasOwnProperty.call(wg[iFace].users, wg[iFace].peers[peer].user) ){
                         // there is already a connected state
-                        wg[data[i][0]].users[wg[data[i][0]].peers[data[i][1]].user].connected = ( wg[data[i][0]].users[wg[data[i][0]].peers[data[i][1]].user].connected || wg[data[i][0]].peers[data[i][1]].connected );
-                        wg[data[i][0]].users[wg[data[i][0]].peers[data[i][1]].user][adapter.getDeviceByPeer(data[i][1])] = wg[data[i][0]].peers[data[i][1]].connected ;
+                        wg[iFace].users[user].connected = ( wg[iFace].users[wg[iFace].peers[peer].user].connected || wg[iFace].peers[peer].connected );
                     } else {
                         // create new connected state
-                        wg[data[i][0]].users[wg[data[i][0]].peers[data[i][1]].user] = {'connected' : wg[data[i][0]].peers[data[i][1]].connected};
-                        wg[data[i][0]].users[wg[data[i][0]].peers[data[i][1]].user][adapter.getDeviceByPeer(data[i][1])] = wg[data[i][0]].peers[data[i][1]].connected ;
+                        wg[iFace].users[user] = {'connected' : wg[iFace].peers[peer].connected};
                     }
+                    if (device !== '' && device.at(-1) !== '.') {
+                        wg[iFace].users[user][device] = wg[iFace].peers[peer].connected ;
+                    } else {
+                        adapter.log.debug(`There is no device defined for public key: [${peer}] - or it's name is ending in a dot. Skipped creating user object.`);
+                    }
+                } else {
+                    adapter.log.debug(`There is no user defined for public key: [${peer}] - or it's name is ending in a dot. Skipped creating user object.`);
                 }
             }
-            wg[data[i][0]].connectedPeers = connectedPeers.join(', ');
-            wg[data[i][0]].connectedPeersCount = connectedPeers.length;
-            wg[data[i][0]].connectedUsers = connectedUsers.join(', ');
-            wg[data[i][0]].connectedUsersCount = connectedUsers.length;
+            wg[iFace].connectedPeers = connectedPeers.join(', ');
+            wg[iFace].connectedPeersCount = connectedPeers.length;
+            wg[iFace].connectedUsers = connectedUsers.join(', ');
+            wg[iFace].connectedUsersCount = connectedUsers.length;
         }
         return(wg);
     }
