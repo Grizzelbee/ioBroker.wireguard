@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.5.10",
+        "version": "1.5.11",
         "news": {
+            "1.5.11": {
+                "en": "Avoid warning: Cannot read properties of undefined (reading 'at') when user- or devicename is empty",
+                "de": "Warnung vermeiden: Eigenschaften von undefiniert (Lesen von „at“) können nicht gelesen werden, wenn der Benutzer- oder Gerätename leer ist",
+                "ru": "Избегайте предупреждений: невозможно прочитать свойства неопределенного значения (чтение «at»), если имя пользователя или имя устройства пусто.",
+                "pt": "Evite aviso: não é possível ler propriedades de indefinido (lendo 'at') quando o nome do usuário ou do dispositivo está vazio",
+                "nl": "Vermijd waarschuwing: Kan de eigenschappen van ongedefinieerd (lees 'at') niet lezen als de gebruikers- of apparaatnaam leeg is",
+                "fr": "Éviter les avertissements : impossible de lire les propriétés d'undéfini (lecture « at ») lorsque le nom de l'utilisateur ou du périphérique est vide.",
+                "it": "Evita avvertimenti: impossibile leggere le proprietà di unfine (leggendo 'at') quando il nome utente o dispositivo è vuoto",
+                "es": "Evite la advertencia: no se pueden leer las propiedades de indefinido (se lee 'en') cuando el nombre de usuario o dispositivo está vacío",
+                "pl": "Unikaj ostrzeżenia: nie można odczytać właściwości niezdefiniowanych (odczyt „at”), gdy nazwa użytkownika lub urządzenia jest pusta",
+                "uk": "Уникайте попередження: неможливо прочитати властивості undefined (читання 'at'), якщо ім'я користувача або пристрою порожнє",
+                "zh-cn": "避免警告：当用户名或设备名为空时，无法读取未定义的属性（读取“at”）"
+            },
             "1.5.10": {
                 "en": "Adapter doesn't crash anymore when user or device name is missing in config.",
                 "de": "Der Adapter stürzt nicht mehr ab, wenn der Benutzer- oder Gerätename in der Konfiguration fehlt.",
