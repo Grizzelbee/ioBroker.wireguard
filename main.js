@@ -390,7 +390,7 @@ class Wireguard extends utils.Adapter {
                     if (!connectedUsers.includes(user)) connectedUsers.push(user);
                 }
                 // build users perspective
-                if (user !== '' && user.at(-1) !== '.') {
+                if (user && (user !== '') && (user.at(-1) !== '.') ) {
                     // there is a username
                     if ( Object.prototype.hasOwnProperty.call(wg[iFace].users, user) ){
                         // there is already a connected state
@@ -399,7 +399,7 @@ class Wireguard extends utils.Adapter {
                         // create new connected state
                         wg[iFace].users[user] = {'connected' : wg[iFace].peers[peer].connected};
                     }
-                    if (device !== '' && device.at(-1) !== '.') {
+                    if (device && (device !== '') && (device.at(-1) !== '.') ) {
                         wg[iFace].users[user][device] = wg[iFace].peers[peer].connected ;
                     } else {
                         adapter.log.debug(`There is no device defined for public key: [${peer}] - or it's name is ending in a dot. Skipped creating user object.`);
