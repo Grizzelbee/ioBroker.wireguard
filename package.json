@@ -16,6 +16,9 @@
     "type": "git",
     "url": "https://github.com/Grizzelbee/ioBroker.wireguard.git"
   },
+  "engines": {
+    "node": ">= 16"
+  },
   "dependencies": {
     "@iobroker/adapter-core": "^3.0.3",
     "@iobroker/plugin-sentry": "^1.2.1",
