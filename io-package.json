@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.5.11",
+        "version": "1.6.0",
         "news": {
+            "1.6.0": {
+                "en": "(mcm1957) adapter-core 3 is known to fail during installation at node 14 as npm 6 fails to install peerDependencies - So this adapter requires node 16 or newer\n(grizzelbee) Dependencies got updated",
+                "de": "(mcm1957) Adapter-Core 3 schlägt bekanntermaßen während der Installation auf Node 14 fehl, da npm 6 peerDependencies nicht installieren kann – dieser Adapter benötigt also Node 16 oder neuer\n(grizzelbee) Abhängigkeiten wurden aktualisiert",
+                "ru": "(mcm1957) Известно, что ядро ​​адаптера 3 дает сбой во время установки на узле 14, поскольку npm 6 не может установить одноранговые зависимости. Поэтому для этого адаптера требуется узел 16 или новее \n (grizzelbee). Зависимости обновлены.",
+                "pt": "(mcm1957) Sabe-se que o adaptador-core 3 falha durante a instalação no nó 14, pois o npm 6 falha ao instalar peerDependencies - Portanto, este adaptador requer o nó 16 ou mais recente\n(grizzelbee) As dependências foram atualizadas",
+                "nl": "(mcm1957) Het is bekend dat adapter-core 3 faalt tijdens de installatie op knooppunt 14 omdat npm 6 er niet in slaagt peerDependencies te installeren - Deze adapter vereist dus knooppunt 16 of nieuwer\n (grizzelbee) Afhankelijkheden zijn bijgewerkt",
+                "fr": "(mcm1957) l'adaptateur-core 3 est connu pour échouer lors de l'installation sur le nœud 14 car npm 6 ne parvient pas à installer les peerDependencies - Cet adaptateur nécessite donc le nœud 16 ou plus récent\n (grizzelbee) Les dépendances ont été mises à jour",
+                "it": "(mcm1957) è noto che l'adattatore-core 3 non riesce durante l'installazione sul nodo 14 poiché npm 6 non riesce a installare peerDependencies - Quindi questo adattatore richiede il nodo 16 o più recente\n(grizzelbee) Le dipendenze sono state aggiornate",
+                "es": "(mcm1957) Se sabe que el núcleo 3 del adaptador falla durante la instalación en el nodo 14, ya que npm 6 no puede instalar peerDependencies. Por lo tanto, este adaptador requiere el nodo 16 o posterior\n (grizzelbee) Las dependencias se actualizaron",
+                "pl": "(mcm1957) Wiadomo, że rdzeń adaptera 3 ulega awarii podczas instalacji w węźle 14, ponieważ npm 6 nie instaluje zależności równorzędnych - dlatego ten adapter wymaga węzła 16 lub nowszego\n (grizzelbee) Zależności zostały zaktualizowane",
+                "uk": "(mcm1957) Адаптер-ядро 3, як відомо, виходить з ладу під час інсталяції на вузлі 14, оскільки npm 6 не вдається встановити peerDependencies - Отже, для цього адаптера потрібен вузол 16 або новіший\n(grizzelbee) Залежності оновлено",
+                "zh-cn": "(mcm1957) 已知适配器核心 3 在节点 14 上安装期间会失败，因为 npm 6 无法安装对等依赖项 - 因此此适配器需要节点 16 或更高版本\n(grizzelbee) 依赖项已更新"
+            },
             "1.5.11": {
                 "en": "Avoid warning: Cannot read properties of undefined (reading 'at') when user- or devicename is empty",
                 "de": "Warnung vermeiden: Eigenschaften von undefiniert (Lesen von „at“) können nicht gelesen werden, wenn der Benutzer- oder Gerätename leer ist",
