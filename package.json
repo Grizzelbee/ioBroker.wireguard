@@ -32,7 +32,7 @@
     "@iobroker/testing": "^4.1.0",
     "@material-ui/core": "^4.12.4",
     "@snyk/protect": "^1.1217.0",
-    "@types/gulp": "^4.0.13",
+    "@types/gulp": "^4.0.14",
     "chai": "^4.3.8",
     "chai-as-promised": "^7.1.1",
     "eslint": "^8.49.0",
