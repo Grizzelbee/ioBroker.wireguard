@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.6.1",
+        "version": "1.6.2",
         "news": {
+            "1.6.2": {
+                "en": "Dependencies got updated\nfixed sentry issues WIREGUARD-2B & WIREGUARD-2C",
+                "de": "Abhängigkeiten wurden aktualisiert\nSentry-Probleme WIREGUARD-2B und WIREGUARD-2C behoben",
+                "ru": "Зависимости обновлены\nисправлены проблемы со стражей WIREGUARD-2B и WIREGUARD-2C",
+                "pt": "As dependências foram atualizadas \n problemas de sentinela corrigidos WIREGUARD-2B e WIREGUARD-2C",
+                "nl": "Afhankelijkheden zijn bijgewerkt \n Sentry-problemen met WIREGUARD-2B en WIREGUARD-2C opgelost",
+                "fr": "Les dépendances ont été mises à jour \n problèmes de sentinelle résolus WIREGUARD-2B et WIREGUARD-2C",
+                "it": "Le dipendenze sono state aggiornate\nrisolti i problemi di sentinella WIREGUARD-2B e WIREGUARD-2C",
+                "es": "Se actualizaron las dependencias\nSe solucionaron problemas de centinela WIREGUARD-2B y WIREGUARD-2C",
+                "pl": "Zależności zostały zaktualizowane \n naprawiono problemy z wartownikami WIREGUARD-2B i WIREGUARD-2C",
+                "uk": "Залежності оновлено\nвиправлено проблеми з дозорним WIREGUARD-2B і WIREGUARD-2C",
+                "zh-cn": "依赖项已更新\n修复了哨兵问题 WIREGUARD-2B 和 WIREGUARD-2C"
+            },
             "1.6.1": {
                 "en": "(mcm1957) adapter-core 3 is known to fail during installation at node 14 as npm 6 fails to install peerDependencies - So this adapter requires node 16 or newer\n(grizzelbee) Dependencies got updated\nremoved some old news entries in io-package file",
                 "de": "(mcm1957) Adapter-Core 3 schlägt bekanntermaßen während der Installation auf Knoten 14 fehl, da npm 6 peerDependencies nicht installieren kann – dieser Adapter erfordert also Knoten 16 oder neuer\n(grizzelbee) Abhängigkeiten wurden aktualisiert\neinige alte News-Einträge in der io-package-Datei entfernt",
@@ -267,7 +280,11 @@
             {
                 "js-controller": ">=3.3.22"
             }
-        ]
+        ],
+        "licenseInformation": {
+            "type": "free",
+            "license": "MIT"
+        }
     },
     "native": {
         "hosts": [
