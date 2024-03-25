@@ -500,19 +500,21 @@ class Wireguard extends utils.Adapter {
      * @param value {any} value of the datapoint
      */
     createOrExtendObject(id, objData, value) {
-        adapter.getObject(id, function (err, oldObj) {
-            if (!err && oldObj) {
-                if ( objData.common.name === oldObj.common.name && objData.common.icon === oldObj.common.icon){
-                    // adapter.log.debug(`Same object detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
-                    adapter.setState(id, value, true);
-                } else{
-                    // adapter.log.debug(`New group name detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
-                    adapter.extendObject(id, objData, () => {adapter.setState(id, value, true);});
+        if (value && ('undefined' !== typeof value) ){
+            adapter.getObject(id, function (err, oldObj) {
+                if (!err && oldObj) {
+                    if ( objData.common.name === oldObj.common.name && objData.common.icon === oldObj.common.icon){
+                        // adapter.log.debug(`Same object detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
+                        adapter.setState(id, value, true);
+                    } else{
+                        // adapter.log.debug(`New group name detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
+                        adapter.extendObject(id, objData, () => {adapter.setState(id, value, true);});
+                    }
+                } else {
+                    adapter.setObjectNotExists(id, objData, () => {adapter.setState(id, value, true);});
                 }
-            } else {
-                adapter.setObjectNotExists(id, objData, () => {adapter.setState(id, value, true);});
-            }
-        });
+            });
+        }
     }
 
 
