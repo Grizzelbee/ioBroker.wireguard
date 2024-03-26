@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.6.1",
+        "version": "1.6.2",
         "news": {
+            "1.6.2": {
+                "en": "Dependencies got updated*fixed sentry issues WIREGUARD-2B & WIREGUARD-2C*Adapter requires at least node 18.x",
+                "de": "Abhängigkeiten wurden aktualisiert*Sentry-Probleme WIREGUARD-2B und WIREGUARD-2C behoben*Adapter erfordert mindestens Node 18.x",
+                "ru": "Зависимости обновлены*исправлены проблемы со стражей WIREGUARD-2B и WIREGUARD-2C*Для адаптера требуется как минимум узел 18.x",
+                "pt": "As dependências foram atualizadas*problemas de sentinela corrigidos WIREGUARD-2B e WIREGUARD-2C*O adaptador requer pelo menos o nó 18.x",
+                "nl": "Afhankelijkheden zijn bijgewerkt * Sentry-problemen opgelost WIREGUARD-2B & WIREGUARD-2C * Adapter vereist minimaal Node 18.x",
+                "fr": "Les dépendances ont été mises à jour * Problèmes de sentinelle résolus WIREGUARD-2B et WIREGUARD-2C * L'adaptateur nécessite au moins le nœud 18.x",
+                "it": "Le dipendenze sono state aggiornate*Risolti i problemi di sentinella WIREGUARD-2B e WIREGUARD-2C*L'adattatore richiede almeno il nodo 18.x",
+                "es": "Se actualizaron las dependencias*Se solucionaron problemas de centinela WIREGUARD-2B y WIREGUARD-2C*El adaptador requiere al menos el nodo 18.x",
+                "pl": "Zależności zostały zaktualizowane* naprawiono problemy ze strażnikami WIREGUARD-2B i WIREGUARD-2C*Adapter wymaga co najmniej węzła 18.x",
+                "uk": "Залежності оновлено*виправлено проблеми з дозорним WIREGUARD-2B & WIREGUARD-2C*Адаптер вимагає принаймні вузла 18.x",
+                "zh-cn": "依赖项已更新*修复了哨兵问题 WIREGUARD-2B 和 WIREGUARD-2C*适配器至少需要节点 18.x"
+            },
             "1.6.1": {
                 "en": "(mcm1957) adapter-core 3 is known to fail during installation at node 14 as npm 6 fails to install peerDependencies - So this adapter requires node 16 or newer\n(grizzelbee) Dependencies got updated\nremoved some old news entries in io-package file",
                 "de": "(mcm1957) Adapter-Core 3 schlägt bekanntermaßen während der Installation auf Knoten 14 fehl, da npm 6 peerDependencies nicht installieren kann – dieser Adapter erfordert also Knoten 16 oder neuer\n(grizzelbee) Abhängigkeiten wurden aktualisiert\neinige alte News-Einträge in der io-package-Datei entfernt",
@@ -153,7 +166,6 @@
         "keywords": [
             "wireguard"
         ],
-        "license": "MIT",
         "platform": "Javascript/Node.js",
         "main": "main.js",
         "icon": "wireguard.svg",
@@ -267,7 +279,11 @@
             {
                 "js-controller": ">=3.3.22"
             }
-        ]
+        ],
+        "licenseInformation": {
+            "type": "free",
+            "license": "MIT"
+        }
     },
     "native": {
         "hosts": [
