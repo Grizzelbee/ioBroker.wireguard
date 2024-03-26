@@ -106,9 +106,10 @@ Basically there are three ways to execute the command:
 ## Changelog
 ### **WORK IN PROGRESS**
 
-### 1.6.2 (2024-03-25)
+### 1.6.2 (2024-03-26)
 * (grizzelbee) Upd: Dependencies got updated
 * (grizzelbee) Fix: fixed sentry issues WIREGUARD-2B & WIREGUARD-2C
+* (grizzelbee) Upd: Adapter requires at least node 18.x
 
 ### 1.6.1 (2023-09-14)
 * (mcm1957) Fix: [#90](https://github.com/Grizzelbee/ioBroker.wireguard/pull/90) adapter-core 3.x.x is known to fail during installation at node 14 as npm 6 fails to install peerDependencies. So this adapter requires node 16 or newer
