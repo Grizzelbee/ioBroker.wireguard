@@ -514,6 +514,8 @@ class Wireguard extends utils.Adapter {
                     adapter.setObjectNotExists(id, objData, () => {adapter.setState(id, value, true);});
                 }
             });
+        } else {
+            adapter.log.warn(`Setting ${id} to ${value} is senseless. Please open an issue on github and provide a debug log sowing the occurrence of this issue.`);
         }
     }
 
