@@ -1,20 +1,33 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.6.2",
+        "version": "1.6.3",
         "news": {
+            "1.6.3": {
+                "en": "Dependencies got updated\nRemoved annoying warning when setting null or undefined values (introduced in v1.6.2)\nRequiring at least admin v6.13.16",
+                "de": "Abhängigkeiten wurden aktualisiert. \n Ärgerliche Warnung beim Festlegen von Null- oder undefinierten Werten entfernt (eingeführt in Version 1.6.2). \n Mindestens Admin-Version 6.13.16 erforderlich",
+                "ru": "Зависимости обновлены. \n Удалено надоедливое предупреждение при установке нулевых или неопределенных значений (введено в версии 1.6.2). \n Требуется как минимум администратор v6.13.16.",
+                "pt": "As dependências foram atualizadas\n Aviso irritante removido ao definir valores nulos ou indefinidos (introduzido na v1.6.2)\n Requer pelo menos admin v6.13.16",
+                "nl": "Afhankelijkheden zijn bijgewerkt \n Vervelende waarschuwing verwijderd bij het instellen van nul- of ongedefinieerde waarden (geïntroduceerd in v1.6.2) \n Minimaal beheerder v6.13.16 vereist",
+                "fr": "Les dépendances ont été mises à jour \n Suppression d'un avertissement ennuyeux lors de la définition de valeurs nulles ou non définies (introduites dans la v1.6.2) \n Nécessitant au moins l'administrateur v6.13.16",
+                "it": "Le dipendenze sono state aggiornate\nRimosso il fastidioso avviso quando si impostano valori null o non definiti (introdotti nella v1.6.2)\nRichiede almeno l'amministratore v6.13.16",
+                "es": "Se actualizaron las dependencias\n Se eliminó la molesta advertencia al establecer valores nulos o indefinidos (introducido en v1.6.2)\n Se requiere al menos admin v6.13.16",
+                "pl": "Zaktualizowano zależności\n Usunięto irytujące ostrzeżenie podczas ustawiania wartości null lub niezdefiniowanych (wprowadzono w wersji 1.6.2) \n Wymagane co najmniej uprawnienia administratora w wersji 6.13.16",
+                "uk": "Залежності оновлено\nВилучено дратівливе попередження під час встановлення нульових або невизначених значень (введено у версії 1.6.2)\nПотрібен принаймні адміністратор v6.13.16",
+                "zh-cn": "依赖项已更新\n删除了设置 null 或未定义值时烦人的警告（在 v1.6.2 中引入）\n至少需要 admin v6.13.16"
+            },
             "1.6.2": {
-                "en": "Dependencies got updated*fixed sentry issues WIREGUARD-2B & WIREGUARD-2C*Adapter requires at least node 18.x",
-                "de": "Abhängigkeiten wurden aktualisiert*Sentry-Probleme WIREGUARD-2B und WIREGUARD-2C behoben*Adapter erfordert mindestens Node 18.x",
-                "ru": "Зависимости обновлены*исправлены проблемы со стражей WIREGUARD-2B и WIREGUARD-2C*Для адаптера требуется как минимум узел 18.x",
-                "pt": "As dependências foram atualizadas*problemas de sentinela corrigidos WIREGUARD-2B e WIREGUARD-2C*O adaptador requer pelo menos o nó 18.x",
-                "nl": "Afhankelijkheden zijn bijgewerkt * Sentry-problemen opgelost WIREGUARD-2B & WIREGUARD-2C * Adapter vereist minimaal Node 18.x",
-                "fr": "Les dépendances ont été mises à jour * Problèmes de sentinelle résolus WIREGUARD-2B et WIREGUARD-2C * L'adaptateur nécessite au moins le nœud 18.x",
-                "it": "Le dipendenze sono state aggiornate*Risolti i problemi di sentinella WIREGUARD-2B e WIREGUARD-2C*L'adattatore richiede almeno il nodo 18.x",
-                "es": "Se actualizaron las dependencias*Se solucionaron problemas de centinela WIREGUARD-2B y WIREGUARD-2C*El adaptador requiere al menos el nodo 18.x",
-                "pl": "Zależności zostały zaktualizowane* naprawiono problemy ze strażnikami WIREGUARD-2B i WIREGUARD-2C*Adapter wymaga co najmniej węzła 18.x",
-                "uk": "Залежності оновлено*виправлено проблеми з дозорним WIREGUARD-2B & WIREGUARD-2C*Адаптер вимагає принаймні вузла 18.x",
-                "zh-cn": "依赖项已更新*修复了哨兵问题 WIREGUARD-2B 和 WIREGUARD-2C*适配器至少需要节点 18.x"
+                "en": "Dependencies got updated\nfixed sentry issues WIREGUARD-2B & WIREGUARD-2C\nAdapter requires at least node 18.x",
+                "de": "Abhängigkeiten wurden aktualisiert\nSentry-Probleme WIREGUARD-2B und WIREGUARD-2C behoben\nAdapter erfordert mindestens Node 18.x",
+                "ru": "Зависимости обновлены\nисправлены проблемы со стражей WIREGUARD-2B и WIREGUARD-2C\nДля адаптера требуется как минимум узел 18.x",
+                "pt": "As dependências foram atualizadas\nproblemas de sentinela corrigidos WIREGUARD-2B e WIREGUARD-2C\nO adaptador requer pelo menos o nó 18.x",
+                "nl": "Afhankelijkheden zijn bijgewerkt \n Sentry-problemen opgelost WIREGUARD-2B & WIREGUARD-2C \n Adapter vereist minimaal Node 18.x",
+                "fr": "Les dépendances ont été mises à jour \n Problèmes de sentinelle résolus WIREGUARD-2B et WIREGUARD-2C \n L'adaptateur nécessite au moins le nœud 18.x",
+                "it": "Le dipendenze sono state aggiornate\nRisolti i problemi di sentinella WIREGUARD-2B e WIREGUARD-2C\nL'adattatore richiede almeno il nodo 18.x",
+                "es": "Se actualizaron las dependencias\nSe solucionaron problemas de centinela WIREGUARD-2B y WIREGUARD-2C\nEl adaptador requiere al menos el nodo 18.x",
+                "pl": "Zależności zostały zaktualizowane\n naprawiono problemy ze strażnikami WIREGUARD-2B i WIREGUARD-2C\nAdapter wymaga co najmniej węzła 18.x",
+                "uk": "Залежності оновлено\nвиправлено проблеми з дозорним WIREGUARD-2B & WIREGUARD-2C\nАдаптер вимагає принаймні вузла 18.x",
+                "zh-cn": "依赖项已更新\n修复了哨兵问题 WIREGUARD-2B 和 WIREGUARD-2C\n适配器至少需要节点 18.x"
             },
             "1.6.1": {
                 "en": "(mcm1957) adapter-core 3 is known to fail during installation at node 14 as npm 6 fails to install peerDependencies - So this adapter requires node 16 or newer\n(grizzelbee) Dependencies got updated\nremoved some old news entries in io-package file",
@@ -272,7 +285,7 @@
         ],
         "globalDependencies": [
             {
-                "admin": ">=5.1.13"
+                "admin": ">=6.13.16"
             }
         ],
         "dependencies": [
