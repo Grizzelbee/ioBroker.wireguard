@@ -500,7 +500,7 @@ class Wireguard extends utils.Adapter {
      * @param value {any} value of the datapoint
      */
     createOrExtendObject(id, objData, value) {
-        if (value && ('undefined' !== typeof value) ){
+        if (value !== null && ('undefined' !== typeof value) ){
             adapter.getObject(id, function (err, oldObj) {
                 if (!err && oldObj) {
                     if ( objData.common.name === oldObj.common.name && objData.common.icon === oldObj.common.icon){
@@ -515,7 +515,8 @@ class Wireguard extends utils.Adapter {
                 }
             });
         } else {
-            adapter.log.warn(`Setting ${id} to ${value} is senseless. Please open an issue on github and provide a debug log sowing the occurrence of this issue.`);
+            adapter.log.debug(`Setting ${id} to ${value} is senseless.`);
+            adapter.log.debug(`This usually only happens when you misconfigure this adapter. Please read the documentation on gitHub and fix your config.`);
         }
     }
 
