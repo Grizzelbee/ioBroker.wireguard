@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.6.3",
+        "version": "1.6.4",
         "news": {
+            "1.6.4": {
+                "en": "Dependencies got updated",
+                "de": "Abhängigkeiten wurden aktualisiert",
+                "ru": "Зависимости обновлены",
+                "pt": "As dependências foram atualizadas",
+                "nl": "Afhankelijkheden zijn bijgewerkt",
+                "fr": "Les dépendances ont été mises à jour",
+                "it": "Le dipendenze sono state aggiornate",
+                "es": "Se actualizaron las dependencias",
+                "pl": "Zależności zostały zaktualizowane",
+                "uk": "Залежності оновлено",
+                "zh-cn": "依赖项已更新"
+            },
             "1.6.3": {
                 "en": "Dependencies got updated\nRemoved annoying warning when setting null or undefined values (introduced in v1.6.2)\nRequiring at least admin v6.13.16",
                 "de": "Abhängigkeiten wurden aktualisiert. \n Ärgerliche Warnung beim Festlegen von Null- oder undefinierten Werten entfernt (eingeführt in Version 1.6.2). \n Mindestens Admin-Version 6.13.16 erforderlich",
@@ -180,7 +193,6 @@
             "wireguard"
         ],
         "platform": "Javascript/Node.js",
-        "main": "main.js",
         "icon": "wireguard.svg",
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/Grizzelbee/ioBroker.wireguard/main/admin/wireguard.svg",
@@ -195,7 +207,6 @@
         "adminUI": {
             "config": "json"
         },
-        "materialize": true,
         "plugins": {
             "sentry": {
                 "dsn": "https://42007d6f59b74b5db06d6bfaf23d4d98@o505019.ingest.sentry.io/6215712"
