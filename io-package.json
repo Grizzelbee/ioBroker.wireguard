@@ -193,7 +193,6 @@
             "wireguard"
         ],
         "platform": "Javascript/Node.js",
-        "main": "main.js",
         "icon": "wireguard.svg",
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/Grizzelbee/ioBroker.wireguard/main/admin/wireguard.svg",
@@ -208,7 +207,6 @@
         "adminUI": {
             "config": "json"
         },
-        "materialize": true,
         "plugins": {
             "sentry": {
                 "dsn": "https://42007d6f59b74b5db06d6bfaf23d4d98@o505019.ingest.sentry.io/6215712"
