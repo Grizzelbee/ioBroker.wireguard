@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "wireguard",
-        "version": "1.6.3",
+        "version": "1.6.4",
         "news": {
+            "1.6.4": {
+                "en": "Dependencies got updated"
+            },
             "1.6.3": {
                 "en": "Dependencies got updated\nRemoved annoying warning when setting null or undefined values (introduced in v1.6.2)\nRequiring at least admin v6.13.16",
                 "de": "Abhängigkeiten wurden aktualisiert. \n Ärgerliche Warnung beim Festlegen von Null- oder undefinierten Werten entfernt (eingeführt in Version 1.6.2). \n Mindestens Admin-Version 6.13.16 erforderlich",
