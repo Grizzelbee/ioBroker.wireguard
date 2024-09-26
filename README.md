@@ -105,6 +105,7 @@ Basically there are three ways to execute the command:
 
 ## Changelog
 ### **WORK IN PROGRESS**
+* (@foxriver76) Removed `@iobroker/plugin-sentry` dependency
 
 ### 1.6.4 (2024-05-08)
 * (grizzelbee) Upd: Dependencies got updated
