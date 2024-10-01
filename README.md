@@ -105,6 +105,8 @@ Basically there are three ways to execute the command:
 
 ## Changelog
 ### **WORK IN PROGRESS**
+* (grizzelbee) Upd: Dependencies got updated
+* (grizzelbee) Fix: [#120](https://github.com/Grizzelbee/ioBroker.wireguard/issues/120) Fixed some issues mentioned by adapter-checker 
 
 ### 1.6.4 (2024-05-08)
 * (grizzelbee) Upd: Dependencies got updated
