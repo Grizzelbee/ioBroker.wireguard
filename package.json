@@ -9,6 +9,7 @@
   "homepage": "https://github.com/Grizzelbee/ioBroker.wireguard",
   "license": "MIT",
   "keywords": [
+    "iobroker",
     "wireguard",
     "monitoring"
   ],
@@ -33,7 +34,7 @@
     "@snyk/protect": "^1.1293.1",
     "@types/gulp": "^4.0.17",
     "chai": "^4.1.1",
-    "chai-as-promised": "^7.1.2",
+    "chai-as-promised": "^8.0.0",
     "eslint": "^8.57.1",
     "eslint-plugin-react": "^7.37.0",
     "mocha": "^10.7.3",

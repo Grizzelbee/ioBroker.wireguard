@@ -67,97 +67,6 @@
                 "pl": "Unikaj ostrzeżenia: nie można odczytać właściwości niezdefiniowanych (odczyt „at”), gdy nazwa użytkownika lub urządzenia jest pusta",
                 "uk": "Уникайте попередження: неможливо прочитати властивості undefined (читання 'at'), якщо ім'я користувача або пристрою порожнє",
                 "zh-cn": "避免警告：当用户名或设备名为空时，无法读取未定义的属性（读取“at”）"
-            },
-            "1.5.10": {
-                "en": "Adapter doesn't crash anymore when user or device name is missing in config.",
-                "de": "Der Adapter stürzt nicht mehr ab, wenn der Benutzer- oder Gerätename in der Konfiguration fehlt.",
-                "ru": "Адаптер больше не падает, когда имя пользователя или устройства отсутствует в конфигурации.",
-                "pt": "O adaptador não trava mais quando o nome do usuário ou do dispositivo está ausente na configuração.",
-                "nl": "Adapter crasht niet meer wanneer gebruikersnaam of apparaatnaam ontbreekt in configuratie.",
-                "fr": "L'adaptateur ne plante plus lorsque le nom de l'utilisateur ou de l'appareil est manquant dans la configuration.",
-                "it": "L'adattatore non si arresta più in modo anomalo quando il nome dell'utente o del dispositivo non è presente nella configurazione.",
-                "es": "El adaptador ya no falla cuando falta el nombre del usuario o del dispositivo en la configuración.",
-                "pl": "Adapter nie ulega już awariom, gdy w konfiguracji brakuje nazwy użytkownika lub urządzenia.",
-                "uk": "Адаптер більше не аварійно завершує роботу, якщо в конфігурації відсутнє ім’я користувача або пристрою.",
-                "zh-cn": "当配置中缺少用户或设备名称时，适配器不会再崩溃。"
-            },
-            "1.5.9": {
-                "en": "First device of any user was missing in users viewing\nAdded an icon to peers, users, peer and user",
-                "de": "Das erste Gerät eines Benutzers fehlte in der Benutzeransicht.\nEin Symbol für Peers, Benutzer, Peer und Benutzer wurde hinzugefügt",
-                "ru": "Первое устройство любого пользователя отсутствовало при просмотре пользователями \n Добавлен значок для одноранговых узлов, пользователей, однорангового узла и пользователя.",
-                "pt": "Faltava o primeiro dispositivo de qualquer usuário na visualização dos usuários\nAdicionou um ícone para pares, usuários, par e usuário",
-                "nl": "Het eerste apparaat van een gebruiker ontbrak bij het bekijken van gebruikers\n Een pictogram toegevoegd aan peers, gebruikers, peer en gebruiker",
-                "fr": "Le premier appareil de n'importe quel utilisateur manquait dans la visualisation des utilisateurs \n Ajout d'une icône aux pairs, aux utilisateurs, aux pairs et à l'utilisateur",
-                "it": "Il primo dispositivo di qualsiasi utente mancava nella visualizzazione degli utenti\nAggiunta un'icona a peer, utenti, peer e utente",
-                "es": "Faltaba el primer dispositivo de cualquier usuario en la visualización de usuarios \n Se agregó un ícono a pares, usuarios, pares y usuarios",
-                "pl": "Brak pierwszego urządzenia dowolnego użytkownika podczas przeglądania użytkowników \n Dodano ikonę do rówieśników, użytkowników, rówieśników i użytkowników",
-                "uk": "Перший пристрій будь-якого користувача був відсутній під час перегляду користувачів\nДодано піктограму для однорангових пристроїв, користувачів, однорангового пристрою та користувача",
-                "zh-cn": "用户查看时缺少任何用户的第一台设备\n向同伴、用户、同伴和用户添加了图标"
-            },
-            "1.5.8": {
-                "en": "Interface is now correctly set to offline if host is not reachable.",
-                "de": "Die Schnittstelle wird jetzt korrekt auf offline gesetzt, wenn der Host nicht erreichbar ist.",
-                "ru": "Интерфейс теперь корректно устанавливается в автономный режим, если хост недоступен.",
-                "pt": "A interface agora está definida corretamente como offline se o host não estiver acessível.",
-                "nl": "Interface is nu correct ingesteld op offline als host niet bereikbaar is.",
-                "fr": "L'interface est maintenant correctement définie sur hors ligne si l'hôte n'est pas accessible.",
-                "it": "L'interfaccia ora è impostata correttamente su offline se l'host non è raggiungibile.",
-                "es": "La interfaz ahora está correctamente configurada como fuera de línea si no se puede acceder al host.",
-                "pl": "Interfejs jest teraz prawidłowo ustawiony na tryb offline, jeśli host jest nieosiągalny.",
-                "uk": "Інтерфейс тепер правильно налаштований на автономний режим, якщо хост недоступний.",
-                "zh-cn": "如果无法访问主机，接口现在会正确设置为脱机。"
-            },
-            "1.5.7": {
-                "en": "Added missing icon file\nSome fixes to make iobroker.adapterchecker happy\nAnother icon fix",
-                "de": "Fehlende Symboldatei hinzugefügt\nEinige Korrekturen, um iobroker.adapterchecker glücklich zu machen\nEine weitere Symbolkorrektur",
-                "ru": "Добавлен отсутствующий файл значка \n Некоторые исправления, чтобы сделать iobroker.adapterchecker счастливым \n Еще одно исправление значка",
-                "pt": "Adicionado arquivo de ícone ausente \nAlgumas correções para deixar iobroker.adapterchecker feliz \nOutra correção de ícone",
-                "nl": "Ontbrekend pictogrambestand toegevoegd \n Enkele oplossingen om iobroker.adapterchecker blij te maken \n Nog een pictogramfix",
-                "fr": "Ajout du fichier d'icône manquant \n Quelques correctifs pour rendre iobroker.adapterchecker heureux \n Un autre correctif d'icône",
-                "it": "Aggiunto file icona mancante \n Alcune correzioni per rendere felice iobroker.adapterchecker \n Un'altra correzione dell'icona",
-                "es": "Se agregó el archivo de icono faltante \n Algunas correcciones para hacer feliz a iobroker.adapterchecker \n Otra corrección de icono",
-                "pl": "Dodano brakujący plik ikony \n Kilka poprawek, aby uszczęśliwić iobroker.adapterchecker \n Kolejna poprawka ikony",
-                "uk": "Додано відсутній файл значка\nДеякі виправлення, щоб зробити iobroker.adapterchecker щасливим\nЩе одне виправлення значка",
-                "zh-cn": "添加了丢失的图标文件\n一些修复以使 iobroker.adapterchecker 满意\n另一个图标修复"
-            },
-            "1.5.2": {
-                "en": "Adapter does not crash anymore when host isn't reachable\nAdded .releaseconfig file\nAdded icon to interface-device\nSome fixes to make iobroker.adapterchecker happy",
-                "de": "Der Adapter stürzt nicht mehr ab, wenn der Host nicht erreichbar ist. \n .releaseconfig-Datei hinzugefügt \n Symbol zum Schnittstellengerät hinzugefügt \n Einige Korrekturen, um iobroker.adapterchecker zufrieden zu stellen",
-                "ru": "Адаптер больше не падает, когда хост недоступен \n Добавлен файл .releaseconfig \n Добавлен значок для интерфейса-устройства \n Некоторые исправления, чтобы сделать iobroker.adapterchecker счастливым",
-                "pt": "O adaptador não trava mais quando o host não está acessível\nAdicionado arquivo .releaseconfig\nAdicionado ícone ao dispositivo de interface\nAlgumas correções para deixar o iobroker.adapterchecker feliz",
-                "nl": "Adapter crasht niet meer wanneer de host niet bereikbaar is\n .releaseconfig-bestand toegevoegd\n Pictogram toegevoegd aan interface-apparaat\n Enkele oplossingen om iobroker.adapterchecker blij te maken",
-                "fr": "L'adaptateur ne plante plus lorsque l'hôte n'est pas accessible \n Ajout du fichier .releaseconfig \n Ajout d'une icône à l'interface-device \n Quelques correctifs pour rendre iobroker.adapterchecker heureux",
-                "it": "L'adattatore non si arresta più in modo anomalo quando l'host non è raggiungibile\n Aggiunto file .releaseconfig\n Aggiunta icona al dispositivo di interfaccia\n Alcune correzioni per rendere felice iobroker.adapterchecker",
-                "es": "El adaptador ya no falla cuando no se puede acceder al host \n Archivo .releaseconfig agregado \n Ícono agregado al dispositivo de interfaz \n Algunas correcciones para hacer feliz a iobroker.adapterchecker",
-                "pl": "Karta nie ulega już awarii, gdy host jest nieosiągalny \n Dodano plik .release config \n Dodano ikonę do urządzenia interfejsu \n Kilka poprawek, aby uszczęśliwić iobroker.",
-                "uk": "Адаптер більше не аварійно завершує роботу, коли хост недоступний\nДодано файл .releaseconfig\nДодано піктограму до інтерфейсного пристрою\nДеякі виправлення для задоволення iobroker.adapterchecker",
-                "zh-cn": "当主机无法访问时，适配器不再崩溃\n添加了 .releaseconfig 文件\n向接口设备添加了图标\n一些修复以使 iobroker.adapterchecker 满意"
-            },
-            "1.5.1": {
-                "en": "Fixed: No names in object tree\nFixed: Online state of interface isn't set correctly if more than one server is queried\nDependencies got updated",
-                "de": "Behoben: Keine Namen im Objektbaum\nBehoben: Der Online-Status der Schnittstelle wird nicht korrekt eingestellt, wenn mehr als ein Server abgefragt wird\nAbhängigkeiten wurden aktualisiert",
-                "ru": "Исправлено: нет имен в дереве объектов. \n Исправлено: онлайн-состояние интерфейса устанавливается неправильно, если запрашивается более одного сервера. \n Зависимости были обновлены.",
-                "pt": "Corrigido: Sem nomes na árvore de objetos\nCorrigido: O estado online da interface não é definido corretamente se mais de um servidor for consultado\nAs dependências foram atualizadas",
-                "nl": "Opgelost: geen namen in de objectboom \n Opgelost: de online status van de interface is niet correct ingesteld als meer dan één server wordt opgevraagd \n Afhankelijkheden zijn bijgewerkt",
-                "fr": "Corrigé : aucun nom dans l'arborescence d'objets\nCorrigé : l'état en ligne de l'interface n'est pas défini correctement si plusieurs serveurs sont interrogés\nLes dépendances ont été mises à jour",
-                "it": "Risolto: nessun nome nell'albero degli oggetti\n Risolto: lo stato online dell'interfaccia non è impostato correttamente se viene interrogato più di un server\n Le dipendenze sono state aggiornate",
-                "es": "Solucionado: No hay nombres en el árbol de objetos. \n Solucionado: el estado en línea de la interfaz no se configura correctamente si se consulta más de un servidor. \n Las dependencias se actualizaron.",
-                "pl": "Naprawiono: brak nazw w drzewie obiektów\nNaprawiono: stan online interfejsu nie jest ustawiony poprawnie, jeśli zapytano więcej niż jeden serwer\nZaktualizowano zależności",
-                "uk": "Виправлено: немає імен у дереві об’єктів\nВиправлено: онлайн-стан інтерфейсу встановлено неправильно, якщо запитується більше ніж один сервер\nЗалежності оновлено",
-                "zh-cn": "已修复：对象树中没有名称\n已修复：如果查询多个服务器，则无法正确设置接口的在线状态\n依赖项已更新"
-            },
-            "1.5.0": {
-                "en": "New: Splitted Peer names in config in user and device names; So that you are able to group devices by user\nNew: Some new data fields: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount and connection states per user\nFix: Fixed continuous recreation of objects",
-                "de": "Neu: Aufgeteilte Peer-Namen in der Konfiguration in Benutzer- und Gerätenamen; Damit Sie Geräte nach Benutzer gruppieren können\nNeu: Einige neue Datenfelder: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount und Verbindungsstatus pro Benutzer\nFix: Kontinuierliche Neuerstellung von Objekten behoben",
-                "ru": "Новое: разделенные имена пиров в конфигурации в именах пользователей и устройств; Чтобы вы могли группировать устройства по пользователям \n Новое: некоторые новые поля данных:connectedPeers,connectedPeersCount,connectedUsers,connectedUsersCount и состояния подключения для каждого пользователя\nFix:Исправлено непрерывное воссоздание объектов",
-                "pt": "Novo: Nomes de pares divididos na configuração em nomes de usuários e dispositivos; Para que você possa agrupar dispositivos por usuário\nNovo: Alguns novos campos de dados: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount e estados de conexão por usuário\nCorreção: Corrigida recriação contínua de objetos",
-                "nl": "Nieuw: gesplitste namen van peers in configuratie in gebruikers- en apparaatnamen; Zodat u apparaten per gebruiker kunt groeperen\nNieuw: enkele nieuwe gegevensvelden: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount en verbindingsstatussen per gebruiker\nFix: vaste continue recreatie van objecten",
-                "fr": "Nouveau : Noms d'homologues fractionnés dans la configuration des noms d'utilisateur et d'appareil ; Pour que vous puissiez regrouper les appareils par utilisateur\nNouveau : Quelques nouveaux champs de données : connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount et les états de connexion par utilisateur\nFix : Correction de la recréation continue des objets",
-                "it": "Novità: nomi di peer divisi nella configurazione nei nomi di utenti e dispositivi; In modo che tu sia in grado di raggruppare i dispositivi per utente \n Novità: alcuni nuovi campi dati: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount e stati di connessione per utente \n Correzione: correzione della ricreazione continua di oggetti",
-                "es": "Nuevo: nombres de pares divididos en la configuración en nombres de usuario y dispositivo; Para que pueda agrupar dispositivos por usuario \n Nuevo: algunos campos de datos nuevos: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount y estados de conexión por usuario \n Solución: recreación continua fija de objetos",
-                "pl": "Nowość: Podzielone nazwy Peer w konfiguracji w nazwach użytkowników i urządzeń; Abyś mógł grupować urządzenia według użytkowników\nNowość: Niektóre nowe pola danych:connectedPeers,connectedPeersCount,connectUsers,connectUsersCount i stany połączeń na użytkownika\nPoprawka: Naprawiono ciągłe odtwarzanie obiektów",
-                "uk": "Нове: розділені імена вузлів у конфігурації в іменах користувачів і пристроїв; Щоб ви могли групувати пристрої за користувачами\nНове: деякі нові поля даних:connectedPeers,connectedPeersCount,connectedUsers,connectedUsersCount і стани з’єднання для кожного користувача\nВиправлення: виправлено постійне повторне створення об’єктів",
-                "zh-cn": "新：在用户和设备名称中的配置中分割对等名称；这样您就可以按用户对设备进行分组\n新增：一些新的数据字段：connectedPeers、connectedPeersCount、connectedUsers、connectedUsersCount 和每个用户的连接状态\n修复：修复了对象的连续重新创建"
             }
         },
         "titleLang": {
@@ -301,7 +210,7 @@
         ],
         "dependencies": [
             {
-                "js-controller": ">=3.3.22"
+                "js-controller": ">=5.0.19"
             }
         ],
         "licenseInformation": {
