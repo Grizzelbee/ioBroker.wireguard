@@ -104,9 +104,9 @@ Basically there are three ways to execute the command:
 * none
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.7.0 (2024-10-01)
 * (grizzelbee) Upd: Dependencies got updated
-* (grizzelbee) Fix: [#120](https://github.com/Grizzelbee/ioBroker.wireguard/issues/120) Fixed some issues mentioned by adapter-checker 
+* (grizzelbee) Fix: [#120](https://github.com/Grizzelbee/ioBroker.wireguard/issues/120) Fixed some issues mentioned by adapter-checker
 
 ### 1.6.4 (2024-05-08)
 * (grizzelbee) Upd: Dependencies got updated
@@ -137,7 +137,7 @@ Basically there are three ways to execute the command:
 * (grizzelbee) New: Added an icon to peers, users, peer and user
 
 ### 1.5.8 (2023-08-11)
-* (grizzelbee) Fix: Interface is now correctly set to offline if host is not reachable. 
+* (grizzelbee) Fix: Interface is now correctly set to offline if host is not reachable.
 
 ### 1.5.7 (2023-08-10)
 * (grizzelbee) Fix: Added missing icon file
@@ -172,7 +172,7 @@ Basically there are three ways to execute the command:
 * (grizzelbee) Chg: Moved over to new jsonConfig Admin UI
 
 ### 1.3.2 (2022-09-07)
-* (grizzelbee) New: [#38](https://github.com/Grizzelbee/ioBroker.wireguard/issues/38) Fixed "Adapter doesn't come online" bug caused by pseudo-tty settings 
+* (grizzelbee) New: [#38](https://github.com/Grizzelbee/ioBroker.wireguard/issues/38) Fixed "Adapter doesn't come online" bug caused by pseudo-tty settings
 
 ### 1.3.1 (2022-06-26)
 * (grizzelbee) New: [#33](https://github.com/Grizzelbee/ioBroker.wireguard/issues/33) Added button to resume a single peer
@@ -246,7 +246,6 @@ Basically there are three ways to execute the command:
 
 ### v0.0.1
 * (grizzelbee) initial release
-
 
 ## sentry.io
 This adapter uses sentry.io to collect details on crashes and report it automated to the author.
