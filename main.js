@@ -500,19 +500,24 @@ class Wireguard extends utils.Adapter {
      * @param value {any} value of the datapoint
      */
     createOrExtendObject(id, objData, value) {
-        adapter.getObject(id, function (err, oldObj) {
-            if (!err && oldObj) {
-                if ( objData.common.name === oldObj.common.name && objData.common.icon === oldObj.common.icon){
-                    // adapter.log.debug(`Same object detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
-                    adapter.setState(id, value, true);
-                } else{
-                    // adapter.log.debug(`New group name detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
-                    adapter.extendObject(id, objData, () => {adapter.setState(id, value, true);});
+        if (value !== null && ('undefined' !== typeof value) ){
+            adapter.getObject(id, function (err, oldObj) {
+                if (!err && oldObj) {
+                    if ( objData.common.name === oldObj.common.name && objData.common.icon === oldObj.common.icon){
+                        // adapter.log.debug(`Same object detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
+                        adapter.setState(id, value, true);
+                    } else{
+                        // adapter.log.debug(`New group name detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
+                        adapter.extendObject(id, objData, () => {adapter.setState(id, value, true);});
+                    }
+                } else {
+                    adapter.setObjectNotExists(id, objData, () => {adapter.setState(id, value, true);});
                 }
-            } else {
-                adapter.setObjectNotExists(id, objData, () => {adapter.setState(id, value, true);});
-            }
-        });
+            });
+        } else {
+            adapter.log.debug(`Setting ${id} to ${value} is senseless.`);
+            adapter.log.debug(`This usually only happens when you misconfigure this adapter. Please read the documentation on gitHub and fix your config.`);
+        }
     }
 
 

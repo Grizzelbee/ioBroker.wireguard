@@ -1,471 +1,290 @@
 {
-    "common": {
-        "name": "wireguard",
-        "version": "1.5.11",
-        "news": {
-            "1.5.11": {
-                "en": "Avoid warning: Cannot read properties of undefined (reading 'at') when user- or devicename is empty",
-                "de": "Warnung vermeiden: Eigenschaften von undefiniert (Lesen von „at“) können nicht gelesen werden, wenn der Benutzer- oder Gerätename leer ist",
-                "ru": "Избегайте предупреждений: невозможно прочитать свойства неопределенного значения (чтение «at»), если имя пользователя или имя устройства пусто.",
-                "pt": "Evite aviso: não é possível ler propriedades de indefinido (lendo 'at') quando o nome do usuário ou do dispositivo está vazio",
-                "nl": "Vermijd waarschuwing: Kan de eigenschappen van ongedefinieerd (lees 'at') niet lezen als de gebruikers- of apparaatnaam leeg is",
-                "fr": "Éviter les avertissements : impossible de lire les propriétés d'undéfini (lecture « at ») lorsque le nom de l'utilisateur ou du périphérique est vide.",
-                "it": "Evita avvertimenti: impossibile leggere le proprietà di unfine (leggendo 'at') quando il nome utente o dispositivo è vuoto",
-                "es": "Evite la advertencia: no se pueden leer las propiedades de indefinido (se lee 'en') cuando el nombre de usuario o dispositivo está vacío",
-                "pl": "Unikaj ostrzeżenia: nie można odczytać właściwości niezdefiniowanych (odczyt „at”), gdy nazwa użytkownika lub urządzenia jest pusta",
-                "uk": "Уникайте попередження: неможливо прочитати властивості undefined (читання 'at'), якщо ім'я користувача або пристрою порожнє",
-                "zh-cn": "避免警告：当用户名或设备名为空时，无法读取未定义的属性（读取“at”）"
-            },
-            "1.5.10": {
-                "en": "Adapter doesn't crash anymore when user or device name is missing in config.",
-                "de": "Der Adapter stürzt nicht mehr ab, wenn der Benutzer- oder Gerätename in der Konfiguration fehlt.",
-                "ru": "Адаптер больше не падает, когда имя пользователя или устройства отсутствует в конфигурации.",
-                "pt": "O adaptador não trava mais quando o nome do usuário ou do dispositivo está ausente na configuração.",
-                "nl": "Adapter crasht niet meer wanneer gebruikersnaam of apparaatnaam ontbreekt in configuratie.",
-                "fr": "L'adaptateur ne plante plus lorsque le nom de l'utilisateur ou de l'appareil est manquant dans la configuration.",
-                "it": "L'adattatore non si arresta più in modo anomalo quando il nome dell'utente o del dispositivo non è presente nella configurazione.",
-                "es": "El adaptador ya no falla cuando falta el nombre del usuario o del dispositivo en la configuración.",
-                "pl": "Adapter nie ulega już awariom, gdy w konfiguracji brakuje nazwy użytkownika lub urządzenia.",
-                "uk": "Адаптер більше не аварійно завершує роботу, якщо в конфігурації відсутнє ім’я користувача або пристрою.",
-                "zh-cn": "当配置中缺少用户或设备名称时，适配器不会再崩溃。"
-            },
-            "1.5.9": {
-                "en": "First device of any user was missing in users viewing\nAdded an icon to peers, users, peer and user",
-                "de": "Das erste Gerät eines Benutzers fehlte in der Benutzeransicht.\nEin Symbol für Peers, Benutzer, Peer und Benutzer wurde hinzugefügt",
-                "ru": "Первое устройство любого пользователя отсутствовало при просмотре пользователями \n Добавлен значок для одноранговых узлов, пользователей, однорангового узла и пользователя.",
-                "pt": "Faltava o primeiro dispositivo de qualquer usuário na visualização dos usuários\nAdicionou um ícone para pares, usuários, par e usuário",
-                "nl": "Het eerste apparaat van een gebruiker ontbrak bij het bekijken van gebruikers\n Een pictogram toegevoegd aan peers, gebruikers, peer en gebruiker",
-                "fr": "Le premier appareil de n'importe quel utilisateur manquait dans la visualisation des utilisateurs \n Ajout d'une icône aux pairs, aux utilisateurs, aux pairs et à l'utilisateur",
-                "it": "Il primo dispositivo di qualsiasi utente mancava nella visualizzazione degli utenti\nAggiunta un'icona a peer, utenti, peer e utente",
-                "es": "Faltaba el primer dispositivo de cualquier usuario en la visualización de usuarios \n Se agregó un ícono a pares, usuarios, pares y usuarios",
-                "pl": "Brak pierwszego urządzenia dowolnego użytkownika podczas przeglądania użytkowników \n Dodano ikonę do rówieśników, użytkowników, rówieśników i użytkowników",
-                "uk": "Перший пристрій будь-якого користувача був відсутній під час перегляду користувачів\nДодано піктограму для однорангових пристроїв, користувачів, однорангового пристрою та користувача",
-                "zh-cn": "用户查看时缺少任何用户的第一台设备\n向同伴、用户、同伴和用户添加了图标"
-            },
-            "1.5.8": {
-                "en": "Interface is now correctly set to offline if host is not reachable.",
-                "de": "Die Schnittstelle wird jetzt korrekt auf offline gesetzt, wenn der Host nicht erreichbar ist.",
-                "ru": "Интерфейс теперь корректно устанавливается в автономный режим, если хост недоступен.",
-                "pt": "A interface agora está definida corretamente como offline se o host não estiver acessível.",
-                "nl": "Interface is nu correct ingesteld op offline als host niet bereikbaar is.",
-                "fr": "L'interface est maintenant correctement définie sur hors ligne si l'hôte n'est pas accessible.",
-                "it": "L'interfaccia ora è impostata correttamente su offline se l'host non è raggiungibile.",
-                "es": "La interfaz ahora está correctamente configurada como fuera de línea si no se puede acceder al host.",
-                "pl": "Interfejs jest teraz prawidłowo ustawiony na tryb offline, jeśli host jest nieosiągalny.",
-                "uk": "Інтерфейс тепер правильно налаштований на автономний режим, якщо хост недоступний.",
-                "zh-cn": "如果无法访问主机，接口现在会正确设置为脱机。"
-            },
-            "1.5.7": {
-                "en": "Added missing icon file\nSome fixes to make iobroker.adapterchecker happy\nAnother icon fix",
-                "de": "Fehlende Symboldatei hinzugefügt\nEinige Korrekturen, um iobroker.adapterchecker glücklich zu machen\nEine weitere Symbolkorrektur",
-                "ru": "Добавлен отсутствующий файл значка \n Некоторые исправления, чтобы сделать iobroker.adapterchecker счастливым \n Еще одно исправление значка",
-                "pt": "Adicionado arquivo de ícone ausente \nAlgumas correções para deixar iobroker.adapterchecker feliz \nOutra correção de ícone",
-                "nl": "Ontbrekend pictogrambestand toegevoegd \n Enkele oplossingen om iobroker.adapterchecker blij te maken \n Nog een pictogramfix",
-                "fr": "Ajout du fichier d'icône manquant \n Quelques correctifs pour rendre iobroker.adapterchecker heureux \n Un autre correctif d'icône",
-                "it": "Aggiunto file icona mancante \n Alcune correzioni per rendere felice iobroker.adapterchecker \n Un'altra correzione dell'icona",
-                "es": "Se agregó el archivo de icono faltante \n Algunas correcciones para hacer feliz a iobroker.adapterchecker \n Otra corrección de icono",
-                "pl": "Dodano brakujący plik ikony \n Kilka poprawek, aby uszczęśliwić iobroker.adapterchecker \n Kolejna poprawka ikony",
-                "uk": "Додано відсутній файл значка\nДеякі виправлення, щоб зробити iobroker.adapterchecker щасливим\nЩе одне виправлення значка",
-                "zh-cn": "添加了丢失的图标文件\n一些修复以使 iobroker.adapterchecker 满意\n另一个图标修复"
-            },
-            "1.5.2": {
-                "en": "Adapter does not crash anymore when host isn't reachable\nAdded .releaseconfig file\nAdded icon to interface-device\nSome fixes to make iobroker.adapterchecker happy",
-                "de": "Der Adapter stürzt nicht mehr ab, wenn der Host nicht erreichbar ist. \n .releaseconfig-Datei hinzugefügt \n Symbol zum Schnittstellengerät hinzugefügt \n Einige Korrekturen, um iobroker.adapterchecker zufrieden zu stellen",
-                "ru": "Адаптер больше не падает, когда хост недоступен \n Добавлен файл .releaseconfig \n Добавлен значок для интерфейса-устройства \n Некоторые исправления, чтобы сделать iobroker.adapterchecker счастливым",
-                "pt": "O adaptador não trava mais quando o host não está acessível\nAdicionado arquivo .releaseconfig\nAdicionado ícone ao dispositivo de interface\nAlgumas correções para deixar o iobroker.adapterchecker feliz",
-                "nl": "Adapter crasht niet meer wanneer de host niet bereikbaar is\n .releaseconfig-bestand toegevoegd\n Pictogram toegevoegd aan interface-apparaat\n Enkele oplossingen om iobroker.adapterchecker blij te maken",
-                "fr": "L'adaptateur ne plante plus lorsque l'hôte n'est pas accessible \n Ajout du fichier .releaseconfig \n Ajout d'une icône à l'interface-device \n Quelques correctifs pour rendre iobroker.adapterchecker heureux",
-                "it": "L'adattatore non si arresta più in modo anomalo quando l'host non è raggiungibile\n Aggiunto file .releaseconfig\n Aggiunta icona al dispositivo di interfaccia\n Alcune correzioni per rendere felice iobroker.adapterchecker",
-                "es": "El adaptador ya no falla cuando no se puede acceder al host \n Archivo .releaseconfig agregado \n Ícono agregado al dispositivo de interfaz \n Algunas correcciones para hacer feliz a iobroker.adapterchecker",
-                "pl": "Karta nie ulega już awarii, gdy host jest nieosiągalny \n Dodano plik .release config \n Dodano ikonę do urządzenia interfejsu \n Kilka poprawek, aby uszczęśliwić iobroker.",
-                "uk": "Адаптер більше не аварійно завершує роботу, коли хост недоступний\nДодано файл .releaseconfig\nДодано піктограму до інтерфейсного пристрою\nДеякі виправлення для задоволення iobroker.adapterchecker",
-                "zh-cn": "当主机无法访问时，适配器不再崩溃\n添加了 .releaseconfig 文件\n向接口设备添加了图标\n一些修复以使 iobroker.adapterchecker 满意"
-            },
-            "1.5.1": {
-                "en": "Fixed: No names in object tree\nFixed: Online state of interface isn't set correctly if more than one server is queried\nDependencies got updated",
-                "de": "Behoben: Keine Namen im Objektbaum\nBehoben: Der Online-Status der Schnittstelle wird nicht korrekt eingestellt, wenn mehr als ein Server abgefragt wird\nAbhängigkeiten wurden aktualisiert",
-                "ru": "Исправлено: нет имен в дереве объектов. \n Исправлено: онлайн-состояние интерфейса устанавливается неправильно, если запрашивается более одного сервера. \n Зависимости были обновлены.",
-                "pt": "Corrigido: Sem nomes na árvore de objetos\nCorrigido: O estado online da interface não é definido corretamente se mais de um servidor for consultado\nAs dependências foram atualizadas",
-                "nl": "Opgelost: geen namen in de objectboom \n Opgelost: de online status van de interface is niet correct ingesteld als meer dan één server wordt opgevraagd \n Afhankelijkheden zijn bijgewerkt",
-                "fr": "Corrigé : aucun nom dans l'arborescence d'objets\nCorrigé : l'état en ligne de l'interface n'est pas défini correctement si plusieurs serveurs sont interrogés\nLes dépendances ont été mises à jour",
-                "it": "Risolto: nessun nome nell'albero degli oggetti\n Risolto: lo stato online dell'interfaccia non è impostato correttamente se viene interrogato più di un server\n Le dipendenze sono state aggiornate",
-                "es": "Solucionado: No hay nombres en el árbol de objetos. \n Solucionado: el estado en línea de la interfaz no se configura correctamente si se consulta más de un servidor. \n Las dependencias se actualizaron.",
-                "pl": "Naprawiono: brak nazw w drzewie obiektów\nNaprawiono: stan online interfejsu nie jest ustawiony poprawnie, jeśli zapytano więcej niż jeden serwer\nZaktualizowano zależności",
-                "uk": "Виправлено: немає імен у дереві об’єктів\nВиправлено: онлайн-стан інтерфейсу встановлено неправильно, якщо запитується більше ніж один сервер\nЗалежності оновлено",
-                "zh-cn": "已修复：对象树中没有名称\n已修复：如果查询多个服务器，则无法正确设置接口的在线状态\n依赖项已更新"
-            },
-            "1.5.0": {
-                "en": "New: Splitted Peer names in config in user and device names; So that you are able to group devices by user\nNew: Some new data fields: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount and connection states per user\nFix: Fixed continuous recreation of objects",
-                "de": "Neu: Aufgeteilte Peer-Namen in der Konfiguration in Benutzer- und Gerätenamen; Damit Sie Geräte nach Benutzer gruppieren können\nNeu: Einige neue Datenfelder: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount und Verbindungsstatus pro Benutzer\nFix: Kontinuierliche Neuerstellung von Objekten behoben",
-                "ru": "Новое: разделенные имена пиров в конфигурации в именах пользователей и устройств; Чтобы вы могли группировать устройства по пользователям \n Новое: некоторые новые поля данных:connectedPeers,connectedPeersCount,connectedUsers,connectedUsersCount и состояния подключения для каждого пользователя\nFix:Исправлено непрерывное воссоздание объектов",
-                "pt": "Novo: Nomes de pares divididos na configuração em nomes de usuários e dispositivos; Para que você possa agrupar dispositivos por usuário\nNovo: Alguns novos campos de dados: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount e estados de conexão por usuário\nCorreção: Corrigida recriação contínua de objetos",
-                "nl": "Nieuw: gesplitste namen van peers in configuratie in gebruikers- en apparaatnamen; Zodat u apparaten per gebruiker kunt groeperen\nNieuw: enkele nieuwe gegevensvelden: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount en verbindingsstatussen per gebruiker\nFix: vaste continue recreatie van objecten",
-                "fr": "Nouveau : Noms d'homologues fractionnés dans la configuration des noms d'utilisateur et d'appareil ; Pour que vous puissiez regrouper les appareils par utilisateur\nNouveau : Quelques nouveaux champs de données : connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount et les états de connexion par utilisateur\nFix : Correction de la recréation continue des objets",
-                "it": "Novità: nomi di peer divisi nella configurazione nei nomi di utenti e dispositivi; In modo che tu sia in grado di raggruppare i dispositivi per utente \n Novità: alcuni nuovi campi dati: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount e stati di connessione per utente \n Correzione: correzione della ricreazione continua di oggetti",
-                "es": "Nuevo: nombres de pares divididos en la configuración en nombres de usuario y dispositivo; Para que pueda agrupar dispositivos por usuario \n Nuevo: algunos campos de datos nuevos: connectedPeers, connectedPeersCount, connectedUsers, connectedUsersCount y estados de conexión por usuario \n Solución: recreación continua fija de objetos",
-                "pl": "Nowość: Podzielone nazwy Peer w konfiguracji w nazwach użytkowników i urządzeń; Abyś mógł grupować urządzenia według użytkowników\nNowość: Niektóre nowe pola danych:connectedPeers,connectedPeersCount,connectUsers,connectUsersCount i stany połączeń na użytkownika\nPoprawka: Naprawiono ciągłe odtwarzanie obiektów",
-                "uk": "Нове: розділені імена вузлів у конфігурації в іменах користувачів і пристроїв; Щоб ви могли групувати пристрої за користувачами\nНове: деякі нові поля даних:connectedPeers,connectedPeersCount,connectedUsers,connectedUsersCount і стани з’єднання для кожного користувача\nВиправлення: виправлено постійне повторне створення об’єктів",
-                "zh-cn": "新：在用户和设备名称中的配置中分割对等名称；这样您就可以按用户对设备进行分组\n新增：一些新的数据字段：connectedPeers、connectedPeersCount、connectedUsers、connectedUsersCount 和每个用户的连接状态\n修复：修复了对象的连续重新创建"
-            },
-            "1.4.1": {
-                "en": "Showing number of currently connected peers for each interface.",
-                "de": "Zeigt die Anzahl der aktuell verbundenen Peers für jede Schnittstelle an.",
-                "ru": "Отображение количества подключенных в настоящее время одноранговых узлов для каждого интерфейса.",
-                "pt": "Mostrando o número de peers atualmente conectados para cada interface.",
-                "nl": "Toont het aantal momenteel verbonden peers voor elke interface.",
-                "fr": "Affichage du nombre de pairs actuellement connectés pour chaque interface.",
-                "it": "Mostra il numero di peer attualmente connessi per ciascuna interfaccia.",
-                "es": "Muestra el número de pares actualmente conectados para cada interfaz.",
-                "pl": "Pokazuje liczbę aktualnie podłączonych peerów dla każdego interfejsu.",
-                "uk": "Показує кількість підключених наразі однорангових вузлів для кожного інтерфейсу.",
-                "zh-cn": "显示每个接口当前连接的对等点的数量。"
-            },
-            "1.4.0": {
-                "en": "Moved Admin-UI to jsonConfig.",
-                "de": "Admin-UI nach jsonConfig verschoben.",
-                "ru": "Интерфейс администратора перемещен в jsonConfig.",
-                "pt": "Admin-UI movida para jsonConfig.",
-                "nl": "Admin-UI verplaatst naar jsonConfig.",
-                "fr": "Déplacement de l'interface utilisateur d'administration vers jsonConfig.",
-                "it": "Admin-UI spostata in jsonConfig.",
-                "es": "Se movió la interfaz de usuario de administración a jsonConfig.",
-                "pl": "Przeniesiono interfejs administratora do jsonConfig.",
-                "zh-cn": "将 Admin-UI 移至 jsonConfig。",
-                "uk": "Інтерфейс адміністратора перенесено в jsonConfig."
-            },
-            "1.3.2": {
-                "en": "Fixed \"Adapter doesn't come online\" bug caused by pseudo-tty settings.",
-                "de": "Fehler „Adapter kommt nicht online“ behoben, der durch Pseudo-TTY-Einstellungen verursacht wurde.",
-                "ru": "Исправлена ​​ошибка «Адаптер не подключается к сети», вызванная настройками псевдотерминала.",
-                "pt": "Corrigido o erro \"O adaptador não fica online\" causado por configurações pseudo-tty.",
-                "nl": "Opgelost: \"Adapter komt niet online\"-bug veroorzaakt door pseudo-tty-instellingen.",
-                "fr": "Correction du bogue \"L'adaptateur n'est pas en ligne\" causé par les paramètres de pseudo-tty.",
-                "it": "Risolto il bug \"L'adattatore non è online\" causato da impostazioni pseudo-tty.",
-                "es": "Se corrigió el error \"El adaptador no se conecta\" causado por la configuración de pseudo-tty.",
-                "pl": "Naprawiono błąd „Adapter nie przechodzi w tryb online” spowodowany przez ustawienia pseudo-tty.",
-                "zh-cn": "修复了由伪 tty 设置引起的“适配器不在线”错误。",
-                "uk": "Виправлено помилку «Адаптер не підключається до мережі», спричинену налаштуваннями псевдо-tty."
-            },
-            "1.3.1": {
-                "en": "Added button restore a single peer.",
-                "de": "Schaltfläche zum Wiederherstellen eines einzelnen Peers hinzugefügt.",
-                "ru": "Добавлена ​​кнопка восстановления одного пира.",
-                "pt": "Adicionado botão restaurar um único par.",
-                "nl": "Toegevoegd knop herstel een enkele peer.",
-                "fr": "Ajout d'un bouton pour restaurer un seul pair.",
-                "it": "Aggiunto pulsante per ripristinare un singolo peer.",
-                "es": "Se agregó el botón restaurar un solo par.",
-                "pl": "Dodano przycisk przywracania jednego peera.",
-                "zh-cn": "添加了按钮恢复单个对等点。",
-                "uk": "Додана кнопка відновлення окремого вузла."
-            },
-            "1.3.0": {
-                "en": "Added buttons to suspend single and restore all peers of an interface.",
-                "de": "Schaltflächen zum Suspendieren einzelner und Wiederherstellen aller Peers einer Schnittstelle hinzugefügt.",
-                "ru": "Добавлены кнопки для приостановки одного и восстановления всех пиров интерфейса.",
-                "pt": "Adicionados botões para suspender único e restaurar todos os pares de uma interface.",
-                "nl": "Knoppen toegevoegd om een ​​enkele op te schorten en alle peers van een interface te herstellen.",
-                "fr": "Ajout de boutons pour suspendre un seul et restaurer tous les pairs d'une interface.",
-                "it": "Aggiunti pulsanti per sospendere il singolo e ripristinare tutti i peer di un'interfaccia.",
-                "es": "Se agregaron botones para suspender solo y restaurar todos los pares de una interfaz.",
-                "pl": "Dodano przyciski do zawieszania pojedynczego i przywracania wszystkich równorzędnych interfejsu.",
-                "zh-cn": "添加了暂停单个和恢复接口的所有对等点的按钮。",
-                "uk": "Додано кнопки для призупинення одного і відновлення всіх однорангових інтерфейсів."
-            },
-            "1.2.1": {
-                "en": "Fixed tty issue in docker option.",
-                "de": "TTY-Problem in Docker-Option behoben.",
-                "ru": "Исправлена ​​проблема с tty в опции докера.",
-                "pt": "Corrigido o problema de tty na opção docker.",
-                "nl": "Vast tty-probleem in docker-optie.",
-                "fr": "Correction du problème tty dans l'option docker.",
-                "it": "Risolto il problema con tty nell'opzione Docker.",
-                "es": "Solucionado el problema de tty en la opción docker.",
-                "pl": "Naprawiono problem z tty w opcji dockera.",
-                "zh-cn": "修复了 docker 选项中的 tty 问题。",
-                "uk": "Виправлено проблему tty у параметрі докера."
-            },
-            "1.2.0": {
-                "en": "Added support for WireGuard inside a docker container\nDependencies got updated",
-                "de": "Unterstützung für WireGuard in einem Docker-Container hinzugefügt \n Abhängigkeiten wurden aktualisiert",
-                "ru": "Добавлена ​​поддержка WireGuard внутри док-контейнера \n Обновлены зависимости",
-                "pt": "Adicionado suporte para WireGuard dentro de um contêiner docker\nAs dependências foram atualizadas",
-                "nl": "Ondersteuning toegevoegd voor WireGuard in een docker-container \n Afhankelijkheden zijn bijgewerkt",
-                "fr": "Ajout de la prise en charge de WireGuard dans un conteneur Docker \n Les dépendances ont été mises à jour",
-                "it": "Aggiunto supporto per WireGuard all'interno di un contenitore mobile\nLe dipendenze sono state aggiornate",
-                "es": "Se agregó soporte para WireGuard dentro de un contenedor docker \n Las dependencias se actualizaron",
-                "pl": "Dodano wsparcie dla WireGuard wewnątrz kontenera docker \n Zależności zostały zaktualizowane",
-                "zh-cn": "在 docker 容器内添加了对 WireGuard 的支持\n更新了依赖项",
-                "uk": "Додано підтримку WireGuard у контейнері докерів\nЗалежності оновлено"
-            },
-            "1.1.3": {
-                "en": "Fixed some errors reported by sentry\nDependencies got updated",
-                "de": "Einige von Sentry gemeldete Fehler wurden behoben.\nAbhängigkeiten wurden aktualisiert",
-                "ru": "Исправлены некоторые ошибки, о которых сообщает sentry\nОбновлены зависимости",
-                "pt": "Corrigidos alguns erros relatados pela sentinela\nAs dependências foram atualizadas",
-                "nl": "Enkele fouten opgelost die door schildwacht werden gemeld\nAfhankelijkheden zijn bijgewerkt",
-                "fr": "Correction de certaines erreurs signalées par sentinelle\nLes dépendances ont été mises à jour",
-                "it": "Risolti alcuni errori segnalati da sentinella\nLe dipendenze sono state aggiornate",
-                "es": "Se corrigieron algunos errores informados por centinela\nLas dependencias se actualizaron",
-                "pl": "Naprawiono niektóre błędy zgłoszone przez wartowników\nZależności zostały zaktualizowane",
-                "zh-cn": "修复了哨兵报告的一些错误\n更新了依赖项",
-                "uk": "Виправлено деякі помилки, про які повідомляв вартовий\nЗалежності оновлено"
-            },
-            "1.1.2": {
-                "en": "Added donate button\nDependency updates",
-                "de": "Schaltfläche \"Spenden\" hinzugefügt \n Abhängigkeitsaktualisierungen",
-                "ru": "Добавлена ​​кнопка пожертвования \n Обновления зависимостей",
-                "pt": "Adicionado botão de doação\nAtualizações de dependência",
-                "nl": "Donatieknop toegevoegd \n Afhankelijkheidsupdates",
-                "fr": "Bouton de don ajouté \n Mises à jour des dépendances",
-                "it": "Aggiunto pulsante di donazione\nAggiornamenti sulle dipendenze",
-                "es": "Botón de donación agregado \n Actualizaciones de dependencia",
-                "pl": "Dodano przycisk darowizny\nAktualizacje zależności",
-                "zh-cn": "添加了捐赠按钮\n依赖更新",
-                "uk": "Додана кнопка пожертви\nОновлення залежностей"
-            },
-            "1.1.1": {
-                "en": "Changed titleLang from WireGuard to WireGuard monitoring\nDependency updates",
-                "de": "TitleLang von WireGuard auf WireGuard-Überwachung geändert\nAbhängigkeitsaktualisierungen",
-                "ru": "Изменен titleLang с WireGuard на мониторинг WireGuard\nОбновления зависимостей",
-                "pt": "Título alteradoLang do monitoramento do WireGuard para o WireGuard\nAtualizações de dependência",
-                "nl": "Gewijzigde titelLang van WireGuard naar WireGuard monitoring\nVerbeterde documentatie\nAfhankelijkheidsupdates",
-                "fr": "Modification du titreLang de WireGuard à la surveillance WireGuard\nMises à jour des dépendances",
-                "it": "TitleLang modificato da WireGuard al monitoraggio WireGuard\nAggiornamenti delle dipendenze",
-                "es": "Se cambió titleLang de WireGuard a monitoreo de WireGuard.\nActualizaciones de dependencia",
-                "pl": "Zmieniono tytułLang z WireGuard na WireGuard monitoring\nAktualizacje zależności",
-                "zh-cn": "将 titleLang 从 WireGuard 更改为 WireGuard 监控\n依赖项更新",
-                "uk": "Моніторинг titleLang змінено з WireGuard на WireGuard\nОновлення залежностей"
-            },
-            "1.1.0": {
-                "en": "Added support for sudo command via sudoers entry\nImproved documentation\nDependency updates",
-                "de": "Unterstützung für den sudo-Befehl über den sudoers-Eintrag hinzugefügt\nVerbesserte Dokumentation\nAbhängigkeitsaktualisierungen",
-                "ru": "Добавлена ​​поддержка команды sudo через запись sudoers\nУлучшенная документация\nОбновления зависимостей",
-                "pt": "Adicionado suporte para comando sudo via entrada sudoers\nDocumentação melhorada\nAtualizações de dependência",
-                "nl": "Ondersteuning toegevoegd voor sudo-opdracht via sudoers-invoer\nVerbeterde documentatie\nAfhankelijkheidsupdates",
-                "fr": "Ajout de la prise en charge de la commande sudo via l'entrée sudoers\nDocumentation améliorée\nMises à jour des dépendances",
-                "it": "Aggiunto supporto per il comando sudo tramite la voce sudoers\nDocumentazione migliorata\nAggiornamenti delle dipendenze",
-                "es": "Se agregó soporte para el comando sudo a través de la entrada sudoers\nDocumentación mejorada\nActualizaciones de dependencia",
-                "pl": "Dodano obsługę polecenia sudo za pośrednictwem wpisu sudoers\nUlepszona dokumentacja\nAktualizacje zależności",
-                "zh-cn": "通过 sudoers 条目添加了对 sudo 命令的支持\n改进的文档\n依赖项更新",
-                "uk": "Додано підтримку команди sudo через запис sudoers\nПокращена документація\nОновлення залежностей"
-            },
-            "1.0.0": {
-                "en": "Added online state for each interface",
-                "de": "Online-Status für jede Schnittstelle hinzugefügt",
-                "ru": "Добавлен онлайн-статус для каждого интерфейса",
-                "pt": "Adicionado estado online para cada interface",
-                "nl": "Online status toegevoegd voor elke interface",
-                "fr": "Ajout de l'état en ligne pour chaque interface",
-                "it": "Aggiunto stato online per ogni interfaccia",
-                "es": "Estado en línea agregado para cada interfaz",
-                "pl": "Dodano stan online dla każdego interfejsu",
-                "zh-cn": "为每个接口添加在线状态",
-                "uk": "Додано стан онлайн для кожного інтерфейсу"
-            }
-        },
-        "titleLang": {
-            "en": "WireGuard monitoring",
-            "de": "WireGuard-Überwachung",
-            "ru": "Мониторинг WireGuard",
-            "pt": "Monitoramento WireGuard",
-            "nl": "WireGuard-bewaking",
-            "fr": "Surveillance WireGuard",
-            "it": "Monitoraggio WireGuard",
-            "es": "Monitoreo de WireGuard",
-            "pl": "Monitorowanie WireGuard",
-            "zh-cn": "WireGuard 监控",
-            "uk": "Моніторинг WireGuard"
-        },
-        "desc": {
-            "en": "Connect to WireGuard hosts and grab connection information on peers",
-            "de": "Stellen Sie eine Verbindung zu WireGuard-Hosts her und holen Sie sich Verbindungsinformationen zu Peers",
-            "ru": "Подключайтесь к узлам WireGuard и собирайте информацию о соединениях с одноранговыми узлами.",
-            "pt": "Conecte-se a hosts WireGuard e obtenha informações de conexão em pares",
-            "nl": "Maak verbinding met WireGuard-hosts en verzamel verbindingsinformatie over peers",
-            "fr": "Connectez-vous aux hôtes WireGuard et récupérez les informations de connexion sur les pairs",
-            "it": "Connettiti agli host WireGuard e prendi le informazioni di connessione sui peer",
-            "es": "Conéctese a los hosts de WireGuard y obtenga información de conexión de sus pares",
-            "pl": "Połącz się z hostami WireGuard i zdobądź informacje o połączeniach na komputerach równorzędnych",
-            "zh-cn": "连接到 WireGuard 主机并获取对等方的连接信息",
-            "uk": "Підключіться до хостів WireGuard і отримайте інформацію про підключення до однорангових пристроїв"
-        },
-        "authors": [
-            "grizzelbee <open.source@hingsen.de>"
-        ],
-        "keywords": [
-            "wireguard"
-        ],
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "main": "main.js",
-        "icon": "wireguard.svg",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/Grizzelbee/ioBroker.wireguard/main/admin/wireguard.svg",
-        "readme": "https://github.com/grizzelbee/ioBroker.wireguard/blob/main/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "tier": 2,
-        "type": "infrastructure",
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "poll",
-        "adminUI": {
-            "config": "json"
-        },
-        "materialize": true,
-        "plugins": {
-            "sentry": {
-                "dsn": "https://42007d6f59b74b5db06d6bfaf23d4d98@o505019.ingest.sentry.io/6215712"
-            }
-        },
-        "messages": [
-            {
-                "condition": {
-                    "operand": "and",
-                    "rules": [
-                        "oldVersion<1.4.0",
-                        "newVersion>=1.4.0"
-                    ]
-                },
-                "title": {
-                    "en": "Instance requires new configuration after update",
-                    "de": "Die Instanz erfordert nach dem Update eine neue Konfiguration",
-                    "ru": "Экземпляр требует новой конфигурации после обновления",
-                    "pt": "A instância requer uma nova configuração após a atualização",
-                    "nl": "Instantie vereist nieuwe configuratie na update",
-                    "fr": "L'instance nécessite une nouvelle configuration après la mise à jour",
-                    "it": "L'istanza richiede una nuova configurazione dopo l'aggiornamento",
-                    "es": "La instancia requiere una nueva configuración después de la actualización",
-                    "pl": "Instancja wymaga nowej konfiguracji po aktualizacji",
-                    "zh-cn": "实例更新后需要新配置",
-                    "uk": "Після оновлення екземпляр потребує нової конфігурації"
-                },
-                "text": {
-                    "en": "After upgrading to Version 1.4.0 or later you need to reenter your monitoring user and password due to the change of the admin interface.",
-                    "de": "Nach dem Upgrade auf Version 1.4.0 oder höher müssen Sie Ihren Überwachungsbenutzer und Ihr Kennwort aufgrund der Änderung der Verwaltungsoberfläche erneut eingeben.",
-                    "ru": "После обновления до версии 1.4.0 или более поздней вам потребуется повторно ввести пользователя и пароль для мониторинга в связи с изменением интерфейса администратора.",
-                    "pt": "Após atualizar para a Versão 1.4.0 ou posterior, você precisa reinserir seu usuário e senha de monitoramento devido à alteração da interface administrativa.",
-                    "nl": "Na het upgraden naar versie 1.4.0 of hoger moet u uw monitoringgebruiker en wachtwoord opnieuw invoeren vanwege de wijziging van de beheerdersinterface.",
-                    "fr": "Après la mise à niveau vers la version 1.4.0 ou ultérieure, vous devez ressaisir votre utilisateur de surveillance et votre mot de passe en raison du changement de l'interface d'administration.",
-                    "it": "Dopo l'aggiornamento alla versione 1.4.0 o successiva, è necessario reinserire l'utente e la password di monitoraggio a causa della modifica dell'interfaccia di amministrazione.",
-                    "es": "Después de actualizar a la versión 1.4.0 o posterior, debe volver a ingresar su usuario y contraseña de monitoreo debido al cambio de la interfaz de administración.",
-                    "pl": "Po aktualizacji do wersji 1.4.0 lub nowszej musisz ponownie wprowadzić użytkownika i hasło monitorowania ze względu na zmianę interfejsu administratora.",
-                    "zh-cn": "升级到 1.4.0 或更高版本后，由于管理界面的变化，您需要重新输入您的监控用户和密码。",
-                    "uk": "Після оновлення до версії 1.4.0 або пізнішої вам потрібно буде повторно ввести користувача моніторингу та пароль через зміну інтерфейсу адміністратора."
-                },
-                "level": "warn",
-                "buttons": [
-                    "agree",
-                    "cancel"
-                ]
-            },
-            {
-                "condition": {
-                    "operand": "and",
-                    "rules": [
-                        "oldVersion<1.5.0",
-                        "newVersion>=1.5.0"
-                    ]
-                },
-                "title": {
-                    "en": "Instance requires new configuration after update",
-                    "de": "Die Instanz erfordert nach dem Update eine neue Konfiguration",
-                    "ru": "Экземпляр требует новой конфигурации после обновления",
-                    "pt": "A instância requer uma nova configuração após a atualização",
-                    "nl": "Instantie vereist nieuwe configuratie na update",
-                    "fr": "L'instance nécessite une nouvelle configuration après la mise à jour",
-                    "it": "L'istanza richiede una nuova configurazione dopo l'aggiornamento",
-                    "es": "La instancia requiere una nueva configuración después de la actualización",
-                    "pl": "Instancja wymaga nowej konfiguracji po aktualizacji",
-                    "zh-cn": "实例更新后需要新配置",
-                    "uk": "Після оновлення екземпляр потребує нової конфігурації"
-                },
-                "text": {
-                    "en": "The current group name in config has been deprecated and will be removed in a future release. So please review your config and move over to user name and device configuration for your peer names.",
-                    "de": "Der aktuelle Gruppenname in der Konfiguration ist veraltet und wird in einer zukünftigen Version entfernt. Überprüfen Sie daher bitte Ihre Konfiguration und wechseln Sie zur Benutzernamen- und Gerätekonfiguration für Ihre Peer-Namen.",
-                    "ru": "Текущее имя группы в конфигурации устарело и будет удалено в будущем выпуске. Поэтому, пожалуйста, просмотрите свою конфигурацию и перейдите к конфигурации имени пользователя и устройства для ваших одноранговых имен.",
-                    "pt": "O nome do grupo atual na configuração foi obsoleto e será removido em uma versão futura. Portanto, revise sua configuração e vá para o nome de usuário e a configuração do dispositivo para seus nomes de pares.",
-                    "nl": "De huidige groepsnaam in de configuratie is verouderd en zal in een toekomstige versie worden verwijderd. Controleer dus uw configuratie en ga naar gebruikersnaam en apparaatconfiguratie voor uw peer-namen.",
-                    "fr": "Le nom de groupe actuel dans la configuration est obsolète et sera supprimé dans une prochaine version. Veuillez donc revoir votre configuration et passer à la configuration du nom d'utilisateur et de l'appareil pour vos noms d'homologues.",
-                    "it": "Il nome del gruppo corrente in config è stato deprecato e verrà rimosso in una versione futura. Quindi, controlla la tua configurazione e passa al nome utente e alla configurazione del dispositivo per i tuoi nomi peer.",
-                    "es": "El nombre de grupo actual en la configuración ha quedado obsoleto y se eliminará en una versión futura. Por lo tanto, revise su configuración y pase a la configuración de nombre de usuario y dispositivo para los nombres de sus compañeros.",
-                    "pl": "Bieżąca nazwa grupy w konfiguracji została uznana za przestarzałą i zostanie usunięta w przyszłej wersji. Sprawdź więc swoją konfigurację i przejdź do nazwy użytkownika i konfiguracji urządzenia dla nazw równorzędnych.",
-                    "uk": "Поточна назва групи в конфігурації застаріла та буде видалена в майбутньому випуску. Тому, будь ласка, перегляньте свою конфігурацію та перейдіть до імені користувача та конфігурації пристрою для імен однорангових пристроїв.",
-                    "zh-cn": "配置中的当前组名称已被弃用，并将在未来版本中删除。因此，请检查您的配置，然后转到对等名称的用户名和设备配置。"
-                },
-                "level": "warn",
-                "buttons": [
-                    "agree",
-                    "cancel"
-                ]
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=5.1.13"
-            }
-        ],
-        "dependencies": [
-            {
-                "js-controller": ">=3.3.22"
-            }
-        ]
+  "common": {
+    "name": "wireguard",
+    "version": "1.7.0",
+    "news": {
+      "1.7.0": {
+        "en": "Upd: Dependencies got updated\nFix: [#120](https://github.com/Grizzelbee/ioBroker.wireguard/issues/120) Fixed some issues mentioned by adapter-checker",
+        "de": "Aktualisierung: Abhängigkeiten wurden aktualisiert\nFix: [#120](https://github.com/Grizzelbee/ioBroker.wireguard/issues/120) Behoben einige Probleme von Adapter-Checker",
+        "ru": "Upd: зависимости обновили\nFix: [#120] (https://github.com/Grizzelbee/ioBroker.wireguard/issues/120) Исправлены некоторые вопросы, упомянутые адаптером",
+        "pt": "Upd: Dependências foram atualizadas\nFix: [#120](https://github.com/Grizzelbee/ioBroker.wireguard/issues/120) Corrigido alguns problemas mencionados pelo verificador do adaptador",
+        "nl": "Upd: Afhankelijkheden werden bijgewerkt\nFix: [#120](https://github.com/Grizzelbee/ioBroker.wireguard/issues/120) Regelde enkele problemen genoemd door adapter-checker",
+        "fr": "Mise à jour : Mise à jour des dépendances\nCorrection: [#120](https://github.com/grizzelbee/ioBroker.wireguard/issues/120) Correction de certains problèmes mentionnés par l'adaptateur-vérificateur",
+        "it": "Aggiornamento delle dipendenze\n[#120](https://github.com/Grizzelbee/ioBroker.wireguard/issues/120) Risolto alcuni problemi menzionati da adattatore-checker",
+        "es": "Actualización de las dependencias\nFix: [#120](https://github.com/Grizzelbee/ioBroker.wireguard/issues/120) Arreglar algunos problemas mencionados por adaptador-checker",
+        "pl": "Upd: Aktualizacja zależności\nFix: [# 120] (https: / / github.com / Grizzelbee / ioBroker.wireguard / issues / 120) Naprawiono niektóre problemy wymienione przez kontroler adaptera",
+        "uk": "Оновлення: Залежності оновлено\n[#120] (https://github.com/Grizzelbee/ioBroker.wireguard/products/120) Виправлено деякі питання, зазначені перехідником",
+        "zh-cn": "Upd: 依赖更新\n菲克斯: [#120] (https://github.com/Grizzelbee/ioBroker.wireguard/issues/120) (中文(简体) ). 解决适配器检查器提到的一些问题"
+      },
+      "1.6.4": {
+        "en": "Dependencies got updated",
+        "de": "Abhängigkeiten wurden aktualisiert",
+        "ru": "Зависимости обновлены",
+        "pt": "As dependências foram atualizadas",
+        "nl": "Afhankelijkheden zijn bijgewerkt",
+        "fr": "Les dépendances ont été mises à jour",
+        "it": "Le dipendenze sono state aggiornate",
+        "es": "Se actualizaron las dependencias",
+        "pl": "Zależności zostały zaktualizowane",
+        "uk": "Залежності оновлено",
+        "zh-cn": "依赖项已更新"
+      },
+      "1.6.3": {
+        "en": "Dependencies got updated\nRemoved annoying warning when setting null or undefined values (introduced in v1.6.2)\nRequiring at least admin v6.13.16",
+        "de": "Abhängigkeiten wurden aktualisiert. \n Ärgerliche Warnung beim Festlegen von Null- oder undefinierten Werten entfernt (eingeführt in Version 1.6.2). \n Mindestens Admin-Version 6.13.16 erforderlich",
+        "ru": "Зависимости обновлены. \n Удалено надоедливое предупреждение при установке нулевых или неопределенных значений (введено в версии 1.6.2). \n Требуется как минимум администратор v6.13.16.",
+        "pt": "As dependências foram atualizadas\n Aviso irritante removido ao definir valores nulos ou indefinidos (introduzido na v1.6.2)\n Requer pelo menos admin v6.13.16",
+        "nl": "Afhankelijkheden zijn bijgewerkt \n Vervelende waarschuwing verwijderd bij het instellen van nul- of ongedefinieerde waarden (geïntroduceerd in v1.6.2) \n Minimaal beheerder v6.13.16 vereist",
+        "fr": "Les dépendances ont été mises à jour \n Suppression d'un avertissement ennuyeux lors de la définition de valeurs nulles ou non définies (introduites dans la v1.6.2) \n Nécessitant au moins l'administrateur v6.13.16",
+        "it": "Le dipendenze sono state aggiornate\nRimosso il fastidioso avviso quando si impostano valori null o non definiti (introdotti nella v1.6.2)\nRichiede almeno l'amministratore v6.13.16",
+        "es": "Se actualizaron las dependencias\n Se eliminó la molesta advertencia al establecer valores nulos o indefinidos (introducido en v1.6.2)\n Se requiere al menos admin v6.13.16",
+        "pl": "Zaktualizowano zależności\n Usunięto irytujące ostrzeżenie podczas ustawiania wartości null lub niezdefiniowanych (wprowadzono w wersji 1.6.2) \n Wymagane co najmniej uprawnienia administratora w wersji 6.13.16",
+        "uk": "Залежності оновлено\nВилучено дратівливе попередження під час встановлення нульових або невизначених значень (введено у версії 1.6.2)\nПотрібен принаймні адміністратор v6.13.16",
+        "zh-cn": "依赖项已更新\n删除了设置 null 或未定义值时烦人的警告（在 v1.6.2 中引入）\n至少需要 admin v6.13.16"
+      },
+      "1.6.2": {
+        "en": "Dependencies got updated\nfixed sentry issues WIREGUARD-2B & WIREGUARD-2C\nAdapter requires at least node 18.x",
+        "de": "Abhängigkeiten wurden aktualisiert\nSentry-Probleme WIREGUARD-2B und WIREGUARD-2C behoben\nAdapter erfordert mindestens Node 18.x",
+        "ru": "Зависимости обновлены\nисправлены проблемы со стражей WIREGUARD-2B и WIREGUARD-2C\nДля адаптера требуется как минимум узел 18.x",
+        "pt": "As dependências foram atualizadas\nproblemas de sentinela corrigidos WIREGUARD-2B e WIREGUARD-2C\nO adaptador requer pelo menos o nó 18.x",
+        "nl": "Afhankelijkheden zijn bijgewerkt \n Sentry-problemen opgelost WIREGUARD-2B & WIREGUARD-2C \n Adapter vereist minimaal Node 18.x",
+        "fr": "Les dépendances ont été mises à jour \n Problèmes de sentinelle résolus WIREGUARD-2B et WIREGUARD-2C \n L'adaptateur nécessite au moins le nœud 18.x",
+        "it": "Le dipendenze sono state aggiornate\nRisolti i problemi di sentinella WIREGUARD-2B e WIREGUARD-2C\nL'adattatore richiede almeno il nodo 18.x",
+        "es": "Se actualizaron las dependencias\nSe solucionaron problemas de centinela WIREGUARD-2B y WIREGUARD-2C\nEl adaptador requiere al menos el nodo 18.x",
+        "pl": "Zależności zostały zaktualizowane\n naprawiono problemy ze strażnikami WIREGUARD-2B i WIREGUARD-2C\nAdapter wymaga co najmniej węzła 18.x",
+        "uk": "Залежності оновлено\nвиправлено проблеми з дозорним WIREGUARD-2B & WIREGUARD-2C\nАдаптер вимагає принаймні вузла 18.x",
+        "zh-cn": "依赖项已更新\n修复了哨兵问题 WIREGUARD-2B 和 WIREGUARD-2C\n适配器至少需要节点 18.x"
+      },
+      "1.6.1": {
+        "en": "(mcm1957) adapter-core 3 is known to fail during installation at node 14 as npm 6 fails to install peerDependencies - So this adapter requires node 16 or newer\n(grizzelbee) Dependencies got updated\nremoved some old news entries in io-package file",
+        "de": "(mcm1957) Adapter-Core 3 schlägt bekanntermaßen während der Installation auf Knoten 14 fehl, da npm 6 peerDependencies nicht installieren kann – dieser Adapter erfordert also Knoten 16 oder neuer\n(grizzelbee) Abhängigkeiten wurden aktualisiert\neinige alte News-Einträge in der io-package-Datei entfernt",
+        "ru": "(mcm1957) Известно, что ядро ​​адаптера 3 дает сбой во время установки на узле 14, поскольку npm 6 не может установить одноранговые зависимости. Таким образом, для этого адаптера требуется узел 16 или новее \n (grizzelbee) Зависимости обновлены \n удалены некоторые старые записи новостей в файле io-package",
+        "pt": "(mcm1957) O adaptador-core 3 é conhecido por falhar durante a instalação no nó 14, pois o npm 6 falha ao instalar peerDependencies - Portanto, este adaptador requer o nó 16 ou mais recente\n(grizzelbee) As dependências foram atualizadas\nremovidas algumas entradas de notícias antigas no arquivo io-package",
+        "nl": "(mcm1957) Het is bekend dat adapter-core 3 faalt tijdens de installatie op knooppunt 14 omdat npm 6 er niet in slaagt peerDependencies te installeren - Deze adapter vereist dus knooppunt 16 of nieuwer \n (grizzelbee) Afhankelijkheden zijn bijgewerkt \n enkele oude nieuwsberichten in het io-pakketbestand verwijderd",
+        "fr": "(mcm1957) l'adaptateur-core 3 est connu pour échouer lors de l'installation sur le nœud 14 car npm 6 ne parvient pas à installer les peerDependencies - Cet adaptateur nécessite donc le nœud 16 ou plus récent\n (grizzelbee) Les dépendances ont été mises à jour\n certaines anciennes entrées de nouvelles ont été supprimées dans le fichier io-package",
+        "it": "(mcm1957) è noto che l'adattatore-core 3 non funziona durante l'installazione sul nodo 14 poiché npm 6 non riesce a installare peerDependencies - Quindi questo adattatore richiede il nodo 16 o più recente\n(grizzelbee) Le dipendenze sono state aggiornate\nrimosse alcune vecchie voci di notizie nel file del pacchetto io",
+        "es": "(mcm1957) Se sabe que el núcleo 3 del adaptador falla durante la instalación en el nodo 14, ya que npm 6 no puede instalar peerDependencies. Por lo tanto, este adaptador requiere el nodo 16 o posterior\n (grizzelbee) Las dependencias se actualizaron\n se eliminaron algunas entradas de noticias antiguas en el archivo io-package",
+        "pl": "(mcm1957) Wiadomo, że rdzeń adaptera 3 ulega awarii podczas instalacji w węźle 14, ponieważ npm 6 nie instaluje peerDependency - więc ten adapter wymaga węzła 16 lub nowszego\n (grizzelbee) Zależności zostały zaktualizowane \n usunięto niektóre stare wpisy wiadomości w pliku pakietu io",
+        "uk": "(mcm1957) Adapter-core 3, як відомо, дає збій під час інсталяції на вузлі 14, оскільки npm 6 не в змозі встановити peerDependencies - Отже, для цього адаптера потрібен вузол 16 або новіший\n(grizzelbee) Залежності оновлено\nвидалено деякі старі записи новин у файлі io-package",
+        "zh-cn": "(mcm1957) 已知适配器核心 3 在节点 14 上安装期间会失败，因为 npm 6 无法安装对等依赖项 - 因此此适配器需要节点 16 或更新版本\n(grizzelbee) 依赖项已更新\n删除了 io-package 文件中的一些旧新闻条目"
+      },
+      "1.5.11": {
+        "en": "Avoid warning: Cannot read properties of undefined (reading 'at') when user- or devicename is empty",
+        "de": "Warnung vermeiden: Eigenschaften von undefiniert (Lesen von „at“) können nicht gelesen werden, wenn der Benutzer- oder Gerätename leer ist",
+        "ru": "Избегайте предупреждений: невозможно прочитать свойства неопределенного значения (чтение «at»), если имя пользователя или имя устройства пусто.",
+        "pt": "Evite aviso: não é possível ler propriedades de indefinido (lendo 'at') quando o nome do usuário ou do dispositivo está vazio",
+        "nl": "Vermijd waarschuwing: Kan de eigenschappen van ongedefinieerd (lees 'at') niet lezen als de gebruikers- of apparaatnaam leeg is",
+        "fr": "Éviter les avertissements : impossible de lire les propriétés d'undéfini (lecture « at ») lorsque le nom de l'utilisateur ou du périphérique est vide.",
+        "it": "Evita avvertimenti: impossibile leggere le proprietà di unfine (leggendo 'at') quando il nome utente o dispositivo è vuoto",
+        "es": "Evite la advertencia: no se pueden leer las propiedades de indefinido (se lee 'en') cuando el nombre de usuario o dispositivo está vacío",
+        "pl": "Unikaj ostrzeżenia: nie można odczytać właściwości niezdefiniowanych (odczyt „at”), gdy nazwa użytkownika lub urządzenia jest pusta",
+        "uk": "Уникайте попередження: неможливо прочитати властивості undefined (читання 'at'), якщо ім'я користувача або пристрою порожнє",
+        "zh-cn": "避免警告：当用户名或设备名为空时，无法读取未定义的属性（读取“at”）"
+      }
     },
-    "native": {
-        "hosts": [
-            {
-                "name": "",
-                "hostaddress": "",
-                "port": 22,
-                "user": "",
-                "password": "",
-                "sudo": false,
-                "docker": false,
-                "container": "",
-                "pollInterval": 120
-            }
-        ],
-        "names": [
-            {
-                "pubKey": "",
-                "user": "",
-                "device": "",
-                "groupname": ""
-            }
-        ],
-        "configFiles": [
-            {
-                "hostName": "",
-                "iFace": "",
-                "configFile": ""
-            }
-        ]
+    "titleLang": {
+      "en": "WireGuard monitoring",
+      "de": "WireGuard-Überwachung",
+      "ru": "Мониторинг WireGuard",
+      "pt": "Monitoramento WireGuard",
+      "nl": "WireGuard-bewaking",
+      "fr": "Surveillance WireGuard",
+      "it": "Monitoraggio WireGuard",
+      "es": "Monitoreo de WireGuard",
+      "pl": "Monitorowanie WireGuard",
+      "zh-cn": "WireGuard 监控",
+      "uk": "Моніторинг WireGuard"
     },
-    "encryptedNative": [],
-    "protectedNative": [],
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
+    "desc": {
+      "en": "Connect to WireGuard hosts and grab connection information on peers",
+      "de": "Stellen Sie eine Verbindung zu WireGuard-Hosts her und holen Sie sich Verbindungsinformationen zu Peers",
+      "ru": "Подключайтесь к узлам WireGuard и собирайте информацию о соединениях с одноранговыми узлами.",
+      "pt": "Conecte-se a hosts WireGuard e obtenha informações de conexão em pares",
+      "nl": "Maak verbinding met WireGuard-hosts en verzamel verbindingsinformatie over peers",
+      "fr": "Connectez-vous aux hôtes WireGuard et récupérez les informations de connexion sur les pairs",
+      "it": "Connettiti agli host WireGuard e prendi le informazioni di connessione sui peer",
+      "es": "Conéctese a los hosts de WireGuard y obtenga información de conexión de sus pares",
+      "pl": "Połącz się z hostami WireGuard i zdobądź informacje o połączeniach na komputerach równorzędnych",
+      "zh-cn": "连接到 WireGuard 主机并获取对等方的连接信息",
+      "uk": "Підключіться до хостів WireGuard і отримайте інформацію про підключення до однорангових пристроїв"
+    },
+    "authors": [
+      "grizzelbee <open.source@hingsen.de>"
+    ],
+    "keywords": [
+      "wireguard"
+    ],
+    "platform": "Javascript/Node.js",
+    "icon": "wireguard.svg",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/Grizzelbee/ioBroker.wireguard/main/admin/wireguard.svg",
+    "readme": "https://github.com/grizzelbee/ioBroker.wireguard/blob/main/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "tier": 2,
+    "type": "infrastructure",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "poll",
+    "adminUI": {
+      "config": "json"
+    },
+    "plugins": {
+      "sentry": {
+        "dsn": "https://42007d6f59b74b5db06d6bfaf23d4d98@o505019.ingest.sentry.io/6215712"
+      }
+    },
+    "messages": [
+      {
+        "condition": {
+          "operand": "and",
+          "rules": [
+            "oldVersion<1.4.0",
+            "newVersion>=1.4.0"
+          ]
         },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "Device or service connected",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        }
+        "title": {
+          "en": "Instance requires new configuration after update",
+          "de": "Die Instanz erfordert nach dem Update eine neue Konfiguration",
+          "ru": "Экземпляр требует новой конфигурации после обновления",
+          "pt": "A instância requer uma nova configuração após a atualização",
+          "nl": "Instantie vereist nieuwe configuratie na update",
+          "fr": "L'instance nécessite une nouvelle configuration après la mise à jour",
+          "it": "L'istanza richiede una nuova configurazione dopo l'aggiornamento",
+          "es": "La instancia requiere una nueva configuración después de la actualización",
+          "pl": "Instancja wymaga nowej konfiguracji po aktualizacji",
+          "zh-cn": "实例更新后需要新配置",
+          "uk": "Після оновлення екземпляр потребує нової конфігурації"
+        },
+        "text": {
+          "en": "After upgrading to Version 1.4.0 or later you need to reenter your monitoring user and password due to the change of the admin interface.",
+          "de": "Nach dem Upgrade auf Version 1.4.0 oder höher müssen Sie Ihren Überwachungsbenutzer und Ihr Kennwort aufgrund der Änderung der Verwaltungsoberfläche erneut eingeben.",
+          "ru": "После обновления до версии 1.4.0 или более поздней вам потребуется повторно ввести пользователя и пароль для мониторинга в связи с изменением интерфейса администратора.",
+          "pt": "Após atualizar para a Versão 1.4.0 ou posterior, você precisa reinserir seu usuário e senha de monitoramento devido à alteração da interface administrativa.",
+          "nl": "Na het upgraden naar versie 1.4.0 of hoger moet u uw monitoringgebruiker en wachtwoord opnieuw invoeren vanwege de wijziging van de beheerdersinterface.",
+          "fr": "Après la mise à niveau vers la version 1.4.0 ou ultérieure, vous devez ressaisir votre utilisateur de surveillance et votre mot de passe en raison du changement de l'interface d'administration.",
+          "it": "Dopo l'aggiornamento alla versione 1.4.0 o successiva, è necessario reinserire l'utente e la password di monitoraggio a causa della modifica dell'interfaccia di amministrazione.",
+          "es": "Después de actualizar a la versión 1.4.0 o posterior, debe volver a ingresar su usuario y contraseña de monitoreo debido al cambio de la interfaz de administración.",
+          "pl": "Po aktualizacji do wersji 1.4.0 lub nowszej musisz ponownie wprowadzić użytkownika i hasło monitorowania ze względu na zmianę interfejsu administratora.",
+          "zh-cn": "升级到 1.4.0 或更高版本后，由于管理界面的变化，您需要重新输入您的监控用户和密码。",
+          "uk": "Після оновлення до версії 1.4.0 або пізнішої вам потрібно буде повторно ввести користувача моніторингу та пароль через зміну інтерфейсу адміністратора."
+        },
+        "level": "warn",
+        "buttons": [
+          "agree",
+          "cancel"
+        ]
+      },
+      {
+        "condition": {
+          "operand": "and",
+          "rules": [
+            "oldVersion<1.5.0",
+            "newVersion>=1.5.0"
+          ]
+        },
+        "title": {
+          "en": "Instance requires new configuration after update",
+          "de": "Die Instanz erfordert nach dem Update eine neue Konfiguration",
+          "ru": "Экземпляр требует новой конфигурации после обновления",
+          "pt": "A instância requer uma nova configuração após a atualização",
+          "nl": "Instantie vereist nieuwe configuratie na update",
+          "fr": "L'instance nécessite une nouvelle configuration après la mise à jour",
+          "it": "L'istanza richiede una nuova configurazione dopo l'aggiornamento",
+          "es": "La instancia requiere una nueva configuración después de la actualización",
+          "pl": "Instancja wymaga nowej konfiguracji po aktualizacji",
+          "zh-cn": "实例更新后需要新配置",
+          "uk": "Після оновлення екземпляр потребує нової конфігурації"
+        },
+        "text": {
+          "en": "The current group name in config has been deprecated and will be removed in a future release. So please review your config and move over to user name and device configuration for your peer names.",
+          "de": "Der aktuelle Gruppenname in der Konfiguration ist veraltet und wird in einer zukünftigen Version entfernt. Überprüfen Sie daher bitte Ihre Konfiguration und wechseln Sie zur Benutzernamen- und Gerätekonfiguration für Ihre Peer-Namen.",
+          "ru": "Текущее имя группы в конфигурации устарело и будет удалено в будущем выпуске. Поэтому, пожалуйста, просмотрите свою конфигурацию и перейдите к конфигурации имени пользователя и устройства для ваших одноранговых имен.",
+          "pt": "O nome do grupo atual na configuração foi obsoleto e será removido em uma versão futura. Portanto, revise sua configuração e vá para o nome de usuário e a configuração do dispositivo para seus nomes de pares.",
+          "nl": "De huidige groepsnaam in de configuratie is verouderd en zal in een toekomstige versie worden verwijderd. Controleer dus uw configuratie en ga naar gebruikersnaam en apparaatconfiguratie voor uw peer-namen.",
+          "fr": "Le nom de groupe actuel dans la configuration est obsolète et sera supprimé dans une prochaine version. Veuillez donc revoir votre configuration et passer à la configuration du nom d'utilisateur et de l'appareil pour vos noms d'homologues.",
+          "it": "Il nome del gruppo corrente in config è stato deprecato e verrà rimosso in una versione futura. Quindi, controlla la tua configurazione e passa al nome utente e alla configurazione del dispositivo per i tuoi nomi peer.",
+          "es": "El nombre de grupo actual en la configuración ha quedado obsoleto y se eliminará en una versión futura. Por lo tanto, revise su configuración y pase a la configuración de nombre de usuario y dispositivo para los nombres de sus compañeros.",
+          "pl": "Bieżąca nazwa grupy w konfiguracji została uznana za przestarzałą i zostanie usunięta w przyszłej wersji. Sprawdź więc swoją konfigurację i przejdź do nazwy użytkownika i konfiguracji urządzenia dla nazw równorzędnych.",
+          "uk": "Поточна назва групи в конфігурації застаріла та буде видалена в майбутньому випуску. Тому, будь ласка, перегляньте свою конфігурацію та перейдіть до імені користувача та конфігурації пристрою для імен однорангових пристроїв.",
+          "zh-cn": "配置中的当前组名称已被弃用，并将在未来版本中删除。因此，请检查您的配置，然后转到对等名称的用户名和设备配置。"
+        },
+        "level": "warn",
+        "buttons": [
+          "agree",
+          "cancel"
+        ]
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=6.13.16"
+      }
+    ],
+    "dependencies": [
+      {
+        "js-controller": ">=5.0.19"
+      }
+    ],
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    }
+  },
+  "native": {
+    "hosts": [
+      {
+        "name": "",
+        "hostaddress": "",
+        "port": 22,
+        "user": "",
+        "password": "",
+        "sudo": false,
+        "docker": false,
+        "container": "",
+        "pollInterval": 120
+      }
+    ],
+    "names": [
+      {
+        "pubKey": "",
+        "user": "",
+        "device": "",
+        "groupname": ""
+      }
+    ],
+    "configFiles": [
+      {
+        "hostName": "",
+        "iFace": "",
+        "configFile": ""
+      }
     ]
+  },
+  "encryptedNative": [],
+  "protectedNative": [],
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "Device or service connected",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
 }
