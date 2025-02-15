@@ -104,7 +104,7 @@ Basically there are three ways to execute the command:
 * none
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.8.0 (2025-02-15)
 - (grizzelbee) Upd: [#137](https://github.com/Grizzelbee/ioBroker.wireguard/issues/137)minor fixes for adapter checker
 - (grizzelbee) Upd: Dependencies got updated
 - (grizzelbee) Upd: Removed snyk
