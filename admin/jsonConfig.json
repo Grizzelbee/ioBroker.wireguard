@@ -84,7 +84,6 @@
                 "hosts": {
                     "type": "table",
                     "label": "WireGuard hosts",
-                    "width": "100%",
                     "items": [
                         {
                             "type": "text",
@@ -285,7 +284,6 @@
                 },
                 "names": {
                     "type": "table",
-                    "width": "100%",
                     "items": [
                         {
                             "type": "text",
@@ -377,7 +375,6 @@
                 },
                 "configFiles": {
                     "type": "table",
-                    "width": "100%",
                     "items": [
                         {
                             "type": "text",
