@@ -2,7 +2,6 @@
   "upgrade": true,
   "reject": [
     "chai",
-    "sinon-chai",
-    "eslint"
+    "sinon-chai"
   ]
 }
