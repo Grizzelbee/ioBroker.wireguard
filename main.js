@@ -12,7 +12,6 @@ const utils = require('@iobroker/adapter-core');
 const { Client } = require('ssh2');
 const timeOuts = [];
 const settingsPeerMap = {};
-let adapter = null;
 
 class Wireguard extends utils.Adapter {
     /**
@@ -256,9 +255,8 @@ class Wireguard extends utils.Adapter {
         this.log.debug(`Retrieving WireGuard status of host [${hostname}] on address [${hostaddress}]`);
         let command = docker ? 'docker exec -it wireguard /usr/bin/wg show all dump' : 'wg show all dump';
         command = sudo ? `sudo ${command}` : command;
-        return new Promise(function (resolve, reject) {
-            adapter
-                .execCommand(hostaddress, port, user, pass, command)
+        return new Promise((resolve, reject) => {
+            this.execCommand(hostaddress, port, user, pass, command)
                 .then(result => {
                     resolve(result);
                 })
@@ -370,8 +368,7 @@ class Wireguard extends utils.Adapter {
      */
     async restoreAllPeers(hostaddress, port, user, pass, iFace, configFile, container) {
         const command = this.getExtendedCommand(`wg syncconf ${iFace} ${configFile}`, hostaddress, container);
-        adapter
-            .execCommand(hostaddress, port, user, pass, command)
+        this.execCommand(hostaddress, port, user, pass, command)
             .then(result => {
                 return result;
             })
@@ -559,29 +556,24 @@ class Wireguard extends utils.Adapter {
      * @param objData {object} details to the datapoint to be created (Device, channel, state, ...)
      * @param value {any} value of the datapoint
      */
-    createOrExtendObject(id, objData, value) {
-        if (value !== null && 'undefined' !== typeof value) {
-            this.getObject(id, function (err, oldObj) {
-                if (!err && oldObj) {
+    async createOrExtendObject(id, objData, value) {
+        if (value !== null && typeof value !== 'undefined') {
+            this.getObjectAsync(id)
+                .then(async oldObj => {
                     if (objData.common.name === oldObj.common.name && objData.common.icon === oldObj.common.icon) {
-                        // this.log.debug(`Same object detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
                         this.setState(id, value, true);
                     } else {
-                        // this.log.debug(`New group name detected: ${objData.common.name} vs. old group name: ${oldObj.common.name}`);
-                        this.extendObject(id, objData, () => {
-                            this.setState(id, value, true);
-                        });
+                        await this.extendObject(id, objData);
+                        await this.setState(id, value, true);
                     }
-                } else {
-                    this.setObjectNotExists(id, objData, () => {
-                        this.setState(id, value, true);
-                    });
-                }
-            });
+                })
+                .catch(async err => {
+                    this.log.debug(`Error while getObject: ${err}`);
+                });
         } else {
             this.log.debug(`Setting ${id} to ${value} is senseless.`);
             this.log.debug(
-                `This usually only happens when you misconfigure this this. Please read the documentation on gitHub and fix your config.`,
+                `This usually only happens when you misconfigure this adapter. Please read the documentation on GitHub and fix your config.`,
             );
         }
     }
