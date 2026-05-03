@@ -254,6 +254,8 @@ Basically there are three ways to execute the command:
 ### v0.0.1
 * (grizzelbee) initial release
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## sentry.io
 This adapter uses sentry.io to collect details on crashes and report it automated to the author.
 The [ioBroker.sentry plugin](https://github.com/ioBroker/plugin-sentry) is used for it. Please refer to
