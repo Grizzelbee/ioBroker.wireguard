@@ -104,6 +104,10 @@ Basically there are three ways to execute the command:
 * none
 
 ## Changelog
+
+### **WORK IN PROGRESS**
+- (ioBroker-Bot) Adapter requires js-controller >= 6.0.11 now.
+
 ### 1.8.0 (2025-02-15)
 - (grizzelbee) Upd: [#137](https://github.com/Grizzelbee/ioBroker.wireguard/issues/137)minor fixes for adapter checker
 - (grizzelbee) Upd: Dependencies got updated
